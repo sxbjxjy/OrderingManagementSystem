@@ -1,0 +1,66 @@
+﻿@model List<OrderingManagementSystem.ViewModel.OrderResultViewModel>
+
+@{
+    Layout = null;
+}
+
+@{
+    double SubTotalPrice = 0;
+    double Tax = 0;
+    double TotalPrice = 0;
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        SubTotalPrice += (double)Model[i].Amount;
+        Tax += (double)(Model[i].Amount) * 0.1;
+        TotalPrice += (double)(Model[i].Amount) * 1.1;
+    }
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderResult</title>
+</head>
+<body>
+    <h1>注文完了</h1>
+    <p>以下の内容でご注文を承りました。</p>
+    <p>ご注文番号は、@Html.DisplayFor(model => model.First().OrderNo)です。</p>
+
+    <p>ご注文番号は、お問い合わせの際に必要となることがありますので、</p>
+    <p>メモをお取りになるか、印刷するなどして大切に保管してください。</p>
+    <p>お買い上げいただき、ありがとうございました。</p>
+
+    <table border="1">
+        <tr><th>商品番号</th><th>商品名</th><th>単価</th><th>数量</th><th>希望納期</th><th>金額</th></tr>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => model[i].ItemNo)</td>
+                <td>@Html.DisplayFor(model => model[i].ItemName)</td>
+                <td>@Html.DisplayFor(model => model[i].UnitPrice)</td>
+                <td>@Html.DisplayFor(model => model[i].Quantity)</td>
+                <td>@Html.DisplayFor(model => model[i].DeliveryDate)</td>
+                <td>@Html.DisplayFor(model => model[i].Amount)</td>
+            </tr>
+        }
+        <tr>
+            <td rowspan="3"></td>
+            <td colspan="4" align="right">小計</td>
+            <td>@SubTotalPrice</td>
+        </tr>
+        <tr>
+            <td colspan="4" align="right">消費税</td>
+            <td>@Tax</td>
+        </tr>
+        <tr>
+            <td colspan="4" align="right">合計</td>
+            <td>@TotalPrice</td>
+        </tr>
+    </table>
+
+</body>
+</html>
