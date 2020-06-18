@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\table.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -118,6 +119,8 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Shared\Front_Layout.cshtml" />
+    <Content Include="Views\Shared\Back_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

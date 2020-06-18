@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.kousei {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header {
+    border: none;
+    vertical-align: bottom;
+}
+
+
+ul {
+    white-space: nowrap;
+    width: 50px;
+}
+
+#title {
+    font-size: 60px;
+    color: aqua;
+}
+
+#subtitle {
+    text-align: left;
+}

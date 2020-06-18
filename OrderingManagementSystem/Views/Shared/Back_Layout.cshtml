@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>ウィン堂</title>
+    <link rel="stylesheet" type="text/css" href="/Content/table.css">
+</head>
+<body>
+    <table border="1" class="kousei">
+        <thead>
+            <tr>
+                <th class="header"></th>
+                <th class="header" id="title" colspan="2">ウィン堂</th>
+                <th class="header" id="subtitle">商品発注システム</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="justify" valign="top" width="20%">
+                    <div>メニュー</div>
+                    <hr size="2">
+                    <ul>
+                        <li>@Html.ActionLink("受注情報検索", "Orderresult", "OrderSearch")</li>
+                        <li>@Html.ActionLink("在庫情報メンテナンス", "InventoryListDisplay", "ItemMaintenance")</li>
+                        <li>@Html.ActionLink("担当者情報メンテナンス", "EmployeeList", "EmployeeMaster")</li>
+                        <li>@Html.ActionLink("顧客情報メンテナンス", "CustomerList", "CustomerMaster")</li>
+                        <li>@Html.ActionLink("商品情報メンテナンス", "List", "ProducctMaintenance")</li>
+                        <li>@Html.ActionLink("ログアウト", "Index", "EmployeeLogout")</li>
+                    </ul>
+                </td>
+                <td colspan="3" align="center">
+                    @RenderBody()
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
