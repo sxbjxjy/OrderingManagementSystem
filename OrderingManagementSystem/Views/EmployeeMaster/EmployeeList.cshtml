@@ -1,0 +1,49 @@
+﻿
+@model List<OrderingManagementSystem.ViewModel.EmployeeListViewModel>
+
+@{
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployeeList</title>
+</head>
+<body>
+    <h1>担当者情報メンテナンス</h1>
+    <div>担当者情報のメンテナンスを行います。</div>
+    <div>新規に担当者を追加する場合は、「新規追加」ボタンを押してください。</div>
+    <div>登録済み担当者の情報を変更するには、社員氏名のリンクをクリックしてください。</div>
+    <div>担当者を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
+
+
+    @using (Html.BeginForm("EmployeeDeleteConfirm", "EmployeeMaster", FormMethod.Post))
+    {
+        <table border="1">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().EmpNo)</th>
+                <th>@Html.DisplayNameFor(model => model.First().EmpName)</th>
+                <th>削除</th>
+            </tr>
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => model[i].EmpNo)</td>
+                    <td>@Html.ActionLink(Model[i].EmpName, "EmployeeUpdateInput", "EmployeeMaster", new { id = Model[i].EmpNo }, null)</td>
+                    <td>@Html.CheckBoxFor(model => model[i].IsChecked)</td>
+                </tr>
+                @Html.HiddenFor(model => model[i].EmpNo)
+                @Html.HiddenFor(model => model[i].EmpName)
+            }
+        </table><br />
+
+        <input type="button" value="追加" onclick="window.location='@Url.Action("EmployeeAddInput", "EmployeeMaster")'" />
+        <input type="submit" value="削除" />
+    }
+</body>
+</html>
