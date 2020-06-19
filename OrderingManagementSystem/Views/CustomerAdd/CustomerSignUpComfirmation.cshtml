@@ -1,0 +1,46 @@
+﻿@model OrderingManagementSystem.Models.Customer
+
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>ウィン堂</title>
+    <link rel="stylesheet" type="text/css" href="/Content/table.css">
+</head>
+<body>
+    <table border="1" class="kousei">
+        <thead><tr><th class="header" width="200"></th><th class="header" id="title" colspan="2">ウィン堂</th><th class="header" id="subtitle">商品発注システム</th></tr></thead>
+    </table>
+    <div align="center">
+        <p>送信内容をご確認ください</p>
+        <p>よろしければ、「登録」ボタンを押してください。</p>
+        @using (Html.BeginForm("CustomerSignUpDone", "CustomerAdd", FormMethod.Post))
+        {
+            <table border="1">
+                <tr><th colspan="2">会社情報</th></tr>
+                <tr><td>会社名</td><td>@Html.DisplayTextFor(model => model.CompanyName)</td></tr>
+                <tr><td>住所</td><td>@Html.DisplayFor(model => model.Address)</td></tr>
+                <tr><td>電話番号</td><td>@Html.DisplayFor(model => model.Telno)</td></tr>
+                <tr><td>氏名(漢字)</td><td>@Html.DisplayFor(model => model.CustomerName)</td></tr>
+                <tr><td>氏名(かな)</td><td>@Html.DisplayFor(model => model.CustomerKana)</td></tr>
+                <tr><td>部署</td><td>@Html.DisplayFor(model => model.Dept)</td></tr>
+                <tr><td>メールアドレス</td><td>@Html.DisplayFor(model => model.Email)</td></tr>
+            </table>
+            @Html.HiddenFor(model => model.CompanyName)
+            @Html.HiddenFor(model => model.CustomerName)
+            @Html.HiddenFor(model => model.CustomerKana)
+            @Html.HiddenFor(model => model.Telno)
+            @Html.HiddenFor(model => model.Address)
+            @Html.HiddenFor(model => model.Dept)
+            @Html.HiddenFor(model => model.Email)
+            @Html.HiddenFor(model => model.Password)
+            <input type="submit" value="登録" /> <input type="button" value="戻る" onclick="window.location='@Url.Action("CustomerSignUp", "CustomerAdd")'" />
+        }
+    </div>
+</body>
+</html>

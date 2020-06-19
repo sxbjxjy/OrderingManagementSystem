@@ -1,4 +1,4 @@
-﻿using OrderingManagementSystem.DAL;
+using OrderingManagementSystem.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,10 +7,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace OrderingManagementSystem.ViewModel
 {
     public class EmployeeInputViewModel
     {
+
         [Required(ErrorMessage = "{0}を入力してください")]
         [DisplayName("社員番号")]
         [Range(1000, 9999, ErrorMessage = "{0}は1000から始まる4桁の数値で入力してください")]
@@ -46,5 +48,6 @@ namespace OrderingManagementSystem.ViewModel
                 return ValidationResult.Success;
             }
         }
+
     }
 }
