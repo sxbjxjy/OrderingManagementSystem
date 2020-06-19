@@ -1,0 +1,73 @@
+﻿@model OrderingManagementSystem.ViewModel.CustomerSignUpViewModel
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>ウィン堂</title>
+    <link rel="stylesheet" type="text/css" href="/Content/table.css">
+</head>
+<body>
+    <table border="1" class="kousei">
+        <thead><tr><th class="header" width="200"></th><th class="header" id="title" colspan="2">ウィン堂</th><th class="header" id="subtitle">商品発注システム</th></tr></thead>
+    </table>
+    <div align="center">
+        <p>システム利用登録を行います。</p>
+        <p>下記の情報を入力して、送信ボタンを押してください。</p>
+        @using (Html.BeginForm("CustomerSignUpComfirmation", "CustomerAdd", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>会社名</td>
+                    <td>@Html.TextBoxFor(model => model.CompanyName)</td>
+                    <td>@Html.ValidationMessageFor(model => model.CompanyName)</td>
+                </tr>
+                <tr>
+                    <td>住所</td>
+                    <td>@Html.TextBoxFor(model => model.Address)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <td>電話番号</td>
+                    <td>@Html.TextBoxFor(model => model.Telno)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Telno)</td>
+                </tr>
+                <tr>
+                    <td>氏名(漢字)</td>
+                    <td>@Html.TextBoxFor(model => model.CustomerName)</td>
+                    <td>@Html.ValidationMessageFor(model => model.CustomerName)</td>
+                </tr>
+                <tr>
+                    <td>氏名(かな)</td>
+                    <td>@Html.TextBoxFor(model => model.CustomerKana)</td>
+                    <td>@Html.ValidationMessageFor(model => model.CustomerKana)</td>
+                </tr>
+                <tr>
+                    <td>部署</td>
+                    <td>@Html.TextBoxFor(model => model.Dept)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>メールアドレス</td>
+                    <td>@Html.TextBoxFor(model => model.Email)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <td>パスワード</td>
+                    <td>@Html.PasswordFor(model => model.Password)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td>パスワード(確認)</td>
+                    <td>@Html.PasswordFor(model => model.Password_verify)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Password_verify)</td>
+                </tr>
+            </table>
+            <input type="submit" value="送信" /> <input type="reset" value="クリア" />
+        }
+    </div>
+</body>
+</html>
