@@ -1,0 +1,74 @@
+﻿@model List<OrderingManagementSystem.ViewModel.OrderingSearchResultViewModel>
+@{
+    ViewBag.Title = "Searchresult";
+}
+
+<style>
+    h2 {
+        text-align: center
+    }
+
+    p {
+        text-align: center
+    }
+
+    table {
+        margin: 0 auto
+    }
+</style>
+
+<h2>受注情報検索</h2>
+<p>以下の条件で検索を行いました。</p>
+<p>受注ステータスを更新する場合は、検索結果から</p>
+<p>「ご注文番号-明細」リンクをクリックしてください。</p>
+
+<table>
+    <!--検索条件の表示-->
+    <tr>
+        <th>顧客Id </th>
+        <td>@ViewBag.customerId</td>
+    </tr>
+    <tr>
+        <th>注文番号</th>
+        <td>@ViewBag.orderNo</td>
+    </tr>
+    <tr>
+        <th>希望納期</th>
+        <td>@ViewBag.deliveryPeriod</td>
+    </tr>
+    <tr>
+        <th>受注日時</th>
+        <td>@ViewBag.orderPeriod</td>
+    </tr>
+    <tr>
+        <th>ステータス</th>
+        <td>@ViewBag.status</td>
+    </tr>
+</table>
+<hr />
+
+<table><tr><th>検索結果</th></tr></table>
+<form action="StatusUpdate/OrderingStatusUpdate">
+    <table border="1">
+        <tr>
+            <th>注文番号-明細</th>
+            <th>商品番号</th>
+            <th>商品名</th>
+            <th>数量</th>
+            <th>希望納期</th>
+            <th>ステータス</th>
+        </tr>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+                int detailNo = Model[i].DetailNo;
+        <tr>
+            <td><a href="~/StatusUpdate/OrderStatusUpdate?detailNo=@detailNo">@Html.DisplayFor(model => model[i].OrderDetail)</a></td>
+            <td>@Html.DisplayFor(model => model[i].ItemNo)</td>
+            <td>@Html.DisplayFor(model => model[i].ItemName)</td>
+            <td>@Html.DisplayFor(model => model[i].Quantity)</td>
+            <td>@Html.DisplayFor(model => model[i].DeliveryDate)</td>
+            <td>@Html.DisplayFor(model => model[i].Status)</td><!--どうやって日本語でステータス表示するか-->
+        </tr>
+        }
+    </table>
+</form>

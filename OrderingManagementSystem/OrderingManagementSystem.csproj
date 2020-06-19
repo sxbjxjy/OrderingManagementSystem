@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -101,6 +101,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+
+    <Content Include="Content\table.css" />
+
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -116,7 +119,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ItemMaintenanceController.cs" />
     <Compile Include="Controllers\ProductListController.cs" />
-    <Compile Include="Controllers\ProductMaintenanceController.cs" />
+    <Compile Include="Controllers\ProductMaintenanceController.cs">
+    <Compile Include="Controllers\CustomerAddController.cs" />
+    <Compile Include="Controllers\CustomerLoginController.cs" />
+    <Compile Include="Controllers\CustomerLogoutController.cs" />
+
+    <Compile Include="Controllers\CustomerMasterController.cs" />
+    <Compile Include="Controllers\EmployeeLoginController.cs" />
+    <Compile Include="Controllers\EmployeeLogoutController.cs" />
+    <Compile Include="Controllers\OrderingSearchController.cs" />
+    <Compile Include="Controllers\StatusUpdateController.cs" />
+    <Compile Include="Controllers\EmployeeMasterController.cs" />
+
+
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="DAL\Initializer.cs" />
     <Compile Include="DAL\ModelContext.cs" />
@@ -130,7 +145,15 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+
     <Compile Include="ViewModel\ProductViewModel.cs" />
+
+    <Compile Include="ViewModel\CustomerInputViewModel.cs" />
+    <Compile Include="ViewModel\CustomerSignUpViewModel.cs" />
+    <Compile Include="ViewModel\OrderingSearchResultViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeInputViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeListViewModel.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -145,10 +168,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\ProductMaintenance\List.cshtml" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\ProductMaintenance\Add.cshtml" />
     <Content Include="Views\ProductMaintenance\AddCheck.cshtml" />
     <Content Include="Views\ProductMaintenance\Update.cshtml" />
@@ -158,6 +180,35 @@
     <Content Include="Views\ItemMaintenance\InventoryInformationUpdate.cshtml" />
     <Content Include="Views\ProductList\ProductCatalog.cshtml" />
     <Content Include="Views\ProductList\ProductCatalog2.cshtml" />
+
+    <Content Include="Views\OrderingSearch\Search.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\OrderingSearch\Searchresult.cshtml" />
+    <Content Include="Views\StatusUpdate\OrderStatusUpdate.cshtml" />
+    <Content Include="Views\StatusUpdate\OrderStatusChange.cshtml" />
+    <Content Include="Views\Shared\Front_Layout.cshtml" />
+    <Content Include="Views\Shared\Back_Layout.cshtml" />
+
+    <Content Include="Views\EmployeeMaster\EmployeeList.cshtml" />
+    <Content Include="Views\EmployeeMaster\EmployeeAddInput.cshtml" />
+    <Content Include="Views\EmployeeMaster\EmployeeAddConfirm.cshtml" />
+    <Content Include="Views\EmployeeMaster\EmployeeUpdateInput.cshtml" />
+    <Content Include="Views\EmployeeMaster\EmployeeUpdateConfirm.cshtml" />
+    <Content Include="Views\EmployeeMaster\EmployeeDeleteConfirm.cshtml" />
+    <Content Include="Views\CustomerAdd\CustomerSignUp.cshtml" />
+    <Content Include="Views\CustomerAdd\CustomerSignUpComfirmation.cshtml" />
+    <Content Include="Views\CustomerAdd\CustomerSignUpDone.cshtml" />
+    <Content Include="Views\CustomerLogin\CustomerLoginIndex.cshtml" />
+    <Content Include="Views\CustomerLogin\CustomerMainMenu.cshtml" />
+    <Content Include="Views\EmployeeLogin\EmployeeMain.cshtml" />
+    <Content Include="Views\EmployeeLogin\Login.cshtml" />
+    <Content Include="Views\CustomerMaster\CustomerList.cshtml" />
+    <Content Include="Views\CustomerMaster\CustomerUpdateInput.cshtml" />
+    <Content Include="Views\CustomerMaster\CustomerUpdateConfirm.cshtml" />
+    <Content Include="Views\CustomerMaster\CustomerDeleteConfirm.cshtml" />
+
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

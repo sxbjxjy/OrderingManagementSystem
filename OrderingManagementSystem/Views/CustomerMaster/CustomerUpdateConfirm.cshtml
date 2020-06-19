@@ -1,0 +1,76 @@
+﻿
+@model OrderingManagementSystem.Models.Customer
+
+@{
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CustomerUpdateConfirm</title>
+</head>
+<body>
+    <h1>顧客情報メンテナンス</h1>
+    <div>以下の内容で顧客情報を更新します。</div>
+    <div>更新内容を確認の上、「更新」ボタンを押してください。</div><br />
+
+    @using (Html.BeginForm("CustomerUpdate", "CustomerMaster", FormMethod.Post))
+    {
+        <table border="1">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CustomerId)</th>
+                <td>@Html.DisplayFor(model => model.CustomerId)</td>
+            </tr>
+            <tr>
+                <th colspan="2" align="center">会社情報</th>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CompanyName)</th>
+                <td>@Html.DisplayFor(model => model.CompanyName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Address)</th>
+                <td>@Html.DisplayFor(model => model.Address)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Telno)</th>
+                <td>@Html.DisplayFor(model => model.Telno)</td>
+            </tr>
+            <tr>
+                <th colspan="2" align="center">顧客担当者情報</th>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CustomerName)</th>
+                <td>@Html.DisplayFor(model => model.CustomerName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CustomerKana)</th>
+                <td>@Html.DisplayFor(model => model.CustomerKana)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Dept)</th>
+                <td>@Html.DisplayFor(model => model.Dept)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+        </table><br />
+        @Html.HiddenFor(model => model.CustomerId)
+        @Html.HiddenFor(model => model.CompanyName)
+        @Html.HiddenFor(model => model.Address)
+        @Html.HiddenFor(model => model.Telno)
+        @Html.HiddenFor(model => model.CustomerName)
+        @Html.HiddenFor(model => model.CustomerKana)
+        @Html.HiddenFor(model => model.Dept)
+        @Html.HiddenFor(model => model.Email)
+        @Html.HiddenFor(model => model.Password)
+
+        <input type="submit" value="更新" />
+        <input type="button" value="戻る" onclick="window.location='@Url.Action("CustomerUpdateInput", "CustomerMaster", new { id = Model.CustomerId}, null)'" />
+    }
+</body>
+</html>
