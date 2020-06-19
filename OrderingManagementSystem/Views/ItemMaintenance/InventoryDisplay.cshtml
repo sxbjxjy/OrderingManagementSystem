@@ -1,0 +1,58 @@
+﻿@model List<OrderingManagementSystem.ViewModels.ProductViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>在庫一覧表示画面</title>
+</head>
+<body>
+    <center>
+        <h1>在庫情報メンテナンス</h1>
+        <div>在庫情報のメンテナンスを行います。</div>
+        <div>変更したい在庫の商品名リンクをクリックしてください。</div><br />
+        <form>
+            <table border="1">
+                <tr>
+                    <th>商品番号</th>
+                    <th>商品名</th>
+                    <th>在庫数量</th>
+                    <th>入荷予定日</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.ItemNo)</td>
+                        <td>@Html.ActionLink(item.ItemName, "InventoryInformationUpdate", "ItemMaintenance", new { id = item.ItemNo }, null)</td>
+
+                        @if (item.Stock == 0)
+                        {
+                            <td align="right">0</td>
+                        }
+                        else
+                        {
+                            <td align="right">@Html.DisplayFor(model => item.Stock)</td>
+                        }
+
+                        @if (item.ReceiptDate == null)
+                        {
+                            <td align="center">-</td>
+                        }
+                        else
+                        {
+                            <td>@Html.DisplayFor(model => item.ReceiptDate)</td>
+                        }
+
+
+                    </tr>
+                }
+            </table>
+        </form>
+    </center>
+</body>
+</html>
