@@ -39,12 +39,30 @@ namespace OrderingManegimentSystem.Controllers
                         return RedirectToAction("ShoppingCartError", "Estimate", new { id });
                     }
                 }
-                //在庫不足
+                //在庫不足チェック
                 int ctmId = x.First().CustomerId;//ユーザID
 
-                var cart = from a in db.CartDetails
-                           where a.CustomerId == ctmId
-                           group e.ItemNo;
+                var cdList = new List<OrderCheckViewModel>();
+
+                var cartList = (from a in db.CartDetails
+                                where a.CustomerId == ctmId
+                                select a).ToList();
+
+                var query = cartList.GroupBy(b => b.ItemNo);
+
+                for (int i = 0; i < query.Count(); i++)
+                {
+                    var a = new OrderCheckViewModel(query[i]);
+                    cdList.Add(a);
+                }
+                
+                for(int i = 0; i < cdList.Count(); i++)
+                {
+                    int item = db.Products.Find(cdList[i].ItemNo); 
+
+                }
+                
+                         
 
 
                 //int ctmId = 3;//ユーザID

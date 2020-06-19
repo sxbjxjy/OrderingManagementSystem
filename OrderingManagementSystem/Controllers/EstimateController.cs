@@ -13,6 +13,7 @@ namespace OrderingManegimentSystem.Controllers
 {
     public class EstimateController : Controller
     {
+        //見積表示
         public ActionResult ShoppingCart()//ユーザのCustomerId取得
         {
             using (var db = new ModelContext())
