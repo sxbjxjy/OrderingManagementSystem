@@ -1,0 +1,43 @@
+﻿
+@model OrderingManagementSystem.Models.Employee
+
+@{
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployeeUpdateConfirm</title>
+</head>
+<body>
+    <h1>担当者情報メンテナンス</h1>
+    <div>以下の内容で担当者情報を更新します。</div>
+    <div>更新内容を確認の上、「更新」ボタンを押してください。</div><br />
+
+    @using (Html.BeginForm("EmployeeUpdate", "EmployeeMaster", FormMethod.Post))
+    {
+        <table border="1">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.EmpNo)</th>
+                <td>@Html.DisplayFor(model => model.EmpNo)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.EmpName)</th>
+                <td>@Html.DisplayFor(model => model.EmpName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Password)</th>
+                <td>****@*@Html.LabelFor(model => model.Password)*@</td>
+            </tr>
+        </table><br />
+        @Html.HiddenFor(model => model.EmpNo)
+        @Html.HiddenFor(model => model.EmpName)
+        @Html.HiddenFor(model => model.Password)
+        <input type="submit" value="送信" />
+        <input type="button" value="戻る" onclick="window.location='@Url.Action("EmployeeUpdateInput", "EmployeeMaster", new { id = Model.EmpNo}, null)'" />
+    }
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿
+@model List<OrderingManagementSystem.Models.Customer>
+
+@{
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CustomerList</title>
+</head>
+<body>
+    <h1>顧客情報メンテナンス</h1>
+    <div>顧客情報のメンテナンスを行います。</div>
+    <div>登録済み顧客の情報を変更するには、会社名のリンクをクリックしてください。</div>
+    <div>顧客情報を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
+
+    @using (Html.BeginForm("CustomerDeleteConfirm", "CustomerMaster", FormMethod.Post))
+    {
+        <table border="1">
+            <tr><th>顧客ID</th><th>会社名</th><th>顧客担当者部署</th><th>顧客担当者名</th><th>削除</th></tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.CustomerId)</td>
+                    <td>@Html.ActionLink(item.CompanyName, "CustomerUpdateInput", "CustomerMaster", new { id = item.CustomerId }, null)</td>
+                    <td>@Html.DisplayFor(model => item.Dept)</td>
+                    <td>@Html.DisplayFor(model => item.CustomerName)</td>
+                    <td>
+                        <input type="button" value="削除" onclick="window.location = '@Url.Action(
+                                                          "CustomerDeleteConfirm", "CustomerMaster", new { id = item.CustomerId }, null)'" />
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</body>
+</html>
