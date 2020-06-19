@@ -34,7 +34,12 @@ namespace OrderingManagementSystem.Controllers
             using (var db = new ModelContext())
             {
                 var ul = db.Employees.Find(employee.EmpNo);
-                if (employee.EmpNo == ul.EmpNo && employee.Password == ul.Password)
+                if (ul == null)
+                {
+                    ViewBag.IsAuth = false;
+                    return View("Login");
+                }
+                else if (employee.EmpNo == ul.EmpNo && employee.Password == ul.Password)
                 {
                     return View();
                 }
