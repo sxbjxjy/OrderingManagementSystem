@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "";
+    string ID = String.Format("{0:000000}", ViewBag.Customer.CustomerId);
+}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>ウィン堂</title>
+    <link rel="stylesheet" type="text/css" href="/Content/table.css">
+</head>
+<body>
+    <table border="1" class="kousei">
+        <thead><tr><th class="header" width="200"></th><th class="header" id="title" colspan="2">ウィン堂</th><th class="header" id="subtitle">商品発注システム</th></tr></thead>
+    </table>
+    <div align="center">
+        <p>システム利用登録を完了しました。</p>
+        <p>お客様の顧客IDは、<strong>@(ID)</strong>です</p>
+        <p>ログイン時には、顧客IDとパスワードが必要となりますので、</p>
+        <p>顧客IDを忘れないようにご注意ください。</p>
+        <br />
+        @using (Html.BeginForm("CustomerLoginIndex", "CustomerLogin", FormMethod.Post))
+        {
+            <button type="submit">
+                ログイン画面を表示
+            </button>
+        }
+    </div>
+</body>
+</html>
