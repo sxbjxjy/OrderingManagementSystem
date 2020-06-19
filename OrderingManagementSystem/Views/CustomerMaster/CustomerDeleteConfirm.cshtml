@@ -1,0 +1,40 @@
+﻿
+@model OrderingManagementSystem.Models.Customer
+
+@{
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CustomerDeleteConfirm</title>
+</head>
+<body>
+    <h1>顧客情報メンテナンス</h1>
+    <div>下記の顧客情報を削除します。</div>
+    <div>内容を確認の上、「削除」ボタンを押してください。</div><br />
+
+    @using (Html.BeginForm("CustomerDelete", "CustomerMaster", FormMethod.Post))
+    {
+        <table border="1">
+            <tr><th>顧客ID</th><th>会社名</th><th>顧客担当者部署</th><th>顧客担当者名</th></tr>
+            <tr>
+                <td>@Html.DisplayFor(model => model.CustomerId)</td>
+                <td>@Html.DisplayFor(model => model.CompanyName)</td>
+                <td>@Html.DisplayFor(model => model.Dept)</td>
+                <td>@Html.DisplayFor(model => model.CustomerName)</td>
+            </tr>
+        </table><br />
+        <input type="button" value="削除" onclick="window.location = '@Url.Action(
+                                                          "CustomerDelete", "CustomerMaster", new { id = Model.CustomerId }, null)'" />
+        <input type="button" value="戻る" onclick="window.location='@Url.Action("CustomerList", "CustomerMaster")'" />
+    }
+</body>
+</html>
+
+
+
+

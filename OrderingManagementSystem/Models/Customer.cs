@@ -19,6 +19,7 @@ namespace OrderingManagementSystem.Models
 
 
         [Key]
+        [DisplayFormat(DataFormatString = "{0:d6}")]
         public int CustomerId { get; set; }
 
         public string Password { get; set; }
