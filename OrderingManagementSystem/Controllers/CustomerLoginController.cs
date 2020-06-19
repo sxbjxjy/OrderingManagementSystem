@@ -40,7 +40,12 @@ namespace Test.Controllers
             using (var db = new ModelContext())
             {
                 var ul = db.Customers.Find(customer.CustomerId);
-                if (customer.CustomerId == ul.CustomerId && customer.Password == ul.Password)
+                if(ul == null)
+                {
+                    ViewBag.IsAuth = false;
+                    return View("CustomerLoginIndex");
+                }
+                else if (customer.CustomerId == ul.CustomerId && customer.Password == ul.Password)
                 {
                     return View();
                 }
