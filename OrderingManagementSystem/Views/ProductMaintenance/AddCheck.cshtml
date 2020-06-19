@@ -1,0 +1,76 @@
+﻿@model OrderingManagementSystem.Models.Product
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商品追加確認画面</title>
+</head>
+<body>
+    <center>
+        <h1>商品情報メンテナンス</h1>
+        <div>以下の内容で商品情報を登録します。</div>
+        <div>登録内容を確認の上、「登録」ボタンを押してください。</div><br />
+        <form action="/ProductMaintenance/AddRedirect" method="post">
+            <table border="1">
+                <tr>
+                    <th>商品番号</th>
+                    <td>@String.Format("{0:d4}", Model.ItemNo)</td>
+                </tr>
+                <tr>
+                    <th>商品名</th>
+                    <td>@Html.DisplayFor(model => model.ItemName)</td>
+                </tr>
+                <tr>
+                    <th>商品写真(URL)</th>
+                    <td><img src="@Url.Content(Model.PhotoUrl)" wigth="150" height="150" /></td>
+                </tr>
+                <tr>
+                    <th>単価</th>
+                    <td>@String.Format("{0:c}-", Model.UnitPrice)</td>
+                </tr>
+                <tr>
+                    <th>寸法</th>
+                    <td>@Html.DisplayFor(model => model.Size)</td>
+                </tr>
+                <tr>
+                    <th>種類</th>
+                    <td>@Html.DisplayFor(model => model.Type)</td>
+                </tr>
+                <tr>
+                    <th>カテゴリー</th>
+                    <td>@Html.DisplayFor(model => model.Category)</td>
+                </tr>
+                <tr>
+                    <th>著者</th>
+                    <td>@Html.DisplayFor(model => model.Author)</td>
+                </tr>
+                <tr>
+                    <th>出版社</th>
+                    <td>@Html.DisplayFor(model => model.Publisher)</td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td>@Html.DisplayFor(model => model.Overview)</td>
+                </tr>
+            </table><br />
+            <input type="submit" value="登録" />
+            <button type="button" onclick="history.back()">戻る</button>
+
+            @Html.HiddenFor(model => model.ItemNo)
+            @Html.HiddenFor(model => model.ItemName)
+            @Html.HiddenFor(model => model.PhotoUrl)
+            @Html.HiddenFor(model => model.UnitPrice)
+            @Html.HiddenFor(model => model.Size)
+            @Html.HiddenFor(model => model.Type)
+            @Html.HiddenFor(model => model.Category)
+            @Html.HiddenFor(model => model.Author)
+            @Html.HiddenFor(model => model.Publisher)
+            @Html.HiddenFor(model => model.Overview)
+        </form>
+    </center>
+</body>
+</html>

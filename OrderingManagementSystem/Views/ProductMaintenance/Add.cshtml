@@ -1,0 +1,108 @@
+﻿@model OrderingManagementSystem.ViewModels.ProductViewModel
+@{
+    Layout = null;
+
+}
+@*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商品追加入力画面</title>
+</head>
+<body>
+    <center>
+        <h1>商品情報メンテナンス</h1>
+        <div>商品情報を新規登録します。</div>
+        <div>登録内容を入力して、「送信」ボタンを押してください。</div><br />
+
+        @using (@Html.BeginForm("AddCheck", "ProductMaintenance", FormMethod.Post))
+        {
+            <table border="1">
+                <tr>
+                    <th>商品番号</th>
+                    <td><input type="text" name="itemNo">@Html.ValidationMessageFor(model => model.ItemNo)</td>
+                </tr>
+                <tr>
+                    <th>商品名</th>
+                    <td><input type="text" name="itemName">@Html.ValidationMessageFor(model => model.ItemName)</td>
+                </tr>
+                <tr>
+                    <th>商品写真(URL)</th>
+                    <td><input type="text" name="photoUrl">@Html.ValidationMessageFor(model => model.PhotoUrl)</td>
+                </tr>
+                <tr>
+                    <th>単価</th>
+                    <td><input type="text" name="unitPrice">@Html.ValidationMessageFor(model => model.UnitPrice)</td>
+                </tr>
+                <tr>
+                    <th>寸法</th>
+                    <td><input type="text" name="size" value="　x　x　cm">@Html.ValidationMessageFor(model => model.Size)</td>
+                </tr>
+                <tr>
+                    <th>種類</th>
+                    <td>
+                        <select name="type">
+                            <option value="文庫本">文庫本</option>
+                            <option value="コミック">コミック</option>
+                            <option value="新書">新書</option>
+                            <option value="ハードカバー">ハードカバー</option>
+                            <option value="雑誌">雑誌</option>
+                            <option value="文芸誌">文芸誌</option>
+                            <option value="写真集">写真集</option>
+                            <option value="画集">画集</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>カテゴリー</th>
+                    <td>
+                        <select name="category">
+                            <option value="コミック・ラノベ・BL">コミック・ラノベ・BL</option>
+                            <option value="絵本・児童書">絵本・児童書</option>
+                            <option value="カレンダー">カレンダー</option>
+                            <option value="ビジネス・経済">ビジネス・経済</option>
+                            <option value="文学・評論">文学・評論</option>
+                            <option value="コンピュータ・IT">コンピュータ・IT</option>
+                            <option value="医学・薬学・看護学・歯科学">医学・薬学・看護学・歯科学</option>
+                            <option value="人文・思想">人文・思想</option>
+                            <option value="歴史・地理">歴史・地理</option>
+                            <option value="趣味・実用">趣味・実用</option>
+                            <option value="科学・テクノロジー">科学・テクノロジー</option>
+                            <option value="教育・学参・受験">教育・学参・受験</option>
+                            <option value="暮らし・健康・子育て">暮らし・健康・子育て</option>
+                            <option value="楽譜・スコア・音楽書">楽譜・スコア・音楽書</option>
+                            <option value="投資・金融・会社経営">投資・金融・会社経営</option>
+                            <option value="ゲーム攻略・ゲームブック">ゲーム攻略・ゲームブック</option>
+                            <option value="社会・政治">社会・政治</option>
+                            <option value="古書">古書</option>
+                            <option value="ノンフィクション">ノンフィクション</option>
+                            <option value="アート・建築・デザイン">アート・建築・デザイン</option>
+                            <option value="語学・辞事典・年鑑">語学・辞事典・年鑑</option>
+                            <option value="資格・検定・就職">資格・検定・就職</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>著者</th>
+                    <td><input type="text" name="author">@Html.ValidationMessageFor(model => model.Author)</td>
+                </tr>
+                <tr>
+                    <th>出版社</th>
+                    <td><input type="text" name="publisher">@Html.ValidationMessageFor(model => model.Publisher)</td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td>
+                        <textarea name="overview" rows="3" cols="20"></textarea>
+                    </td>
+                </tr>
+            </table><br />
+            <input type="submit" value="送信" />
+            <button type="button" onclick="history.back()">戻る</button>
+        }
+    </center>
+</body>
+</html>
