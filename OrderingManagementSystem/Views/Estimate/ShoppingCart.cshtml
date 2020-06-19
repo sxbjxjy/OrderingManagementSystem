@@ -8,17 +8,20 @@
     Layout = null;
 }
 
-<!--{
+@{
     double SubTotalPrice = 0;
     double Tax = 0;
     double TotalPrice = 0;
     for (int i = 0; i < Model.Count(); i++)
     {
-        SubTotalPrice += (double)Model[i].Amount;
-        Tax += (double)(Model[i].Amount) * 0.1;
-        TotalPrice += (double)(Model[i].Amount) * 1.1;
+        SubTotalPrice += (double)Model[i].Total;
+        Tax += (double)(Model[i].Total) * 0.1;
+        TotalPrice += (double)(Model[i].Total) * 1.1;
     }
-}-->
+    string stp = SubTotalPrice.ToString("C");
+    string t = Tax.ToString("C");
+    string tp = TotalPrice.ToString("C");
+}
 
 <div style="text-align:center">
     <h2>見積確認</h2>
@@ -48,10 +51,14 @@
                 <td>@Html.DisplayFor(m => m[i].ItemName)</td>
                 <td style="text-align:right">@Html.DisplayFor(m => m[i].UnitPrice)-</td>
                 <td>@Html.TextBoxFor(m => m[i].Quantity, new { style = "width:40px" })@Html.ValidationMessageFor(model => model[i].Quantity)</td>
-                <td>@Html.TextBoxFor(m => m[i].DeliveryDate, "{0:yyyy/MM/dd}", new { style = "width:75px" })@Html.ValidationMessageFor(model => model[1].DeliveryDate)</td>
+                <td>@Html.TextBoxFor(m => m[i].DeliveryDate, "{0:yyyy/MM/dd}", new { style = "width:75px" })@Html.ValidationMessageFor(model => model[i].DeliveryDate)</td>
                 <td style="text-align:right">@Html.DisplayFor(m => m[i].Total)-</td>
                 <td align="center">@Html.CheckBoxFor(m => m[i].IsChecked)</td>
             </tr>
+            @Html.HiddenFor(m => m[i].ItemNo)
+            @Html.HiddenFor(m => m[i].ItemName)
+            @Html.HiddenFor(m => m[i].UnitPrice)
+            @Html.HiddenFor(m => m[i].Total)
             @Html.HiddenFor(m => m[i].CustomerId)
             @Html.HiddenFor(m => m[i].CartNo)
 
@@ -59,15 +66,15 @@
         <tr>
             <td rowspan="3"></td>
             <th colspan="4" align="right">小計</th>
-            <td align="right">\@ViewBag.P-</td>
+            <td align="right">@stp-</td>
         </tr>
         <tr>
             <th colspan="4" align="right">消費税</th>
-            <td align="right">\@ViewBag.T-</td>
+            <td align="right">@t-</td>
         </tr>
         <tr>
             <th colspan="4" align="right">合計</th>
-            <td align="right">\@ViewBag.S-</td>
+            <td align="right">@tp-</td>
         </tr>
     </table>
     <div style="text-align:center">

@@ -19,19 +19,18 @@ namespace OrderingManagementSystem.ViewModel
 
         public string UnitPrice { get; set; }
 
-        [DisplayName("数量（半角）")]
+        [DisplayName("数量(半角)")]
         [Required(ErrorMessage = "数量を入力してください")]
         [RegularExpression("[0-9]+", ErrorMessage = "数量は数値で入力してください")]
         public int Quantity { get; set; }
 
-        [DisplayName("希望納期 yyyy/mm/dd（半角）")]
+        [DisplayName("希望納期 yyyy/mm/dd(半角)")]
         [Required(ErrorMessage = "希望納期を入力してください")]
-        //[DataType(DataType.Date)]
-        // [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         //[RegularExpression(@"\d{4}/\d{1,2}/\d{1,2}", ErrorMessage = "希望納期はyyyy/mm/ddの形式で入力してください")]
         public DateTime DeliveryDate { get; set; }
 
-        public string Total { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal Total { get; set; }
 
         public int CustomerId { get; set; }
 
@@ -46,7 +45,7 @@ namespace OrderingManagementSystem.ViewModel
             this.UnitPrice = cd.Product.UnitPrice.ToString("C");
             this.Quantity = Convert.ToInt32(cd.Quantity);
             this.DeliveryDate = cd.DeliveryDate;
-            this.Total = (cd.Quantity * cd.Product.UnitPrice).ToString("C");
+            this.Total = cd.Quantity * cd.Product.UnitPrice;
             this.CustomerId = cd.CustomerId;
         }
 

@@ -1,7 +1,37 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ProductAddResult";
 }
 
-<h2>ProductAddResult</h2>
+@{
+    Layout = null;
+}
 
+<div style="text-align:center">
+    <h2>商品を買い物かごに追加</h2>
+    下記の商品を買い物かごに追加しました。<br>
+    続けて商品を選ぶ場合は、左のメニューから「カタログを見る」を選択してください。<br>
+    見積内容を確認するには、「見積確認」ボタンを押してください。
+</div>
+<h2 style="text-align:center">商品画像</h2>
+<table border="1" align="center">
+    <tr>
+        <th><center>商品番号</center></th>
+        <th><center>商品名</center></th>
+        <th><center>単価</center></th>
+        <th><center>数量</center></th>
+        <th><center>金額</center></th>
+        <th><center>希望納期</center></th>
+    </tr>
+    <tr>
+        <td>@ViewBag.Result.ItemNo</td>
+        <td>@ViewBag.ItemN</td>
+        <td>\@ViewBag.UnitP-</td>
+        <td>@ViewBag.Result.Quantity</td>
+        <td>\@ViewBag.Price-</td>
+        <td>@ViewBag.Date</td>
+    </tr>
+</table>
+<br>
+<div style="text-align: center">
+    <a href="/Estimate/ShoppingCart/"><input type="button" value="見積確認"></a>
+</div>

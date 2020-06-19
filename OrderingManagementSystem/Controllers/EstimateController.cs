@@ -13,11 +13,11 @@ namespace OrderingManegimentSystem.Controllers
 {
     public class EstimateController : Controller
     {
-        // GET: Estimate
-        public ActionResult ShoppingCart(int CustomerId)//ユーザのCustomerId取得
+        public ActionResult ShoppingCart()//ユーザのCustomerId取得
         {
             using (var db = new ModelContext())
             {
+                int CustomerId = 3;//ユーザIDの代わり
                 var cdList = new List<ShoppingCartViewModel>();
 
                 var cartList = (from e in db.CartDetails
@@ -29,42 +29,7 @@ namespace OrderingManegimentSystem.Controllers
                     var a = new ShoppingCartViewModel(cartList[i]);
                     cdList.Add(a);
                 }
-
-                var list = (from x in db.CartDetails
-                            join y in db.Products
-                            on x.ItemNo equals y.ItemNo
-                            select new
-                            {
-                                ItemNo = x.ItemNo,
-                                ItemName = y.ItemName,
-                                UnitPrice = y.UnitPrice,
-                                Quantity = x.Quantity,
-                                DeliveryDate = x.DeliveryDate,
-                                Total = x.Quantity * y.UnitPrice,
-                                CustomerId = x.CustomerId,
-
-                            })
-                            .Where(x => x.CustomerId == CustomerId);
-
-                //カート内の小計
-                decimal p = 0;
-                foreach (var z in list)
-                {
-                    p += z.UnitPrice * z.Quantity;
-                }
-                ViewBag.P = String.Format("{0:#,0}", p);
-
-                //消費税
-                double p2 = Decimal.ToDouble(p);
-                double t = 0;
-                t = p2 * 0.1;
-                ViewBag.T = String.Format("{0:#,0}", t);
-
-                //カート内の合計
-                double s = 0;
-                s = p2 + t;
-                ViewBag.S = String.Format("{0:#,0}", s);
-
+                
                 return View(cdList);
             }
         }
@@ -119,43 +84,8 @@ namespace OrderingManegimentSystem.Controllers
                 {
                     var a = new ShoppingCartViewModel(cartList[i]);
                     cdList.Add(a);
-                }
-
-                var list = (from x in db.CartDetails
-                            join y in db.Products
-                            on x.ItemNo equals y.ItemNo
-                            select new
-                            {
-                                ItemNo = x.ItemNo,
-                                ItemName = y.ItemName,
-                                UnitPrice = y.UnitPrice,
-                                Quantity = x.Quantity,
-                                DeliveryDate = x.DeliveryDate,
-                                Total = x.Quantity * y.UnitPrice,
-                                CustomerId = x.CustomerId,
-
-                            })
-                            .Where(x => x.CustomerId == CustomerId);
-
-                //カート内の小計を計算
-                decimal p = 0;
-                foreach (var z in list)
-                {
-                    p += z.UnitPrice * z.Quantity;
-                }
-                ViewBag.P = String.Format("{0:#,0}", p);
-
-                //消費税を計算
-                double p2 = Decimal.ToDouble(p);
-                double t = 0;
-                t = p2 * 0.1;
-                ViewBag.T = String.Format("{0:#,0}", t);
-
-                //カート内の合計金額を計算
-                double s = 0;
-                s = p2 + t;
-                ViewBag.S = String.Format("{0:#,0}", s);
-
+                }             
+                
                 return View("ShoppingCart", cdList);
             }
         }

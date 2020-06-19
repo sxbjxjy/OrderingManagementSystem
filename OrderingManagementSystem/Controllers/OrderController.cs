@@ -15,6 +15,7 @@ namespace OrderingManegimentSystem.Controllers
         {
             using (var db = new ModelContext())
             {
+                //削除チェックが入っている
                 foreach (var item in x)
                 {
                     if (item.IsChecked == true)
@@ -22,9 +23,31 @@ namespace OrderingManegimentSystem.Controllers
                         int id = item.CustomerId;
                         return RedirectToAction("ShoppingCartError", "Estimate", new { id });
                     }
-
                 }
+                //数量、納期が変更されている
+                foreach(var item in x)
+                {
+                    var list = db.CartDetails.Find(item.CartNo);
+                    if(list.Quantity != item.Quantity)
+                    {
+                        int id = item.CustomerId;
+                        return RedirectToAction("ShoppingCartError", "Estimate", new { id });
+                    }
+                    if(list.DeliveryDate != item.DeliveryDate)
+                    {
+                        int id = item.CustomerId;
+                        return RedirectToAction("ShoppingCartError", "Estimate", new { id });
+                    }
+                }
+                //在庫不足
+                int ctmId = x.First().CustomerId;//ユーザID
 
+                var cart = from a in db.CartDetails
+                           where a.CustomerId == ctmId
+                           group e.ItemNo;
+
+
+                //int ctmId = 3;//ユーザID
 
                 var cartList = (from cl in db.CartDetails
                                 where cl.CustomerId == ctmId
@@ -32,15 +55,16 @@ namespace OrderingManegimentSystem.Controllers
 
                 var orderNew = new Order();
                 orderNew.CustomerId = ctmId;
-                //OderDate 追加
-                //orderNew.OrderDate = DateTime.Now;
+                orderNew.OrderDate = DateTime.Now;
                 db.Orders.Add(orderNew);
                 db.SaveChanges();
 
+                int j = 1;
                 for (int i = 0; i < cartList.Count(); i++)
                 {
                     var orderDetailNew = new OrderDetail();
                     orderDetailNew.OrderNo = orderNew.OrderNo;
+                    orderDetailNew.MeisaiNo = j;
                     orderDetailNew.ItemNo = cartList[i].ItemNo;
                     orderDetailNew.Quantity = cartList[i].Quantity;
                     orderDetailNew.DeliveryDate = cartList[i].DeliveryDate;
@@ -50,6 +74,8 @@ namespace OrderingManegimentSystem.Controllers
                     orderDetailNew.Customer = cartList[i].Customer;
                     orderDetailNew.Order = orderNew;
                     db.OrderDetails.Add(orderDetailNew);
+
+                    j = j + 1;
                 }
                 db.SaveChanges();
 
@@ -71,71 +97,10 @@ namespace OrderingManegimentSystem.Controllers
                 {
                     var orderDetailResult = new OrderResultViewModel(orderDetailList[i]);
                     orderDetailResultList.Add(orderDetailResult);
-                }*/
+                }
 
-                //return View(orderDetailResultList);
-                return View(x);
+                return View(orderDetailResultList);
             }
         }
-
-
-        /*
-        // GET: Order
-        Database1Entities1 db = new Database1Entities1();
-        public ActionResult OrderResult(int CustomerId)//ユーザIDの取得
-        {
-           　//注文番号とユーザIDのペアで追加
-            var u = new Orderss
-            {
-                CustomerId = CustomerId
-            };
-            var v = db.Ordersses.Add(u);
-            db.SaveChanges();
-
-            //直前の注文番号とカートの中身をセットで追加していく
-            /*var  = db.CartDetails.; 
-            foreach(var y in )
-            OrderDetail d = new OrderDetail
-             {
-                
-             }
-            db.OrderDetails.Add(d);
-
-            ViewBag.a = db.OrderDetails.Where(x => x.CustomerId == CustomerId && x.OrderNo == 1);
-
-            //注文明細と商品を結合、現在のログインユーザIDと直前の注文番号で検索
-            var list = (from x in db.OrderDetails
-                        join y in db.Products
-                        on x.ItemNo equals y.ItemNo
-                        select new
-                        {     
-                            OrderNo = x.OrderNo,
-                            ItemName = y.ItemName,
-                            UnitPrice = y.UnitPrice,
-                            Quantity = x.Quantity,
-                            CustomerId = x.CustomerId
-                        })
-                        .Where(x => x.CustomerId == CustomerId && x.OrderNo == 1);
-
-            //オーダー内の小計を計算
-            decimal p = 0;
-            foreach (var z in list)
-            {
-                p = p + z.UnitPrice * z.Quantity;
-            }
-            ViewBag.P = String.Format("{0:#,0}", p);
-
-            //消費税を計算
-            double p2 = Decimal.ToDouble(p);
-            double t = 0;
-            t = p2 * 0.1;
-            ViewBag.T = String.Format("{0:#,0}", t);
-
-            //オーダー内の合計金額を計算
-            double s = 0;
-            s = p2 + t;
-            ViewBag.S = String.Format("{0:#,0}", s);
-            return View();   */
-        //}
     }
 }

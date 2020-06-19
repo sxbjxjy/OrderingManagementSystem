@@ -1,6 +1,7 @@
 ﻿using OrderingManagementSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,12 +15,15 @@ namespace OrderingManagementSystem.ViewModel
 
         public string ItemName { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal UnitPrice { get; set; }
 
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime DeliveryDate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Amount { get; set; }
 
         public OrderResultViewModel() { }
@@ -36,3 +40,4 @@ namespace OrderingManagementSystem.ViewModel
         }
 
     }
+}
