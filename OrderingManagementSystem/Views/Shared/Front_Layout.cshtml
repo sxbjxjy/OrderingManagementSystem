@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>ウィン堂</title>
+    <link rel="stylesheet" type="text/css" href="/Content/table.css">
+</head>
+<body>
+    <table border="1" class="kousei">
+        <thead>
+            <tr>
+                <th class="header"></th>
+                <th class="header" id="title" colspan="2">ウィン堂</th>
+                <th class="header" id="subtitle">商品発注システム</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="justify" valign="top" width="20%">
+                    <div>メニュー</div>
+                    <hr size="2">
+                    <ul>
+                        <li>@Html.ActionLink("カタログを見る", "ProductCatalog", "ProductList")</li>
+                        <li>@Html.ActionLink("見積確認", "ShoppingCart", "Estimate")</li>
+                        <li>@Html.ActionLink("発注済みステータス確認", "Orderstatus", "OrderStatus")</li>
+                        <li>@Html.ActionLink("ログアウト", "Index", "CustomerLogout")</li>
+                    </ul>
+                </td>
+                <td colspan="3" align="center">
+                    @RenderBody()
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
