@@ -20,14 +20,11 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult OrderStatusChange(int detailNo, string status)
         {
-            using(var db = new ModelContext())
-            {
-                var od = db.OrderDetails.Find(detailNo);
-                od.Status = status;
-                db.SaveChanges();
-
-                ViewBag.model = db.OrderDetails.Find(detailNo);
-            }
+            ModelContext db = new ModelContext();
+            var od = db.OrderDetails.Find(detailNo);
+            od.Status = status;
+            db.SaveChanges();
+            ViewBag.model = db.OrderDetails.Find(detailNo);
             return View();
         }
     }
