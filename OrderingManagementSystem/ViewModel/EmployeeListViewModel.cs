@@ -8,7 +8,6 @@ using System.Web;
 
 namespace OrderingManagementSystem.ViewModel
 {
-    [CustomValidation(typeof(EmployeeListViewModel), "NoChecked")]
     public class EmployeeListViewModel
     {
         [DisplayName("社員番号")]

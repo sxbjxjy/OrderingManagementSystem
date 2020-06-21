@@ -20,6 +20,26 @@
     <div>登録済み担当者の情報を変更するには、社員氏名のリンクをクリックしてください。</div>
     <div>担当者を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
 
+    @if (ViewBag.Add == 1)
+    {
+        <div style="color:chocolate">新しい担当者情報が登録されました</div><br />
+    }
+
+    @if (ViewBag.Update == 1)
+    {
+        <div style="color:chocolate">担当者情報が更新されました</div><br />
+    }
+
+    @if (ViewBag.Delete == 1)
+    {
+        <div style="color:chocolate">担当者情報が削除されました</div><br />
+    }
+
+    @if (ViewBag.NoChecked == 1)
+    {
+        <div style="color:chocolate">削除を行う場合は、削除したい担当者を選択してください</div><br />
+    }
+
 
     @using (Html.BeginForm("EmployeeDeleteConfirm", "EmployeeMaster", FormMethod.Post))
     {
