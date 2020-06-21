@@ -23,11 +23,7 @@ namespace OrderingManagementSystem.Models
 
         public DateTime DeliveryDate { get; set; }
 
-        public string Status { get; set; }
-
-        //public int CustomerId { get; set; }
-
-        public virtual Customer Customer { get; set; }
+        public int Status { get; set; }
 
         public virtual Order Order { get; set; }
 

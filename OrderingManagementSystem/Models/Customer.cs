@@ -14,7 +14,6 @@ namespace OrderingManagementSystem.Models
         {
             CartDetails = new HashSet<CartDetail>();
             Orders = new HashSet<Order>();
-            //OrderDetails = new HashSet<OrderDetail>();
         }
 
 
@@ -41,8 +40,6 @@ namespace OrderingManagementSystem.Models
         public virtual ICollection<CartDetail> CartDetails { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
-
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
     }
 }
