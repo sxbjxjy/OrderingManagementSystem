@@ -18,7 +18,7 @@ namespace OrderingManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult OrderStatusChange(int detailNo, string status)
+        public ActionResult OrderStatusChange(int detailNo, int status)
         {
             ModelContext db = new ModelContext();
             var od = db.OrderDetails.Find(detailNo);

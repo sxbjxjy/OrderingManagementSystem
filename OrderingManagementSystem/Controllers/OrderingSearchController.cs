@@ -14,7 +14,7 @@ namespace OrderingManagementSystem.Controllers
         {
             return View();
         }
-        public ActionResult Searchresult(int? customerId, int? orderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, string status)
+        public ActionResult Searchresult(int? customerId, int? orderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
             using (var db = new ModelContext())
             {

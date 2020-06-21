@@ -28,7 +28,7 @@ namespace OrderingManagementSystem.ViewModels
         {
             using (var db = new ModelContext())
             {
-                var ul = db.Products.Select(e => e.ItemNo);
+                var ul = int.Parse(db.Products.Select(e => e.ItemNo).ToString());
                 if (pvm.ItemNo == ul)
                 {
                     return new ValidationResult("入力された社員IDはすでに登録されています。");

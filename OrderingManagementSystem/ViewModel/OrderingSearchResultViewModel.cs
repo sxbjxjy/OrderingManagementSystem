@@ -26,7 +26,7 @@ namespace OrderingManagementSystem.ViewModel
         public System.DateTime OrderDate { get; set; }
 
         [DisplayName("ステータス")]
-        public string Status { get; set; }
+        public int Status { get; set; }
         [DisplayName("顧客ID")]
         public int CustomerId { get; set; }
 
