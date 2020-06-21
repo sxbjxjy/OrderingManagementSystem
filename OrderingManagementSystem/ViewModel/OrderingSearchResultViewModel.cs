@@ -29,13 +29,13 @@ namespace OrderingManagementSystem.ViewModel
         [DisplayName("商品名")]
         public string ItemName { get; set; }
         [DisplayName("数量")]
-        [DisplayFormat(DataFormatString = "0:#")]
+        [DisplayFormat(DataFormatString = "n*")]
         public decimal Quantity { get; set; }
         [DisplayName("希望納期")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime DeliveryDate { get; set; }
         [DisplayName("受注日時")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime OrderDate { get; set; }
 
         [DisplayName("ステータス")]
