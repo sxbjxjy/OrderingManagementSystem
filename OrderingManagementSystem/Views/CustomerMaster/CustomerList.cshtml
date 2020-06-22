@@ -18,6 +18,17 @@
     <div>登録済み顧客の情報を変更するには、会社名のリンクをクリックしてください。</div>
     <div>顧客情報を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
 
+    @if (ViewBag.Update == 1)
+    {
+        <div style="color:chocolate">顧客情報が更新されました</div><br />
+    }
+
+    @if (ViewBag.Delete == 1)
+    {
+        <div style="color:chocolate">顧客情報が削除されました</div><br />
+    }
+
+
     @using (Html.BeginForm("CustomerDeleteConfirm", "CustomerMaster", FormMethod.Post))
     {
         <table border="1">
