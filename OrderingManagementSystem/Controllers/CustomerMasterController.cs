@@ -67,7 +67,12 @@ namespace OrderingManagementSystem.Controllers
                 c.Email = ctm.Email;
                 c.Password = ctm.Password;
                 db.SaveChanges();
-                return Redirect("CustomerList");
+
+                ViewBag.Update = 1;
+
+                var ctmList = db.Customers.ToList();
+                return View("CustomerList",ctmList);
+
             }
         }
 
@@ -87,7 +92,12 @@ namespace OrderingManagementSystem.Controllers
                 Customer ctm = db.Customers.Find(id);
                 db.Customers.Remove(ctm);
                 db.SaveChanges();
-                return Redirect("CustomerList");
+
+                ViewBag.Delete = 1;
+
+                var ctmList = db.Customers.ToList();
+                return View("CustomerList", ctmList);
+
             }
         }
     }
