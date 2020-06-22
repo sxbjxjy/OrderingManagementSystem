@@ -11,7 +11,7 @@ namespace OrderingManegimentSystem.Controllers
 {
     public class OrderController : Controller
     {
-        public ActionResult OrderResult(List<ShoppingCartViewModel> x)//int ctmId
+        public ActionResult OrderResult(List<ShoppingCartViewModel> x)
         {
             using (var db = new ModelContext())
             {
@@ -39,34 +39,37 @@ namespace OrderingManegimentSystem.Controllers
                         return RedirectToAction("ShoppingCartError", "Estimate", new { id });
                     }
                 }
+
                 //在庫不足チェック
-                int ctmId = x.First().CustomerId;//ユーザID
+                int ctmId = x.First().CustomerId;
+                var s = from t in db.CartDetails
+                        where t.CustomerId == ctmId
+                        select t;
+                var u = (from v in s
+                        group v by v.ItemNo).ToList();
 
-                var cdList = new List<OrderCheckViewModel>();
-
-                var cartList = (from a in db.CartDetails
-                                where a.CustomerId == ctmId
-                                select a).ToList();
-
-                var query = cartList.GroupBy(b => b.ItemNo);
-
-                for (int i = 0; i < query.Count(); i++)
+                for (int i = 0; i < u.Count(); i++)
                 {
-                    var a = new OrderCheckViewModel(query[i]);
-                    cdList.Add(a);
+                    var w = (from q in u[i]
+                            select q).ToList();
+                    //注文しようとしている数量
+                    var o = (from q in u[i]
+                            select q.Quantity).Sum();
+                    
+                    //在庫から未発送を引く(error)
+                    var stock = db.Products.Find(w[0].ItemNo);
+                    var y = (from a in db.OrderDetails
+                            where a.ItemNo == w[0].ItemNo && a.Status == "未発送"
+                            select a.Quantity).Sum();
+                   
+                    int n = stock.Stock - y;
+                    if(n < o)
+                    {
+                        return RedirectToAction("ShoppingCartError2", "Estimate", new { ctmId });
+                    }
                 }
-                
-                for(int i = 0; i < cdList.Count(); i++)
-                {
-                    int item = db.Products.Find(cdList[i].ItemNo); 
-
-                }
-                
-                         
-
-
-                //int ctmId = 3;//ユーザID
-
+               
+                //注文追加
                 var cartList = (from cl in db.CartDetails
                                 where cl.CustomerId == ctmId
                                 select cl).ToList();
@@ -93,7 +96,7 @@ namespace OrderingManegimentSystem.Controllers
                     orderDetailNew.Order = orderNew;
                     db.OrderDetails.Add(orderDetailNew);
 
-                    j = j + 1;
+                    j += 1;
                 }
                 db.SaveChanges();
 

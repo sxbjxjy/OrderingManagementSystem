@@ -6,12 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using OrderingManagementSystem.ViewModel;
 using OrderingManagementSystem.DAL;
+using System.Diagnostics.Eventing.Reader;
 
 namespace OrderingManegimentSystem.Controllers
 {
     public class ProductAddController : Controller
-    {
-        // GET: ProductAdd       
+    {  
         public ActionResult List(int ItemNo)
         {
             using (var db = new ModelContext())
@@ -26,7 +26,7 @@ namespace OrderingManegimentSystem.Controllers
         {
             using (var db = new ModelContext())
             {
-                //空欄、形式チェック(バリデーション)
+                //空欄、形式チェック
                 if (!ModelState.IsValid)
                 {
                     return View("List", pro);
@@ -40,21 +40,35 @@ namespace OrderingManegimentSystem.Controllers
                 //在庫チェック
                 int x = pro.ItemNo;
                 var stock = db.Products.Find(x);
-                if (stock.Stock < pro.Quantity)
+                var y = (from a in db.OrderDetails
+                        where a.ItemNo == x && a.Status == "未発送"
+                        select (int?)a.Quantity).Sum() ?? 0;
+                var z = y.ToString();
+                /*if (y == )
                 {
-                    ViewBag.E = false;
-                    return View("List", pro);
+                    if (stock.Stock < pro.Quantity)
+                    {
+                        ViewBag.E = false;
+                        return View("List", pro);
+                    }
                 }
+                else
+                {*/
+                //int sum = y.AsQueryable().Sum();
+                //int s = stock.Stock - sum;
+                int s = stock.Stock - y;
+                    if (s < pro.Quantity)
+                    {
+                        ViewBag.E = false;
+                        return View("List", pro);
+                    }
+                //}
+                    
                 //希望納期チェック(過去or90日以上未来)
                 DateTime dfrom = DateTime.Now;
                 DateTime dto = pro.DeliveryDate;
                 double interval = (dto - dfrom).TotalDays;
-                if (interval < 0)
-                {
-                    ViewBag.D = false;
-                    return View("List", pro);
-                }
-                else if (interval > 90)
+                if (interval < 0 || interval > 90)
                 {
                     ViewBag.D = false;
                     return View("List", pro);
@@ -70,7 +84,7 @@ namespace OrderingManegimentSystem.Controllers
                     //CustomerId = (ログインユーザのId取得)
                 };
 
-                //日時をstring化、0～10番目の文字（時刻を除外）
+                //時刻除外）
                 string result = pro.DeliveryDate.ToString();
                 ViewBag.Date = result.Substring(0, 10);
                 //単価を三桁区切り

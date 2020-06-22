@@ -14,15 +14,15 @@ namespace OrderingManegimentSystem.Controllers
     public class EstimateController : Controller
     {
         //見積表示
-        public ActionResult ShoppingCart()//ユーザのCustomerId取得
+        public ActionResult ShoppingCart()// int CustomerId
         {
             using (var db = new ModelContext())
             {
-                int CustomerId = 3;//ユーザIDの代わり
+                int CustomerId = 3;//ユーザID
                 var cdList = new List<ShoppingCartViewModel>();
 
                 var cartList = (from e in db.CartDetails
-                                where e.CustomerId == CustomerId
+                                where e.CustomerId == CustomerId//ユーザID
                                 select e).ToList();
 
                 for (int i = 0; i < cartList.Count(); i++)
@@ -39,31 +39,55 @@ namespace OrderingManegimentSystem.Controllers
         public ActionResult ReShoppingCart(List<ShoppingCartViewModel> cdList)
         {
             using (var db = new ModelContext())
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View("ShoppingCart", cdList);
-                }
-
+            {    
                 foreach (var item in cdList)
-                {
-                    if (item.IsChecked == true)
-                    {
-                        var x = db.CartDetails.Find(item.CartNo);
-                        db.CartDetails.Remove(x);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        CartDetail y = db.CartDetails.Find(item.CartNo);
-                        y.Quantity = item.Quantity;
-                        y.DeliveryDate = item.DeliveryDate;
-                        db.SaveChanges();
-                    }
-                }
+                    {          
+                      if(!ModelState.IsValid)
+                      {
+                        return View("ShoppingCart", cdList);
+                      }
+                        //数量ゼロチェック
+                      if (item.Quantity <= 0)
+                      {
+                         ViewBag.N = false;
+                         return View("ShoppingCart", cdList);
+                      }
 
-                return Redirect("ShoppingCart");
-            }
+                        //在庫チェック
+
+
+
+                        //希望納期チェック(過去or90日未来)
+                        DateTime dfrom = DateTime.Now;
+                        DateTime dto = item.DeliveryDate;
+                        double interval = (dto - dfrom).TotalDays;
+                        if (interval < 0 || interval > 90)
+                        {
+                            ViewBag.X = false;
+                            return View("ShoppingCart", cdList);
+                        }                     
+                    }
+
+                    //再見積
+                    foreach (var item in cdList)
+                    {
+                        if (item.IsChecked == true)
+                        {
+                            var x = db.CartDetails.Find(item.CartNo);
+                            db.CartDetails.Remove(x);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            CartDetail y = db.CartDetails.Find(item.CartNo);
+                            y.Quantity = item.Quantity;
+                            y.DeliveryDate = item.DeliveryDate;
+                            db.SaveChanges();
+                        }
+                    }
+
+                    return Redirect("ShoppingCart");
+                }
         }
 
         //再見積を押さずに注文
@@ -93,3 +117,4 @@ namespace OrderingManegimentSystem.Controllers
 
     }
 }
+ 

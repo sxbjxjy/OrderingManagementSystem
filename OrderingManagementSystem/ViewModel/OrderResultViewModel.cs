@@ -9,6 +9,7 @@ namespace OrderingManagementSystem.ViewModel
 {
     public class OrderResultViewModel
     {
+        [DisplayFormat(DataFormatString ="{0:D6}")]
         public int OrderNo { get; set; }
 
         public int ItemNo { get; set; }
