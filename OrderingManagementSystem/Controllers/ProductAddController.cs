@@ -41,7 +41,7 @@ namespace OrderingManegimentSystem.Controllers
                 int x = pro.ItemNo;
                 var stock = db.Products.Find(x);
                 var y = (from a in db.OrderDetails
-                        where a.ItemNo == x && a.Status == "未発送"
+                        where a.ItemNo == x && a.Status == 1
                         select (int?)a.Quantity).Sum() ?? 0;
                 var z = y.ToString();
                 /*if (y == )
