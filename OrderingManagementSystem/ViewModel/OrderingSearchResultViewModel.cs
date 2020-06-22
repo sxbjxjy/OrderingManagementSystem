@@ -40,6 +40,7 @@ namespace OrderingManagementSystem.ViewModel
 
         [DisplayName("ステータス")]
         public int Status { get; set; }
+        public string StatusDisplay { get; set; }
       
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
@@ -54,6 +55,23 @@ namespace OrderingManagementSystem.ViewModel
             this.Quantity = osr.Quantity;
             this.DeliveryDate = osr.DeliveryDate;
             this.Status = osr.Status;
+
+            if (this.Status == 1)
+            {
+                this.StatusDisplay = "未発送";
+            }
+            else if (this.Status == 2)
+            {
+                this.StatusDisplay = "発送済";
+            }
+            else if (this.Status == 3)
+            {
+                this.StatusDisplay = "キャンセル";
+            }
+            else if (this.Status == 4)
+            {
+                this.StatusDisplay = "入荷待ち";
+            }
         }
     }
 }
