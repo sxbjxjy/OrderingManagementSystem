@@ -39,8 +39,8 @@ namespace OrderingManagementSystem.ViewModel
         public System.DateTime OrderDate { get; set; }
 
         [DisplayName("ステータス")]
-        public string Status { get; set; }
-
+        public int Status { get; set; }
+      
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
 

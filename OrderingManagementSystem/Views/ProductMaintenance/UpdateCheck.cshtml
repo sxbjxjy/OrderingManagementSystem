@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商品更新確認画面</title>
+</head>
+<body>
+    <center>
+        <h1>商品情報メンテナンス</h1>
+        <div>以下の内容で商品情報を更新します。</div>
+        <div>更新内容を確認の上、「更新」ボタンを押してください。</div><br />
+        <form action="/ProductMaintenance/UpdateRedirect" method="post">
+            <table border="1">
+                <tr>
+                    <th>商品番号</th>
+                    <td>@String.Format("{0:d4}", Model.ItemNo)</td>
+                </tr>
+                <tr>
+                    <th>商品名</th>
+                    <td>@ViewBag.model4.ItemName</td>
+                </tr>
+                <tr>
+                    <th>商品写真(URL)</th>
+                    <td><img src="@ViewBag.model4.PhotoUrl" wigth="150" height="150" /></td>
+                </tr>
+                <tr>
+                    <th>単価</th>
+                    <td>@String.Format("{0:C}-", ViewBag.model4.UnitPrice)</td>
+                </tr>
+                <tr>
+                    <th>寸法</th>
+                    <td>@ViewBag.model4.Size</td>
+                </tr>
+                <tr>
+                    <th>種類</th>
+                    <td>@ViewBag.model4.Type</td>
+                </tr>
+                <tr>
+                    <th>カテゴリー</th>
+                    <td>@ViewBag.model4.Category</td>
+                </tr>
+                <tr>
+                    <th>著者</th>
+                    <td>@ViewBag.model4.Author</td>
+                </tr>
+                <tr>
+                    <th>出版社</th>
+                    <td>@ViewBag.model4.Publisher</td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td>@ViewBag.model4.Overview</td>
+                </tr>
+            </table><br />
+            <input type="submit" value="更新" />
+            <button type="button" onclick="history.back()">戻る</button>
+
+            <input type="hidden" name="itemNo" value="@ViewBag.model4.ItemNo" />
+            <input type="hidden" name="itemName" value="@ViewBag.model4.ItemName" />
+            <input type="hidden" name="photoUrl" value="@ViewBag.model4.PhotoUrl" />
+            <input type="hidden" name="unitPrice" value="@ViewBag.model4.UnitPrice" />
+            <input type="hidden" name="size" value="@ViewBag.model4.Size" />
+            <input type="hidden" name="type" value="@ViewBag.model4.Type" />
+            <input type="hidden" name="category" value="@ViewBag.model4.Category" />
+            <input type="hidden" name="author" value="@ViewBag.model4.Author" />
+            <input type="hidden" name="publisher" value="@ViewBag.model4.Publisher" />
+            <input type="hidden" name="overview" value="@ViewBag.model4.Overview" />
+            <input type="hidden" name="stock" value="@ViewBag.model4.Stock" />
+
+        </form>
+    </center>
+</body>
+</html>

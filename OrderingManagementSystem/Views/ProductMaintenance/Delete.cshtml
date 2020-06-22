@@ -1,0 +1,81 @@
+﻿@model List<OrderingManagementSystem.ViewModels.ProductViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商品削除確認画面</title>
+</head>
+<body>
+    <center>
+        <h1>商品情報メンテナンス</h1>
+        <div>下記の商品情報を削除します。</div>
+        <div>内容を確認の上、「削除」ボタンを押してください。</div><br />
+        <form action="/ProductMaintenance/DeleteRedirect" method="post">
+            <table border="1">
+                <tr>
+                    <th>商品番号</th>
+                    <th>商品名</th>
+                    <th>単価</th>
+                    <th>寸法</th>
+                    <th>在庫数量</th>
+                    <th>種類</th>
+                    <th>カテゴリー</th>
+                    <th>著者</th>
+                    <th>出版社</th>
+                </tr>
+                @*@foreach (var item in ViewBag.model6)
+                    {
+                    <tr>
+                        <td>@item.ItemNo <input type="hidden" name="itemNo" value="@item.ItemNo" /></td>
+                        <td>@item.ItemName</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@item.Size</td>
+                        <td>@item.Stock</td>
+                        <td>@item.Type</td>
+                        <td>@item.Category</td>
+                        <td>@item.Author</td>
+                        <td>@item.Publisher</td>
+                    </tr>
+                    }*@
+                @foreach (var item in Model)
+                {
+                    if (item.IsChecked == true)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(model => item.ItemNo)</td>
+                            <td>@Html.DisplayFor(model => item.ItemName)</td>
+                            <td>@Html.DisplayFor(model => item.UnitPrice)</td>
+                            <td>@Html.DisplayFor(model => item.Size)</td>
+                            <td>@Html.DisplayFor(model => item.Stock)</td>
+                            <td>@Html.DisplayFor(model => item.Type)</td>
+                            <td>@Html.DisplayFor(model => item.Category)</td>
+                            <td>@Html.DisplayFor(model => item.Author)</td>
+                            <td>@Html.DisplayFor(model => item.Publisher)</td>
+                        </tr>
+                    }
+                }
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    @Html.HiddenFor(model => model[i].ItemNo)
+                    @Html.HiddenFor(model => model[i].ItemName)
+                    @Html.HiddenFor(model => model[i].UnitPrice)
+                    @Html.HiddenFor(model => model[i].Size)
+                    @Html.HiddenFor(model => model[i].Stock)
+                    @Html.HiddenFor(model => model[i].Type)
+                    @Html.HiddenFor(model => model[i].Category)
+                    @Html.HiddenFor(model => model[i].Author)
+                    @Html.HiddenFor(model => model[i].Publisher)
+                    @Html.HiddenFor(model => model[i].IsChecked)
+                }
+            </table><br />
+            <input type="submit" value="削除" />
+            <button type="button" onclick="history.back()">戻る</button>
+        </form>
+    </center>
+</body>
+</html>

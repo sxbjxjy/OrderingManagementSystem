@@ -10,6 +10,15 @@
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>ウィン堂</title>
     <link rel="stylesheet" type="text/css" href="/Content/table.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+$(function(){
+    history.pushState(null, null, null);
+    $(window).on("popstate", function(){
+        history.pushState(null, null, null);
+    });
+});
+    </script>
 </head>
 <body>
     <table border="1" class="kousei">

@@ -10,7 +10,7 @@ namespace OrderingManagementSystem.Controllers
     {
         public ActionResult Index()
         {
-            return Redirect("../CustomerLogin/CustomerLoginIndex");
+            return Redirect("/CustomerLogin/CustomerLoginIndex");
         }
     }
 }

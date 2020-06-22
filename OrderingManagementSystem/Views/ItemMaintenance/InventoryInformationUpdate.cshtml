@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>在庫情報更新画面</title>
+</head>
+<body>
+    <center>
+        <h1>在庫情報メンテナンス</h1>
+        <p>在庫情報を更新します。</p>
+        <div>商品が入荷した場合は、入荷数量を入力して「入荷」ボタンを押してください。</div>
+        <div>在庫を減らしたい場合は、減少数量を入力して「減少」ボタンを押してください。</div>
+        <div>入荷予定日を更新したい場合は、入荷予定日を入力して「更新」ボタンを押してください。</div><br />
+        <form>
+            <table border="1" align="center">
+                <tr>
+                    <th>商品番号</th>
+                    <td>@String.Format("{0:d4}", ViewBag.model.ItemNo)</td>
+                </tr>
+                <tr>
+                    <th>商品名</th>
+                    <td>@ViewBag.model.ItemName</td>
+                </tr>
+                <tr>
+                    <th>在庫数量</th>
+                    @if (ViewBag.model.Stock == 0)
+                    {
+                        <td>0</td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.model.Stock</td>
+                    }
+
+                </tr>
+                <tr>
+                    <th>入荷予定日</th>
+                    @if (ViewBag.model.ReceiptDate == null)
+                    {
+                        <td>-</td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.model.ReceiptDate</td>
+                    }
+
+                </tr>
+            </table><br />
+
+            数量<input type="text" name="stock" />
+            <button type="submit" formaction="/ItemMaintenance/ArraivalRedirect">入荷</button>
+            <button type="submit" formaction="/ItemMaintenance/DecreaseRedirect">減少</button><br />
+
+            入荷予定日<input type="date" max="9999-12-31" name="receiptDate" />
+            <button type="submit" formaction="/ItemMaintenance/UpdateRedirect">更新</button><br /><br />
+
+            <button type="button" onclick="history.back()">戻る</button>
+            <input type="hidden" name="itemNo" value="@ViewBag.model.ItemNo" />
+        </form>
+    </center>
+</body>
+</html>
