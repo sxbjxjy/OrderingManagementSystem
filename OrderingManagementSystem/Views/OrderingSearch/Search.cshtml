@@ -1,6 +1,7 @@
 ﻿@model OrderingManagementSystem.ViewModel.OrderingSearchResultViewModel
 @{
     ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
 }
 
 <style>
@@ -24,46 +25,92 @@
     @if (ViewBag.element == 0)
     {
         <p>入力された条件に適合する受注情報は存在しません。</p>
+        <form action="Searchresult">
+            <table>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CustomerId)</th>
+                    <td>
+                        <input type="number" name="CustomerId" style="width:184px" placeholder="@ViewBag.CustomerId">
+                        @Html.ValidationMessageFor(model => model.CustomerId)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.OrderNo) </th>
+                    <td>
+                        <input type="number" name="OrderNo" style="width:184px" placeholder="@ViewBag.orderNo">
+                        @Html.ValidationMessageFor(model => model.OrderNo)
+                    </td><!--文字列の最大長はバリデーションで指定可能-->
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DeliveryDate)</th>
+                    <td>
+                        <input type="date" name="deliveryFrom">～<input type="date" name="deliveryTo">
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                    <td>
+                        <input type="date" name="orderFrom">～<input type="date" name="orderTo">
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <td>
+                        <select name="status">
+                            <option value="1">未出荷</option>
+                            <option value="2">出荷済</option>
+                            <option value="3">キャンセル</option>
+                            <option value="4">入荷待ち</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table><tr><td><input type="submit" class="btn btn-primary" value="検索"></td></tr></table>
+        </form>
     }
-
-<form action="OrderingSearch/Searchresult">
-    <table>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.CustomerId)</th>
-            <td><input type="number" name="customerId" style="width:184px" placeholder="@ViewBag.customerId"></td><!--文字列の最大長はバリデーションで指定可能-->
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.OrderNo) </th>
-            <td><input type="number" name="orderNo" style="width:184px" placeholder="@ViewBag.orderNo"></td><!--文字列の最大長はバリデーションで指定可能-->
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.DeliveryDate)</th>
-            <td>
-                <input type="date" name="deliveryFrom" placeholder="@ViewBag.deliveryFrom">～<input type="date" name="deliveryTo" placeholder="deliveryTo">
-            </td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
-            <td>
-                <input type="date" name="orderFrom" placeholder="orderFrom">～<input type="date" name="orderTo" placeholder="orderTo">
-            </td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Status)</th>
-            <td>
-                <select name="status">
-                    <option>未出荷</option>
-                    <option>出荷済</option>
-                    <option>キャンセル</option>
-                    <option>入荷待ち</option>
-                    <!--<option value="1">未出荷</option>
-                    <option value="2">出荷済</option>
-                    <option value="3">キャンセル</option>
-                    <option value="4">入荷待ち</option>-->
-                </select>
-            </td>
-        </tr>
-    </table>
-    <table><tr><td><input type="submit" class="btn btn-primary" value="検索"></td></tr></table>
-</form>
+    else
+    {
+        <form action="OrderingSearch/Searchresult">
+            <table>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CustomerId)</th>
+                    <td>
+                        <input type="number" name="CustomerId" style="width:184px" placeholder="@ViewBag.CustomerId">
+                        @Html.ValidationMessageFor(model => model.CustomerId)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.OrderNo) </th>
+                    <td>
+                        <input type="number" name="OrderNo" style="width:184px" placeholder="@ViewBag.orderNo">
+                        @Html.ValidationMessageFor(model => model.OrderNo)
+                    </td><!--文字列の最大長はバリデーションで指定可能-->
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DeliveryDate)</th>
+                    <td>
+                        <input type="date" name="deliveryFrom">～<input type="date" name="deliveryTo">
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                    <td>
+                        <input type="date" name="orderFrom">～<input type="date" name="orderTo">
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <td>
+                        <select name="status">
+                            <option value="1">未出荷</option>
+                            <option value="2">出荷済</option>
+                            <option value="3">キャンセル</option>
+                            <option value="4">入荷待ち</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table><tr><td><input type="submit" class="btn btn-primary" value="検索"></td></tr></table>
+        </form>
+    }
 </body>
