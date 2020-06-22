@@ -1,0 +1,61 @@
+﻿@model OrderingManagementSystem.ViewModel.ProductAddViewModel
+
+@{
+    ViewBag.Title = "List";
+}
+
+@{
+    Layout = "~/Views/Shared/Front_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<div style="text-align:center">
+    <h2>商品を買い物かごに追加</h2>
+    下記の商品を買い物かごに追加します。<br>
+    数量と希望納期を入力してください。
+</div>
+
+<h2 style="text-align:center">商品画像</h2>
+
+@using (Html.BeginForm("ProductAddResult", "ProductAdd", FormMethod.Post))
+{
+    <table border="1" align="center">
+        <tr>
+            <th><center>商品番号</center></th>
+            <th><center>商品名</center></th>
+            <th><center>単価</center></th>
+            <th><center>数量</center></th>
+            <th><center>希望納期</center></th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.ItemNo)</td>
+            <td>@Html.DisplayFor(model => model.ItemName)</td>
+            <td>@Html.DisplayFor(model => model.UnitPrice)-</td>
+            <td>@Html.TextBoxFor(model => model.Quantity, new { style = "width:40px" })</td>
+            <td>@Html.TextBoxFor(model => model.DeliveryDate, "{0:yyyy/MM/dd}", new { style = "width:75px" })</td>
+        </tr>
+    </table>
+    <div style="text-align: center">
+        @if (ViewBag.N == false)
+        {
+            <p>数量は、0より大きい値を入力してください</p>
+        }
+        @if (ViewBag.E == false)
+        {
+            <p>在庫数量より多い数量を指定することはできません</p>
+        }
+        @if (ViewBag.D == false)
+        {
+            <p>正しい希望納期を入力してください</p>
+        }
+        <p>@Html.ValidationMessageFor(model => model.Quantity)</p>
+        @Html.ValidationMessageFor(model => model.DeliveryDate)
+    </div>
+    @Html.HiddenFor(m => m.ItemNo)
+    @Html.HiddenFor(m => m.ItemName)
+    @Html.HiddenFor(m => m.UnitPrice)
+    <br>
+    <div style="text-align: center">
+        <input type="submit" value="追加する">
+    </div>
+}

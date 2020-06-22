@@ -127,17 +127,17 @@ namespace OrderingManagementSystem.DAL
                 new OrderDetail
                 {
                     DetailNo = 1, OrderNo = 1, MeisaiNo = 1, /*CustomerId = 1,*/ ItemNo = 2, Quantity = 1,
-                    DeliveryDate = DateTime.Parse("2020/05/05"), Status = "発送済"
+                    DeliveryDate = DateTime.Parse("2020/05/05"), Status = 2
                 },
                 new OrderDetail
                 {
                     DetailNo = 2, OrderNo = 1, MeisaiNo = 2, /*CustomerId = 1,*/ ItemNo = 5, Quantity = 1,
-                    DeliveryDate = DateTime.Parse("2020/05/05"), Status = "発送済"
+                    DeliveryDate = DateTime.Parse("2020/05/05"), Status = 2
                 },
                 new OrderDetail
                 {
                     DetailNo = 3, OrderNo = 2, MeisaiNo = 1, /*CustomerId = 1,*/ ItemNo = 1, Quantity = 5,
-                    DeliveryDate = DateTime.Parse("2020/06/14"), Status = "未発送"
+                    DeliveryDate = DateTime.Parse("2020/06/14"), Status = 1
                 }
             };
             orderDetails.ForEach(odd => model.OrderDetails.Add(odd));

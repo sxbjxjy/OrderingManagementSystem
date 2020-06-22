@@ -4,14 +4,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrderingManagementSystem.ViewModel
 {
     public class OrderingSearchResultViewModel
     {
+        [DisplayName("顧客ID")]
+        [DisplayFormat(DataFormatString = "{0:d6}")]
+        [StringLength(6, ErrorMessage = "{0}は{1}桁以内で入力してください")]
+        [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]
+        public int CustomerId { get; set; }
         [DisplayName("注文番号")]
+        [DisplayFormat(DataFormatString = "{0:d6}")]
+        [StringLength(6, ErrorMessage = "{0}は{1}桁以内で入力してください")]
+        [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]
         public int OrderNo { get; set; }
         public int DetailNo { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d3}")]
         public int MeisaiNo { get; set; }
         [DisplayName("注文番号-明細")]
         public string OrderDetail { get; set; }
@@ -19,17 +29,19 @@ namespace OrderingManagementSystem.ViewModel
         [DisplayName("商品名")]
         public string ItemName { get; set; }
         [DisplayName("数量")]
+        [DisplayFormat(DataFormatString = "{0}")]
         public decimal Quantity { get; set; }
         [DisplayName("希望納期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime DeliveryDate { get; set; }
         [DisplayName("受注日時")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime OrderDate { get; set; }
 
         [DisplayName("ステータス")]
-        public string Status { get; set; }
-        [DisplayName("顧客ID")]
-        public int CustomerId { get; set; }
-
+        public int Status { get; set; }
+        public string StatusDisplay { get; set; }
+      
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
 
@@ -43,6 +55,23 @@ namespace OrderingManagementSystem.ViewModel
             this.Quantity = osr.Quantity;
             this.DeliveryDate = osr.DeliveryDate;
             this.Status = osr.Status;
+
+            if (this.Status == 1)
+            {
+                this.StatusDisplay = "未発送";
+            }
+            else if (this.Status == 2)
+            {
+                this.StatusDisplay = "発送済";
+            }
+            else if (this.Status == 3)
+            {
+                this.StatusDisplay = "キャンセル";
+            }
+            else if (this.Status == 4)
+            {
+                this.StatusDisplay = "入荷待ち";
+            }
         }
     }
 }

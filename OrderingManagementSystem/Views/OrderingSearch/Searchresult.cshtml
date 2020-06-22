@@ -1,6 +1,7 @@
 ﻿@model List<OrderingManagementSystem.ViewModel.OrderingSearchResultViewModel>
 @{
     ViewBag.Title = "Searchresult";
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
 }
 
 <style>
@@ -67,7 +68,7 @@
             <td>@Html.DisplayFor(model => model[i].ItemName)</td>
             <td>@Html.DisplayFor(model => model[i].Quantity)</td>
             <td>@Html.DisplayFor(model => model[i].DeliveryDate)</td>
-            <td>@Html.DisplayFor(model => model[i].Status)</td><!--どうやって日本語でステータス表示するか-->
+            <td>@Html.DisplayFor(model => model[i].StatusDisplay)</td><!--どうやって日本語でステータス表示するか-->
         </tr>
         }
     </table>

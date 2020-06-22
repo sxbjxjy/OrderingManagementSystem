@@ -1,0 +1,72 @@
+﻿@model List<OrderingManagementSystem.ViewModel.OrderResultViewModel>
+
+@{
+    Layout = "~/Views/Shared/Front_Layout.cshtml";
+}
+
+@{
+    double SubTotalPrice = 0;
+    double Tax = 0;
+    double TotalPrice = 0;
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        SubTotalPrice += (double)Model[i].Amount;
+        Tax += (double)(Model[i].Amount) * 0.1;
+        TotalPrice += (double)(Model[i].Amount) * 1.1;
+    }
+    string stp = SubTotalPrice.ToString("C");
+    string t = Tax.ToString("C");
+    string tp = TotalPrice.ToString("C");
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderResult</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <h2>注文完了</h2>
+        以下の内容でご注文を承りました。<br>
+        ご注文番号は、<font color="#0000cd">@Html.DisplayFor(model => model.First().OrderNo)</font>です。<br>
+        <br>
+        ご注文番号は、お問い合わせの際に必要となることがありますので、<br>
+        メモをお取りになるか、印刷するなどして大切に保管してください。<br>
+        <br>
+        お買い上げいただき、ありがとうございました。<br>
+        <br>
+    </div>
+        <table border="1" align="center">
+            <tr><th>商品番号</th><th>商品名</th><th>単価</th><th>数量</th><th>希望納期</th><th>金額</th></tr>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => model[i].ItemNo)</td>
+                    <td>@Html.DisplayFor(model => model[i].ItemName)</td>
+                    <td>@Html.DisplayFor(model => model[i].UnitPrice)</td>
+                    <td>@Html.DisplayFor(model => model[i].Quantity)</td>
+                    <td>@Html.DisplayFor(model => model[i].DeliveryDate)</td>
+                    <td>@Html.DisplayFor(model => model[i].Amount)</td>
+                </tr>
+            }
+            <tr>
+                <td rowspan="3"></td>
+                <th colspan="4" align="right">小計</th>
+                <td>@stp</td>
+            </tr>
+            <tr>
+                <th colspan="4" align="right">消費税</th>
+                <td>@t</td>
+            </tr>
+            <tr>
+                <th colspan="4" align="right">合計</th>
+                <td>@tp</td>
+            </tr>
+        </table>
+
+</body>
+</html>

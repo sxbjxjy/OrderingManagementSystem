@@ -56,7 +56,17 @@ namespace OrderingManagementSystem.Controllers
             {
                 db.Employees.Add(emp);
                 db.SaveChanges();
-                return Redirect("EmployeeList");
+                ViewBag.Add = 1;
+
+                var empList = db.Employees.ToList();
+                var elvmList = new List<EmployeeListViewModel>();
+                foreach (var item in empList)
+                {
+                    var e = new EmployeeListViewModel(item);
+                    elvmList.Add(e);
+                }
+
+                return View("EmployeeList", elvmList);
             }
         }
 
@@ -65,7 +75,7 @@ namespace OrderingManagementSystem.Controllers
             using (var db = new ModelContext())
             {
                 var emp = db.Employees.Find(id);
-                var evm = new EmployeeInputViewModel();
+                var evm = new EmployeeUpdateInputViewModel();
                 evm.EmpNo = emp.EmpNo;
                 evm.EmpName = emp.EmpName;
                 evm.Password = evm.Password;
@@ -73,7 +83,7 @@ namespace OrderingManagementSystem.Controllers
             }
         }
 
-        public ActionResult EmployeeUpdateConfirm(EmployeeInputViewModel evm)
+        public ActionResult EmployeeUpdateConfirm(EmployeeUpdateInputViewModel evm)
         {
             using (var db = new ModelContext())
             {
@@ -98,7 +108,18 @@ namespace OrderingManagementSystem.Controllers
                 e.EmpName = emp.EmpName;
                 e.Password = emp.Password;
                 db.SaveChanges();
-                return Redirect("EmployeeList");
+
+                ViewBag.Update = 1;
+
+                var empList = db.Employees.ToList();
+                var elvmList = new List<EmployeeListViewModel>();
+                foreach (var item in empList)
+                {
+                    var ei = new EmployeeListViewModel(item);
+                    elvmList.Add(ei);
+                }
+
+                return View("EmployeeList", elvmList);
             }
         }
 
@@ -106,7 +127,32 @@ namespace OrderingManagementSystem.Controllers
         {
             using (var db = new ModelContext())
             {
-                return View(elvmList);
+                int countCheck = 0;
+                foreach (var item in elvmList)
+                {
+                    if (item.IsChecked == true)
+                    {
+                        countCheck++;
+                    }
+                }
+
+                if (countCheck == 0)
+                {
+                    ViewBag.NoChecked = 1;
+
+                    var empList = db.Employees.ToList();
+                    var elvmListDisplay = new List<EmployeeListViewModel>();
+                    foreach (var item in empList)
+                    {
+                        var ei = new EmployeeListViewModel(item);
+                        elvmListDisplay.Add(ei);
+                    }
+                    return View("EmployeeList", elvmListDisplay);
+                }
+                else
+                {
+                    return View(elvmList);
+                }
             }
         }
 
@@ -123,7 +169,18 @@ namespace OrderingManagementSystem.Controllers
                     }
                 }
                 db.SaveChanges();
-                return Redirect("EmployeeList");
+
+                ViewBag.Delete = 1;
+
+                var empList = db.Employees.ToList();
+                var elvmList = new List<EmployeeListViewModel>();
+                foreach (var item in empList)
+                {
+                    var e = new EmployeeListViewModel(item);
+                    elvmList.Add(e);
+                }
+
+                return View("EmployeeList", elvmList);
             }
         }
     }
