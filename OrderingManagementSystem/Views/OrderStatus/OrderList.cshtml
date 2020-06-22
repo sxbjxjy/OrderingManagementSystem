@@ -1,0 +1,58 @@
+﻿
+@model List<List<OrderingManagementSystem.ViewModel.OrderStatusViewModel>>
+
+@{
+    Layout = "~/Views/Shared/Front_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderList</title>
+</head>
+<body>
+    <h1>ご注文ステータス確認</h1>
+    <p>現在ご注文いただいている商品のステータスは以下のとおりです。</p>
+    <p>発送済み商品のないご注文については、キャンセルが可能です。</p>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <p>ご注文番号：@Html.DisplayFor(model => model[i].First().OrderNo)</p>
+
+        int flag = 0;
+        for (int k = 0; k < Model[i].Count(); k++)
+        {
+            if (Model[i][k].Status != 1)
+            {
+                flag = 1;
+                break;
+            }
+        }
+
+        if (flag == 0)
+        {
+            <input type="button" value="この注文をキャンセルする" onclick="window.location='@Url.Action("OrderCancelConfirm", "OrderStatus",
+                                                                                   new { odNo = Model[i].First().OrderNo}, null)'" />
+        }
+
+        <table border="1">
+            <tr><th>商品番号</th><th>商品名</th><th>数量</th><th>希望納期</th><th>ステータス</th></tr>
+            @for (int j = 0; j < Model[i].Count(); j++)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => m[i][j].ItemNo)</td>
+                    <td>@Html.DisplayFor(m => m[i][j].ItemName)</td>
+                    <td>@Html.DisplayFor(m => m[i][j].Quantity)</td>
+                    <td>@Html.DisplayFor(m => m[i][j].DeliveryDate)</td>
+                    <td>@Html.DisplayFor(m => m[i][j].Status)</td>
+                </tr>
+            }
+        </table>
+        <br />
+        <hr>
+    }
+
+</body>
+</html>

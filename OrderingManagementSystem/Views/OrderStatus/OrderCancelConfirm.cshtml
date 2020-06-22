@@ -1,0 +1,38 @@
+﻿
+@model List<OrderingManagementSystem.ViewModel.OrderStatusViewModel>
+
+@{
+    Layout = "~/Views/Shared/Front_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderCancelConfirmation</title>
+</head>
+<body>
+    <h1>ご注文のお取消確認</h1>
+    <p>以下のご注文のキャンセルを承ります。</p>
+    <p>内容を確認の上、よろしければ「キャンセル」ボタンを押してください。</p>
+
+    <div>ご注文番号：@Html.DisplayFor(model => model.First().OrderNo)</div>
+    <table border="1">
+        <tr><th>商品番号</th><th>商品名</th><th>数量</th><th>希望納期</th><th>ステータス</th></tr>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => m[i].ItemNo)</td>
+                <td>@Html.DisplayFor(m => m[i].ItemName)</td>
+                <td>@Html.DisplayFor(m => m[i].Quantity)</td>
+                <td>@Html.DisplayFor(m => m[i].DeliveryDate)</td>
+                <td>@Html.DisplayFor(m => m[i].Status)</td>
+            </tr>
+        }
+    </table>
+    <input type="button" value="キャンセル" onclick="window.location='@Url.Action("OrderCancel", "OrderStatus",
+                                                                                   new { odNo = Model.First().OrderNo}, null)'" />
+    <input type="button" value="戻る" onclick="window.location='@Url.Action("OrderList", "OrderStatus")'" />
+</body>
+</html>

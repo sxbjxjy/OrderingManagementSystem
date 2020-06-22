@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ItemMaintenanceController.cs" />
+    <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\ProductListController.cs" />
     <Compile Include="Controllers\ProductMaintenanceController.cs" />
     <Compile Include="Controllers\CustomerAddController.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\EmployeeUpdateInputViewModel.cs" />
+    <Compile Include="ViewModel\OrderStatusViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\CustomerInputViewModel.cs" />
     <Compile Include="ViewModel\CustomerSignUpViewModel.cs" />
@@ -182,6 +184,8 @@
     <Content Include="Views\CustomerMaster\CustomerUpdateInput.cshtml" />
     <Content Include="Views\CustomerMaster\CustomerUpdateConfirm.cshtml" />
     <Content Include="Views\CustomerMaster\CustomerDeleteConfirm.cshtml" />
+    <Content Include="Views\OrderStatus\OrderList.cshtml" />
+    <Content Include="Views\OrderStatus\OrderCancelConfirm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
