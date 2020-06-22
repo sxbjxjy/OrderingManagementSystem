@@ -15,7 +15,7 @@ namespace OrderingManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Searchresult(/*OrderingSearchResultViewModel osrvm, */int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, string status)
+        public ActionResult Searchresult(/*OrderingSearchResultViewModel osrvm, */int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
             /*if (ModelState.IsValid)
             {
@@ -23,15 +23,15 @@ namespace OrderingManagementSystem.Controllers
             }*/
             using (var db = new ModelContext())
             {
-                if (status == "1")
+                if (status == 1)
                 {
                     ViewBag.status = "未出荷";
                 }
-                else if (status == "2")
+                else if (status == 2)
                 {
                     ViewBag.status = "出荷済";
                 }
-                else if (status == "3")
+                else if (status == 3)
                 {
                     ViewBag.status = "キャンセル";
                 }
