@@ -1,0 +1,58 @@
+﻿
+@model OrderingManagementSystem.ViewModel.EmployeeUpdateInputViewModel
+
+@{
+    Layout = "~/Views/Shared/Back_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployeeUpdateInput</title>
+</head>
+<body>
+    <h1>担当者情報メンテナンス</h1>
+    <div>担当者情報を更新します。</div>
+    <div>更新内容を入力して、「送信」ボタンを押してください。</div><br />
+
+    @*@Html.ValidationSummary()*@
+
+    @using (Html.BeginForm("EmployeeUpdateConfirm", "EmployeeMaster", FormMethod.Post))
+    {
+        <table border="1">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.EmpNo)</th>
+                <td>
+                    @Html.DisplayFor(model => model.EmpNo)<br />
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.EmpName)</th>
+                <td>
+                    @Html.TextBoxFor(model => model.EmpName)<br />
+                    @Html.ValidationMessageFor(model => model.EmpName)
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Password)</th>
+                <td>
+                    @Html.PasswordFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Password_verify)</th>
+                <td>
+                    @Html.PasswordFor(model => model.Password_verify)<br />
+                    @Html.ValidationMessageFor(model => model.Password_verify)
+                </td>
+            </tr>
+        </table><br />
+        @Html.HiddenFor(model => model.EmpNo)
+        <input type="submit" value="送信" />
+        <input type="button" value="戻る" onclick="window.location='@Url.Action("EmployeeList", "EmployeeMaster")'" />
+    }
+</body>
+</html>

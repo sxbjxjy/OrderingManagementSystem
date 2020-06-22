@@ -1,0 +1,88 @@
+﻿@model List<OrderingManagementSystem.ViewModels.ProductViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商品一覧表示画面</title>
+</head>
+<body>
+    <center>
+        <h1>商品情報メンテナンス</h1>
+        <div>商品情報のメンテナンスを行います。</div>
+        <div>新規に取扱商品を追加する場合は、「商品追加」ボタンを押してください。</div>
+        <div>登録済み商品の情報を変更するには、商品名のリンクをクリックしてください。</div>
+        <div>商品を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
+        <form>
+            <table border="1">
+                <tr>
+                    <th>商品番号</th>
+                    <th>商品名</th>
+                    <th>単価</th>
+                    <th>寸法</th>
+                    <th>在庫数量</th>
+                    <th>種類</th>
+                    <th>カテゴリー</th>
+                    <th>著者</th>
+                    <th>出版社</th>
+                    <th>削除</th>
+                </tr>
+
+                @*@foreach (var item in ViewBag.ModelList)
+                {
+                <tr>
+                    <td>@item.ItemNo</td>
+                    <td><a href="/ProductMaintenance/Update/@item.ItemNo">@item.ItemName</a></td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.Size</td>
+                    <td>@item.Stock</td>
+                    <td>@item.Type</td>
+                    <td>@item.Category</td>
+                    <td>@item.Author</td>
+                    <td>@item.Publisher</td>
+                    <td><input type="checkbox" name="IsChecked" value="@item.ItemNo" /></td>
+                </tr>
+                }*@
+
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => model[i].ItemNo)</td>
+                        <td>@Html.ActionLink(Model[i].ItemName, "Update", "ProductMaintenance", new { id = Model[i].ItemNo }, null)</td>
+                        <td>@Html.DisplayFor(model => model[i].UnitPrice)</td>
+                        <td>@Html.DisplayFor(model => model[i].Size)</td>
+                        @if (Model[i].Stock == 0)
+                        {
+                            <td>入荷待ち</td>
+                        }
+                        else
+                        {
+                            <td>@Html.DisplayFor(model => model[i].Stock)</td>
+                        }
+                        <td>@Html.DisplayFor(model => model[i].Type)</td>
+                        <td>@Html.DisplayFor(model => model[i].Category)</td>
+                        <td>@Html.DisplayFor(model => model[i].Author)</td>
+                        <td>@Html.DisplayFor(model => model[i].Publisher)</td>
+                        <td>@Html.CheckBoxFor(model => model[i].IsChecked)</td>
+                    </tr>
+                    @Html.HiddenFor(model => model[i].ItemNo)
+                    @Html.HiddenFor(model => model[i].ItemName)
+                    @Html.HiddenFor(model => model[i].UnitPrice)
+                    @Html.HiddenFor(model => model[i].Size)
+                    @Html.HiddenFor(model => model[i].Stock)
+                    @Html.HiddenFor(model => model[i].Type)
+                    @Html.HiddenFor(model => model[i].Category)
+                    @Html.HiddenFor(model => model[i].Author)
+                    @Html.HiddenFor(model => model[i].Publisher)
+                }
+            </table><br />
+            <button type="submit" formaction="/ProductMaintenance/Add">商品追加</button>
+            <button type="submit" formaction="/ProductMaintenance/Delete">削除</button>
+        </form>
+    </center>
+</body>
+</html>

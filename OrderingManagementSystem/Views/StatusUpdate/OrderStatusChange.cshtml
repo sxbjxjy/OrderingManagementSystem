@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "OrderStatusChange";
+}
+
+<style>
+    h2 {
+        text-align: center
+    }
+
+    p {
+        text-align: center
+    }
+
+    table {
+        margin: 0 auto
+    }
+</style>
+
+<h2>受注ステータス変更完了</h2>
+<p>受注ステータスを更新しました。</p>
+
+    <table border="1">
+        <tr>
+            <th>注文番号-明細</th>
+            <td>@ViewBag.model.OrderNo-@ViewBag.model.MeisaiNo</td>
+        </tr>
+        <tr>
+            <th>商品番号</th>
+            <td>@ViewBag.model.ItemNo </td>
+        </tr>
+        <tr>
+            <th>商品名</th>
+            <td>@ViewBag.model.Product.ItemName</td>
+        </tr>
+        <tr>
+            <th>数量</th>
+            <td>@ViewBag.model.Quantity</td>
+        </tr>
+        <tr>
+            <th>希望納期</th>
+            <td>@ViewBag.model.DeliveryDate</td>
+        </tr>
+        <tr>
+            <th>ステータス</th>
+            <td>@ViewBag.model.Status</td>
+        </tr>
+    </table><br />
+    <p><input type="button" value="検索結果に戻る" onclick="history.go(-2)"></p>

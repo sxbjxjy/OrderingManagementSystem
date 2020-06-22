@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "OrderStatusUpdate";
+}
+
+<style>
+    h2 {
+        text-align: center
+    }
+
+    p {
+        text-align: center
+    }
+
+    table {
+        margin: 0 auto
+    }
+</style>
+
+<h2>受注ステータス変更</h2>
+<p>受注ステータスを変更してください。</p>
+
+<form action="OrderStatusChange">
+    <table border="1">
+        <tr>
+            <th>注文番号-明細</th>
+            <td>@ViewBag.model.OrderNo-@ViewBag.model.MeisaiNo</td>
+        </tr>
+        <tr>
+            <th>商品番号</th>
+            <td>@ViewBag.model.ItemNo </td>
+        </tr>
+        <tr>
+            <th>商品名</th>
+            <td>@ViewBag.model.Product.ItemName</td>
+        </tr>
+        <tr>
+            <th>数量</th>
+            <td>@ViewBag.model.Quantity</td>
+        </tr>
+        <tr>
+            <th>希望納期</th>
+            <td>@ViewBag.model.DeliveryDate</td>
+        </tr>
+        <tr>
+            <th>ステータス</th>
+            <td>
+                <select name="status">
+                    <option>未出荷</option>
+                    <option>出荷済</option>
+                    <option>キャンセル</option>
+                    <option>入荷待ち</option>
+                    <!--<option value="1">未出荷</option>
+                    <option value="2">出荷済</option>
+                    <option value="3">キャンセル</option>
+                    <option value="4">入荷待ち</option>-->
+                </select>
+            </td>
+        </tr>
+    </table><br />
+    <input type="hidden" name="detailNo" value="@ViewBag.model.DetailNo">
+    <p><input type="submit" value="変更">　<input type="button" value="検索結果に戻る" onclick="history.back()"></p>
+</form>
