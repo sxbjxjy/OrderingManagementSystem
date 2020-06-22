@@ -59,7 +59,7 @@ namespace OrderingManegimentSystem.Controllers
                     //在庫から未発送を引く(error)
                     var stock = db.Products.Find(w[0].ItemNo);
                     var y = (from a in db.OrderDetails
-                            where a.ItemNo == w[0].ItemNo && a.Status == "未発送"
+                            where a.ItemNo == w[0].ItemNo && a.Status == 1
                             select a.Quantity).Sum();
                    
                     int n = stock.Stock - y;
@@ -89,10 +89,8 @@ namespace OrderingManegimentSystem.Controllers
                     orderDetailNew.ItemNo = cartList[i].ItemNo;
                     orderDetailNew.Quantity = cartList[i].Quantity;
                     orderDetailNew.DeliveryDate = cartList[i].DeliveryDate;
-                    //orderDetailNew.CustomerId = ctmId;
-                    orderDetailNew.Status = "未発送";
+                    orderDetailNew.Status = 1;
                     orderDetailNew.Product = cartList[i].Product;
-                    orderDetailNew.Customer = cartList[i].Customer;
                     orderDetailNew.Order = orderNew;
                     db.OrderDetails.Add(orderDetailNew);
 
