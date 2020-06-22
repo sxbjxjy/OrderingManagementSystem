@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/Front_layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -10,25 +10,27 @@
     <title>カタログ閲覧画面</title>
 </head>
 <body>
-    <h1>取扱商品カタログ</h1>
-    <table border="1">
-        @foreach (var item in ViewBag.model)
-        {
-            <tr>
-                <td><img src="@item.PhotoUrl" wigth="150" height="150" /></td>
-                <td>
-                    商品番号：@item.ItemNo<br /><br />
-                    @item.ItemName<br /><br />
-                    種類：@item.Type<br />
-                    在庫数量：@item.Stock<br />
-                    <details>
-                        <summary>商品詳細</summary>
-                    </details>
-                    <input type="button" value="注文する" />
-                </td>
-            </tr>
-        }
+    <center>
+        <h1>取扱商品カタログ</h1>
+        <table border="1">
+            @foreach (var item in ViewBag.model)
+            {
+                <tr>
+                    <td><img src="@item.PhotoUrl" wigth="150" height="150" /></td>
+                    <td>
+                        商品番号：@item.ItemNo<br /><br />
+                        @item.ItemName<br /><br />
+                        種類：@item.Type<br />
+                        在庫数量：@item.Stock<br />
+                        <details>
+                            <summary>商品詳細</summary>
+                        </details>
+                        <input type="button" value="注文する" />
+                    </td>
+                </tr>
+            }
 
-    </table>
+        </table>
+    </center>
 </body>
 </html>

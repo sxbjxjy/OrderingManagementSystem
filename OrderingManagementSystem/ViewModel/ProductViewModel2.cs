@@ -11,29 +11,14 @@ using System.Web.Mvc;
 
 namespace OrderingManagementSystem.ViewModel
 {
-    public class ProductViewModel
+    public class ProductViewModel2
     {
 
         public Boolean IsChecked { get; set; }
         public string Category { get; set; }
 
-        public static ValidationResult ItemNoCheck(int itemNo)
-        {
-            using (var db = new ModelContext())
-            {
-                var query = (from e in db.Products
-                             where e.ItemNo == itemNo
-                             select e).ToList();
-                if (query.Count() > 0)
-                {
-                    return new ValidationResult("入力された商品番号は既に登録されています");
-                }
-                return ValidationResult.Success;
-            }
-        }
         [Required(ErrorMessage = "商品番号を入力してください。")]
         [Range(1, 9999, ErrorMessage = "商品番号は4桁以内の数値で入力してください。")]
-        [CustomValidation(typeof(ProductViewModel), "ItemNoCheck")]
         [DisplayFormat(DataFormatString = "{0:d4}")]
         public int ItemNo { get; set; }
 
@@ -41,22 +26,7 @@ namespace OrderingManagementSystem.ViewModel
         [Url(ErrorMessage = "商品写真はURL形式で入力して下さい。")]
         public string PhotoUrl { get; set; }
 
-        public static ValidationResult ItemNameCheck(string itemName)
-        {
-            using (var db = new ModelContext())
-            {
-                var query = (from e in db.Products
-                             where e.ItemName == itemName
-                             select e).ToList();
-                if (query.Count() > 0)
-                {
-                    return new ValidationResult("入力された商品名は既に登録されています");
-                }
-                return ValidationResult.Success;
-            }
-        }
         [Required(ErrorMessage = "商品名を入力してください。")]
-        [CustomValidation(typeof(ProductViewModel), "ItemNameCheck")]
         public string ItemName { get; set; }
 
         [Required(ErrorMessage = "単価を入力してください。")]
@@ -74,31 +44,18 @@ namespace OrderingManagementSystem.ViewModel
 
         [Required(ErrorMessage = "寸法を入力してください。")]
         [RegularExpression("[0-9]{1,}x[0-9]{1,}x[0-9]{1,}cm"
-            , ErrorMessage ="#x#x#cmの形式で数値を入力してください。")]
+            , ErrorMessage = "#x#x#cmの形式で数値を入力してください。")]
         public string Size { get; set; }
 
         public string Type { get; set; }
 
-        /*public static ValidationResult StockCheck(int itemNo)
-        {
-            using (var db = new ModelContext())
-            {
-                var e = db.Products.Find(itemNo);
-                if (e.Stock < 0)
-                {
-                    return new ValidationResult("在庫が不足するため減少できません。");
-                }
-                return ValidationResult.Success;
-            }
-        }
-        [CustomValidation(typeof(ProductViewModel), "StockCheck")]*/
         [DisplayFormat(DataFormatString = "{0:#}")]
         public int Stock { get; set; }
 
         public DateTime? ReceiptDate { get; set; }
 
-        public ProductViewModel() { }
-        public ProductViewModel(Product prd)
+        public ProductViewModel2() { }
+        public ProductViewModel2(Product prd)
         {
             ItemName = prd.ItemName;
             Category = prd.Category;
@@ -112,6 +69,6 @@ namespace OrderingManagementSystem.ViewModel
             Type = prd.Type;
             Stock = prd.Stock;
             ReceiptDate = prd.ReceiptDate;
-        }        
+        }
     }
 }

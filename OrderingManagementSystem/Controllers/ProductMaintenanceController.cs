@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using OrderingManagementSystem.DAL;
 using OrderingManagementSystem.Models;
-using OrderingManagementSystem.ViewModels;
+using OrderingManagementSystem.ViewModel;
 
 namespace OrderingManegimentSystem.Controllers
 {
@@ -74,7 +74,8 @@ namespace OrderingManegimentSystem.Controllers
                 return View();
             }
         }
-        public ActionResult UpdateCheck(ProductViewModel pvm)
+
+        public ActionResult UpdateCheck(ProductViewModel2 pvm)
         {
             using (var db = new ModelContext())
             {
