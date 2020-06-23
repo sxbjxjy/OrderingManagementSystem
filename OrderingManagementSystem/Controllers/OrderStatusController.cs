@@ -14,6 +14,10 @@ namespace OrderingManagementSystem.Controllers
         // GET: OrderStatus
         public ActionResult OrderList(int ctmId = 1)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var osList = new List<List<OrderStatusViewModel>>();
@@ -44,6 +48,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult OrderCancelConfirm(int odNo)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var osvmList = new List<OrderStatusViewModel>();
@@ -62,6 +70,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult OrderCancel(int odNo)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var orderDetailList = (from e in db.OrderDetails

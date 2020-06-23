@@ -12,6 +12,10 @@ namespace OrderingManagementSystem.Controllers
     {
         public ActionResult Search()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             return View();
         }
 
@@ -21,6 +25,10 @@ namespace OrderingManagementSystem.Controllers
             {
                 return View("Search", osrvm);
             }*/
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (status == 1)

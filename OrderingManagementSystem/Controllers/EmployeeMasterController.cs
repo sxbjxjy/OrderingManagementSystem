@@ -14,6 +14,10 @@ namespace OrderingManagementSystem.Controllers
         // GET: EmployeeMaster
         public ActionResult EmployeeList()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var empList = db.Employees.ToList();
@@ -29,6 +33,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeAddInput()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 return View();
@@ -37,6 +45,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeAddConfirm(EmployeeInputViewModel evm)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (!ModelState.IsValid)
@@ -52,6 +64,10 @@ namespace OrderingManagementSystem.Controllers
         }
         public ActionResult EmployeeAdd(Employee emp)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 db.Employees.Add(emp);
@@ -72,6 +88,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeUpdateInput(int id)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var emp = db.Employees.Find(id);
@@ -85,6 +105,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeUpdateConfirm(EmployeeUpdateInputViewModel evm)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (!ModelState.IsValid)
@@ -101,6 +125,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeUpdate(Employee emp)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 Employee e = db.Employees.Find(emp.EmpNo);
@@ -125,6 +153,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeDeleteConfirm(List<EmployeeListViewModel> elvmList)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 int countCheck = 0;
@@ -158,6 +190,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult EmployeeDelete(List<EmployeeListViewModel> eivmList)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 foreach (var item in eivmList)

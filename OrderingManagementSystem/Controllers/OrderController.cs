@@ -13,6 +13,10 @@ namespace OrderingManegimentSystem.Controllers
     {
         public ActionResult OrderResult(List<ShoppingCartViewModel> x)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 //削除チェックが入っている

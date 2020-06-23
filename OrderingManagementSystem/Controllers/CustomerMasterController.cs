@@ -14,6 +14,10 @@ namespace OrderingManagementSystem.Controllers
         // GET: CustomerMaster
         public ActionResult CustomerList()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 return View(db.Customers.ToList());
@@ -23,6 +27,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult CustomerUpdateInput(int id)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 Customer ctm = db.Customers.Find(id);
@@ -33,6 +41,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult CustomerUpdateConfirm(CustomerInputViewModel civm)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (!ModelState.IsValid)
@@ -55,6 +67,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult CustomerUpdate(Customer ctm)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 Customer c = db.Customers.Find(ctm.CustomerId);
@@ -78,6 +94,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult CustomerDeleteConfirm(int id)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 Customer ctm = db.Customers.Find(id);
@@ -87,6 +107,10 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult CustomerDelete(int id)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 Customer ctm = db.Customers.Find(id);
