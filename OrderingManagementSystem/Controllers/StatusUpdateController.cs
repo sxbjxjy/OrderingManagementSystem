@@ -14,7 +14,6 @@ namespace OrderingManagementSystem.Controllers
         {
             ModelContext db = new ModelContext();
             ViewBag.model = db.OrderDetails.Find(detailNo);
-
             return View();
         }
 
