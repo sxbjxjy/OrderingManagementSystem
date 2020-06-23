@@ -15,12 +15,8 @@ namespace OrderingManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Searchresult(OrderingSearchResultViewModel osrvm, int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
+        public ActionResult Searchresult(int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
-            /*if (ModelState.IsValid)
-            {
-                return View("Search", osrvm);
-            }*/
             using (var db = new ModelContext())
             {
                 if (status == 1)
@@ -45,7 +41,7 @@ namespace OrderingManagementSystem.Controllers
 
                 var customerIdList = (from e in db.OrderDetails
                                       select new { e.DetailNo }).ToList();
-                if (CustomerId != null && !ModelState.IsValid)
+                if (CustomerId != null)
                 {
                     ViewBag.customerId = CustomerId;
                     //入力されたCustomerIdに該当するOrderNoのカラム名付きリスト
@@ -62,29 +58,20 @@ namespace OrderingManagementSystem.Controllers
                                           select new { e.DetailNo }).ToList();
                     }
                 }
-                else
-                {
-                    ViewBag.element = 0;
-                    return View("Search", osrvm);
-                }
 
                 var orderNoList = (from e in db.OrderDetails
                                    select new { e.DetailNo }).ToList();
-                if (OrderNo != null && !ModelState.IsValid)
+                if (OrderNo != null)
                 {
                     ViewBag.orderNo = OrderNo;
                     orderNoList = (from e in db.OrderDetails
                                    where e.OrderNo.ToString().Contains(OrderNo.ToString())
                                    select new { e.DetailNo }).ToList();
                 }
-                else {
-                    ViewBag.element = 0;
-                    return View("Search", osrvm);
-                }
 
                 var deliveryDateList = (from e in db.OrderDetails
                                         select new { e.DetailNo }).ToList();
-                if (deliveryFrom != null && deliveryTo != null && ModelState.IsValid)
+                if (deliveryFrom != null)
                 {
                     ViewBag.deliveryPeriod = deliveryFrom + "～" + deliveryTo;
                     deliveryDateList = (from e in db.OrderDetails
@@ -92,15 +79,10 @@ namespace OrderingManagementSystem.Controllers
                                         & e.DeliveryDate <= deliveryTo
                                         select new { e.DetailNo }).ToList();
                 }
-                else
-                {
-                    ViewBag.element = 0;
-                    return View("Search", osrvm);
-                }
 
                 var orderDateList = (from e in db.OrderDetails
                                      select new { e.DetailNo }).ToList();
-                if (orderFrom != null && orderTo != null && ModelState.IsValid)
+                if (orderFrom != null)
                 {
                     ViewBag.orderPeriod = orderFrom + "～" + orderTo;
                     var orderDatePreList = (from e in db.Orders
@@ -117,11 +99,6 @@ namespace OrderingManagementSystem.Controllers
                                          select new { e.DetailNo }).ToList();
                     }
 
-                }
-                else
-                {
-                    ViewBag.element = 0;
-                    return View("Search", osrvm);
                 }
 
                 var statusList = (from e in db.OrderDetails
