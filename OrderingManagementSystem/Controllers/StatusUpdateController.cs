@@ -25,13 +25,13 @@ namespace OrderingManagementSystem.Controllers
             od.Status = status;
             db.SaveChanges();
             ViewBag.model = db.OrderDetails.Find(detailNo);
-            if (ViewBag.Status == 1)
+            if (ViewBag.model.Status == 1)
             {
-                ViewBag.Status = "未発送";
+                ViewBag.Status = "未出荷";
             }
             else if(ViewBag.model.Status == 2)
             {
-                ViewBag.Status = "発送済";
+                ViewBag.Status = "出荷済";
             }
             else if(ViewBag.model.Status == 3)
             {
