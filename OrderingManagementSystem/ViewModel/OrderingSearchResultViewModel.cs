@@ -11,7 +11,6 @@ namespace OrderingManagementSystem.ViewModel
     public class OrderingSearchResultViewModel
     {
         [DisplayName("顧客ID")]
-        
         [DisplayFormat(DataFormatString = "{0:d6}")]
         [StringLength(6, ErrorMessage = "{0}は{1}桁以内で入力してください")]
         [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]
