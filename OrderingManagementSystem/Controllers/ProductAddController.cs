@@ -82,6 +82,7 @@ namespace OrderingManegimentSystem.Controllers
 
                 ViewBag.ItemN = pro.ItemName;
                 ViewBag.Result = u;
+                ViewBag.Url = stock.PhotoUrl;
 
                 db.CartDetails.Add(u);
                 db.SaveChanges();

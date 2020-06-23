@@ -1,4 +1,6 @@
-﻿@{
+﻿@model OrderingManagementSystem.ViewModel.ProductAddViewModel
+
+@{
     ViewBag.Title = "ProductAddResult";
 }
 
@@ -12,7 +14,9 @@
     続けて商品を選ぶ場合は、左のメニューから「カタログを見る」を選択してください。<br>
     見積内容を確認するには、「見積確認」ボタンを押してください。
 </div>
-<h2 style="text-align:center">商品画像</h2>
+<div style="text-align:center">
+    <img src="ViewBag.Url" wigth="150" height="150" />
+</div>
 <table border="1" align="center">
     <tr>
         <th><center>商品番号</center></th>
@@ -25,9 +29,9 @@
     <tr>
         <td>@ViewBag.Result.ItemNo</td>
         <td>@ViewBag.ItemN</td>
-        <td>\@ViewBag.UnitP-</td>
+        <td>&yen;@ViewBag.UnitP-</td>
         <td>@ViewBag.Result.Quantity</td>
-        <td>\@ViewBag.Price-</td>
+        <td>&yen;@ViewBag.Price-</td>
         <td>@ViewBag.Date</td>
     </tr>
 </table>
