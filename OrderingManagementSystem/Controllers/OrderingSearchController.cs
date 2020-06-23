@@ -64,6 +64,7 @@ namespace OrderingManagementSystem.Controllers
                 }
                 else
                 {
+                    ViewBag.element = 0;
                     return View("Search", osrvm);
                 }
 
@@ -77,6 +78,7 @@ namespace OrderingManagementSystem.Controllers
                                    select new { e.DetailNo }).ToList();
                 }
                 else {
+                    ViewBag.element = 0;
                     return View("Search", osrvm);
                 }
 
@@ -92,6 +94,7 @@ namespace OrderingManagementSystem.Controllers
                 }
                 else
                 {
+                    ViewBag.element = 0;
                     return View("Search", osrvm);
                 }
 
@@ -117,6 +120,7 @@ namespace OrderingManagementSystem.Controllers
                 }
                 else
                 {
+                    ViewBag.element = 0;
                     return View("Search", osrvm);
                 }
 
