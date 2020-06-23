@@ -22,14 +22,19 @@ namespace OrderingManegimentSystem.Controllers
                 var cdList = new List<ShoppingCartViewModel>();
 
                 var cartList = (from e in db.CartDetails
-                                where e.CustomerId == CustomerId//ユーザID
+                                where e.CustomerId == CustomerId
                                 select e).ToList();
+
+                int stp = 0;
 
                 for (int i = 0; i < cartList.Count(); i++)
                 {
                     var a = new ShoppingCartViewModel(cartList[i]);
                     cdList.Add(a);
+                    stp += (int)a.Total;
                 }
+
+                ViewBag.G = stp;
 
                 return View(cdList);
             }
@@ -67,7 +72,7 @@ namespace OrderingManegimentSystem.Controllers
                         var o = (from q in s[i]
                                  select q.Quantity).Sum();
 
-                        //在庫から未発送を引く(error)
+                        //在庫から未発送を引く
                         var stock = db.Products.Find(w[0].ItemNo);
 
                         var y = (from a in db.OrderDetails
@@ -146,7 +151,7 @@ namespace OrderingManegimentSystem.Controllers
         {
             using (var db = new ModelContext())
             {
-                ViewBag.Z = false;
+                ViewBag.Y = false;
                 int CustomerId = ctmId;
 
                 //以下、見積表示機能と同じ

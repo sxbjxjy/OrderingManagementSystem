@@ -43,26 +43,13 @@ namespace OrderingManegimentSystem.Controllers
                 var y = (from a in db.OrderDetails
                         where a.ItemNo == x && a.Status == 1
                         select (int?)a.Quantity).Sum() ?? 0;
-                var z = y.ToString();
-                /*if (y == )
-                {
-                    if (stock.Stock < pro.Quantity)
-                    {
-                        ViewBag.E = false;
-                        return View("List", pro);
-                    }
-                }
-                else
-                {*/
-                //int sum = y.AsQueryable().Sum();
-                //int s = stock.Stock - sum;
+               
                 int s = stock.Stock - y;
                     if (s < pro.Quantity)
                     {
                         ViewBag.E = false;
                         return View("List", pro);
                     }
-                //}
                     
                 //希望納期チェック(過去or90日以上未来)
                 DateTime dfrom = DateTime.Now;
