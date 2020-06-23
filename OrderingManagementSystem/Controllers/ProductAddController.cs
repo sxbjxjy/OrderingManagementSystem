@@ -11,9 +11,13 @@ using System.Diagnostics.Eventing.Reader;
 namespace OrderingManegimentSystem.Controllers
 {
     public class ProductAddController : Controller
-    {  
+    {
         public ActionResult List(int ItemNo)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var item = db.Products.Find(ItemNo);
@@ -24,6 +28,10 @@ namespace OrderingManegimentSystem.Controllers
         }
         public ActionResult ProductAddResult(ProductAddViewModel pro)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 //空欄、形式チェック

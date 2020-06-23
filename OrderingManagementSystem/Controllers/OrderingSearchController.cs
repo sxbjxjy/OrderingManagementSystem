@@ -12,11 +12,23 @@ namespace OrderingManagementSystem.Controllers
     {
         public ActionResult Search()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             return View();
         }
 
         public ActionResult Searchresult(int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
+            /*if (ModelState.IsValid)
+            {
+                return View("Search", osrvm);
+            }*/
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (status == 1)

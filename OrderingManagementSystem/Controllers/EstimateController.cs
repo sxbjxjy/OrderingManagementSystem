@@ -16,6 +16,10 @@ namespace OrderingManegimentSystem.Controllers
         //見積表示
         public ActionResult ShoppingCart()// int CustomerId
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 int CustomerId = 3;//ユーザID
@@ -43,6 +47,10 @@ namespace OrderingManegimentSystem.Controllers
         //再見積
         public ActionResult ReShoppingCart(List<ShoppingCartViewModel> cdList)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 foreach (var item in cdList)
@@ -124,6 +132,10 @@ namespace OrderingManegimentSystem.Controllers
         //再見積を押さずに注文
         public ActionResult ShoppingCartError(int id)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 ViewBag.D = false;
@@ -149,6 +161,10 @@ namespace OrderingManegimentSystem.Controllers
         //在庫不足注文
         public ActionResult ShoppingCartError2(int ctmId)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 ViewBag.Y = false;

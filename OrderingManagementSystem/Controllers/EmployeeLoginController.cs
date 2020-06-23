@@ -41,6 +41,7 @@ namespace OrderingManagementSystem.Controllers
                 }
                 else if (employee.EmpNo == ul.EmpNo && employee.Password == ul.Password)
                 {
+                    Session["Employee"] = ul.EmpNo;
                     return View();
                 }
                 else

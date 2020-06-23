@@ -15,6 +15,10 @@ namespace OrderingManagement2.Controllers
         // GET: ProductList
         public ActionResult ProductCatalog()
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 ViewBag.model = db.Products.ToList();
@@ -23,6 +27,10 @@ namespace OrderingManagement2.Controllers
         }
         public ActionResult ProductCatalog2()
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var ul = db.Products
