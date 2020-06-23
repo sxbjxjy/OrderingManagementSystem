@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using OrderingManagementSystem.ViewModels;
+using OrderingManagementSystem.ViewModel;
 using OrderingManagementSystem.DAL;
 
 namespace OrderingManagementSystem.Controllers
@@ -48,18 +48,14 @@ namespace OrderingManagementSystem.Controllers
         {
             using (var db = new ModelContext())
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("InventoryInformationUpdate");
+                }
                 var model = db.Products.Find(itemNo);
                 model.Stock = model.Stock - stock;
-                if(model.Stock < 0)
-                {
-                    return Content("在庫が不足するため減少できません。");
-                }
-                else
-                {
-                    db.SaveChanges();
-                    return Redirect("/ItemMaintenance/InventoryDisplay");
-                }
-                
+                db.SaveChanges();
+                return Redirect("/ItemMaintenance/InventoryDisplay");              
             }
         }
         public ActionResult UpdateRedirect(int itemNo, DateTime receiptDate)

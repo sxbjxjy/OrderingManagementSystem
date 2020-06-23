@@ -1,6 +1,6 @@
-﻿@model List<OrderingManagementSystem.ViewModels.ProductViewModel>
+﻿@model List<OrderingManagementSystem.ViewModel.ProductViewModel>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Back_layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
         <div>新規に取扱商品を追加する場合は、「商品追加」ボタンを押してください。</div>
         <div>登録済み商品の情報を変更するには、商品名のリンクをクリックしてください。</div>
         <div>商品を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
-        <form>
+        <form action="ProductMaintenance/Delete" method="post">
             <table border="1">
                 <tr>
                     <th>商品番号</th>
@@ -80,6 +80,8 @@
                     @Html.HiddenFor(model => model[i].Publisher)
                 }
             </table><br />
+            @*<input type="button" value="商品追加" onclick="window.location='@Url.Action("Add", "ProductMaintenance")'" />
+            <input type="button" value="削除" />*@
             <button type="submit" formaction="/ProductMaintenance/Add">商品追加</button>
             <button type="submit" formaction="/ProductMaintenance/Delete">削除</button>
         </form>

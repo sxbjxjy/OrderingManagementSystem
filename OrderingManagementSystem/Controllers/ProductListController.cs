@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
-using OrderingManagementSystem.ViewModels;
+using OrderingManagementSystem.ViewModel;
 using OrderingManagementSystem.DAL;
 
 namespace OrderingManagement2.Controllers

@@ -42,6 +42,7 @@ namespace OrderingManegimentSystem.Controllers
 
                 //在庫不足チェック
                 int ctmId = x.First().CustomerId;
+             
                 var s = from t in db.CartDetails
                         where t.CustomerId == ctmId
                         select t;
@@ -55,12 +56,13 @@ namespace OrderingManegimentSystem.Controllers
                     //注文しようとしている数量
                     var o = (from q in u[i]
                             select q.Quantity).Sum();
-                    
+
                     //在庫から未発送を引く(error)
                     var stock = db.Products.Find(w[0].ItemNo);
+                               
                     var y = (from a in db.OrderDetails
-                            where a.ItemNo == w[0].ItemNo && a.Status == 1
-                            select a.Quantity).Sum();
+                            where a.ItemNo == stock.ItemNo && a.Status == 1
+                            select (int?)a.Quantity).Sum()?? 0;
                    
                     int n = stock.Stock - y;
                     if(n < o)

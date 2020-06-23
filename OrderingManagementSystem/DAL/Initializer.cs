@@ -18,6 +18,7 @@ namespace OrderingManagementSystem.DAL
                 new Employee { EmpNo = 1001, EmpName = "田中　一郎", Password = "1111" },
                 new Employee { EmpNo = 1002, EmpName = "山田　花子", Password = "2222" },
                 new Employee { EmpNo = 1003, EmpName = "佐藤　三郎", Password = "3333" },
+                new Employee { EmpNo = 1004, EmpName = "小西　優子", Password = "4444" },
             };
             employees.ForEach(emp => model.Employees.Add(emp));
             model.SaveChanges();
@@ -51,37 +52,61 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 1, ItemName = "夜は短し歩けよ乙女", Author = "森見　登美彦", Publisher = "角川文庫",
-                    PhotoUrl = null, Overview = null,
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/71S4MWy3s8L.jpg", 
+                    Overview = "「黒髪の乙女」にひそかに想いを寄せる「先輩」は、京都のいたるところで彼女の姿を追い求めた。二人を待ち受ける珍事件の数々、そして運命の大転回とは? 山本周五郎賞受賞、本屋大賞2位の傑作、待望の文庫化!",
                     UnitPrice = 616, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.6 x 1.6 cm",
                     Type = "文庫", Stock = 15, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 2, ItemName = "君の膵臓をたべたい", Author = "住野　よる", Publisher = "双葉社",
-                    PhotoUrl = null, Overview = null,
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/81EKy0A6SmL.jpg", Overview = null,
                     UnitPrice = 734, Category = "日本文学", Size = "14.8 x 10.5 x 2 cm",
                     Type = "文庫", Stock = 20, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 3, ItemName = "三体", Author = "劉　慈欣", Publisher = "早川書房",
-                    PhotoUrl = null, Overview = null,
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/61MWgisv0JL.jpg", Overview = null,
                     UnitPrice = 2090, Category = "SF・ホラー・ファンタジー", Size = "13.9 x 2.8 x 19.4 cm",
                     Type = "ハードカバー", Stock = 10, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 4, ItemName = "バーティミアス1 サマルカンドの秘宝 上", Author = "ジョナサン ストラウド", Publisher = "静山社",
-                    PhotoUrl = null, Overview = null,
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/715WrnwyjwL.jpg", Overview = null,
                     UnitPrice = 836, Category = "こどものSF・ファンタジー", Size = "17.4 x 11.4 x 1.4 cm",
                     Type = "新書", Stock = 0, ReceiptDate = DateTime.Parse("2020/07/01")
                 },
                 new Product
                 {
                     ItemNo = 5, ItemName = "斜め屋敷の犯罪", Author = "島田　荘司", Publisher = "講談社",
-                    PhotoUrl = null, Overview = null,
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/91n89sU0kiL.jpg", Overview = null,
                     UnitPrice = 880, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15 x 10.6 x 1.6 cm",
                     Type = "文庫", Stock = 20, ReceiptDate = null
+                },
+                new Product
+                {
+                    ItemNo = 6, ItemName = "柚莉愛とかくれんぼ", Author = "真下　みこと", Publisher = "講談社",
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/91rQP4WlSIL.jpg", Overview = null,
+                    UnitPrice = 1430, Category = "ミステリー・サスペンス・ハードボイルド", Size = "18.8 x 13 x 2.4 cm",
+                    Type = "単行本", Stock = 4, ReceiptDate = null
+                },
+                new Product
+                {
+                    ItemNo = 7, ItemName = "リアルフェイス", Author = "知念　実希人", Publisher = "実業之日本社",
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/714XizMzxpL.jpg", 
+                    Overview = null,
+                    UnitPrice = 734, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15 x 12.2 x 1.8 cm",
+                    Type = "文庫", Stock = 0, ReceiptDate = DateTime.Parse("2020/07/05")
+                },
+                new Product
+                {
+                    ItemNo = 8, ItemName = "黒い家", Author = "貴志　祐介", Publisher = "角川書店",
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51J9DP0KG8L.jpg", 
+                    Overview = "顧客の家に呼ばれ、子供の首吊り死体の発見者になってしまった保険会社社員・若槻は、顧客の不審な態度から独自の調査を始める。それが悪夢の始まりだった。第4回日本ホラー小説大賞受賞。",
+                    UnitPrice = 748, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.8 x 2 cm",
+                    Type = "文庫", Stock = 30, ReceiptDate = null
                 }
             };
             products.ForEach(prod => model.Products.Add(prod));
@@ -117,7 +142,7 @@ namespace OrderingManagementSystem.DAL
             {
                 new Order { OrderNo = 1, CustomerId = 1, OrderDate = DateTime.Parse("2020/05/01") },
                 new Order { OrderNo = 2, CustomerId = 1, OrderDate = DateTime.Parse("2020/06/06") },
-                //new Order { OrderNo = 3, CustomerId = 2, OrderDate = DateTime.Parse("2020/06/15") },
+                new Order { OrderNo = 3, CustomerId = 2, OrderDate = DateTime.Parse("2020/06/07") },
             };
             orders.ForEach(od => model.Orders.Add(od));
             model.SaveChanges();
@@ -126,18 +151,33 @@ namespace OrderingManagementSystem.DAL
             {
                 new OrderDetail
                 {
-                    DetailNo = 1, OrderNo = 1, MeisaiNo = 1, /*CustomerId = 1,*/ ItemNo = 2, Quantity = 1,
+                    DetailNo = 1, OrderNo = 1, MeisaiNo = 1, ItemNo = 2, Quantity = 1,
                     DeliveryDate = DateTime.Parse("2020/05/05"), Status = 2
                 },
                 new OrderDetail
                 {
-                    DetailNo = 2, OrderNo = 1, MeisaiNo = 2, /*CustomerId = 1,*/ ItemNo = 5, Quantity = 1,
+                    DetailNo = 2, OrderNo = 1, MeisaiNo = 2, ItemNo = 5, Quantity = 1,
                     DeliveryDate = DateTime.Parse("2020/05/05"), Status = 2
                 },
                 new OrderDetail
                 {
-                    DetailNo = 3, OrderNo = 2, MeisaiNo = 1, /*CustomerId = 1,*/ ItemNo = 1, Quantity = 5,
+                    DetailNo = 3, OrderNo = 2, MeisaiNo = 1, ItemNo = 1, Quantity = 5,
                     DeliveryDate = DateTime.Parse("2020/06/14"), Status = 1
+                },
+                new OrderDetail
+                {
+                    DetailNo = 4, OrderNo = 2, MeisaiNo = 2, ItemNo = 3, Quantity = 1,
+                    DeliveryDate = DateTime.Parse("2020/06/14"), Status = 1
+                },
+                new OrderDetail
+                {
+                    DetailNo = 5, OrderNo = 2, MeisaiNo = 3, ItemNo = 5, Quantity = 2,
+                    DeliveryDate = DateTime.Parse("2020/06/14"), Status = 2
+                },
+                new OrderDetail
+                {
+                    DetailNo = 6, OrderNo = 3, MeisaiNo = 1, ItemNo = 4, Quantity = 2,
+                    DeliveryDate = DateTime.Parse("2020/07/01"), Status = 4
                 }
             };
             orderDetails.ForEach(odd => model.OrderDetails.Add(odd));
