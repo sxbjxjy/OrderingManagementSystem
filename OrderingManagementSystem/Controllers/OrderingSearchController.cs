@@ -15,12 +15,8 @@ namespace OrderingManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Searchresult(/*OrderingSearchResultViewModel osrvm, */int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
+        public ActionResult Searchresult(int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
-            /*if (ModelState.IsValid)
-            {
-                return View("Search", osrvm);
-            }*/
             using (var db = new ModelContext())
             {
                 if (status == 1)
@@ -75,7 +71,7 @@ namespace OrderingManagementSystem.Controllers
 
                 var deliveryDateList = (from e in db.OrderDetails
                                         select new { e.DetailNo }).ToList();
-                if (deliveryFrom != null && deliveryTo != null)
+                if (deliveryFrom != null)
                 {
                     ViewBag.deliveryPeriod = deliveryFrom + "～" + deliveryTo;
                     deliveryDateList = (from e in db.OrderDetails
@@ -86,7 +82,7 @@ namespace OrderingManagementSystem.Controllers
 
                 var orderDateList = (from e in db.OrderDetails
                                      select new { e.DetailNo }).ToList();
-                if (orderFrom != null && orderTo != null)
+                if (orderFrom != null)
                 {
                     ViewBag.orderPeriod = orderFrom + "～" + orderTo;
                     var orderDatePreList = (from e in db.Orders

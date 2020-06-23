@@ -11,6 +11,7 @@ namespace OrderingManagementSystem.ViewModel
     public class OrderingSearchResultViewModel
     {
         [DisplayName("顧客ID")]
+        
         [DisplayFormat(DataFormatString = "{0:d6}")]
         [StringLength(6, ErrorMessage = "{0}は{1}桁以内で入力してください")]
         [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]
@@ -56,13 +57,13 @@ namespace OrderingManagementSystem.ViewModel
             this.DeliveryDate = osr.DeliveryDate;
             this.Status = osr.Status;
 
-            if (this.Status == 1)
+            if(this.Status == 1)
             {
-                this.StatusDisplay = "未発送";
+                this.StatusDisplay = "未出荷";
             }
             else if (this.Status == 2)
             {
-                this.StatusDisplay = "発送済";
+                this.StatusDisplay = "出荷済";
             }
             else if (this.Status == 3)
             {
