@@ -1,4 +1,4 @@
-﻿using OrderingManagementSystem.DAL;
+using OrderingManagementSystem.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace OrderingManagementSystem.Controllers
         {
             ModelContext db = new ModelContext();
             ViewBag.model = db.OrderDetails.Find(detailNo);
+
             if (Session["Employee"] == null)
             {
                 return Redirect("/EmployeeLogin/Login");
@@ -33,6 +34,22 @@ namespace OrderingManagementSystem.Controllers
             od.Status = status;
             db.SaveChanges();
             ViewBag.model = db.OrderDetails.Find(detailNo);
+            if (ViewBag.model.Status == 1)
+            {
+                ViewBag.Status = "未出荷";
+            }
+            else if(ViewBag.model.Status == 2)
+            {
+                ViewBag.Status = "出荷済";
+            }
+            else if(ViewBag.model.Status == 3)
+            {
+                ViewBag.Status = "キャンセル";
+            }
+            else if(ViewBag.model.Status == 4)
+            {
+                ViewBag.Status = "入荷待ち";
+            }
             return View();
         }
     }

@@ -16,7 +16,7 @@ namespace OrderingManagementSystem
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "OrderingSearch", action = "Search", id = UrlParameter.Optional }
+                defaults: new { controller = "CustomerLogin", action = "CustomerLoginIndex", id = UrlParameter.Optional }
             );
         }
     }
