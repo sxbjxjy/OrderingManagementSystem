@@ -15,7 +15,7 @@ namespace OrderingManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Searchresult(int? CustomerId, int? OrderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
+        public ActionResult Searchresult(int? customerId, int? orderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
             using (var db = new ModelContext())
             {
@@ -41,31 +41,32 @@ namespace OrderingManagementSystem.Controllers
 
                 var customerIdList = (from e in db.OrderDetails
                                       select new { e.DetailNo }).ToList();
-                if (CustomerId != null)
+                if (customerId != null)
                 {
-                    ViewBag.customerId = CustomerId;
+                    ViewBag.customerId = customerId;
                     //入力されたCustomerIdに該当するOrderNoのカラム名付きリスト
                     var customerIdPreList = (from e in db.Orders
-                                             where e.CustomerId.ToString().Contains(CustomerId.ToString())
+                                             where e.CustomerId.ToString().Contains(customerId.ToString())
                                              select new { e.OrderNo }).ToList();
                     //入力されたCustomerIdに該当するOrderNoの数値のみのリスト（この時点では空）
                     List<int> colist = new List<int>();
                     for (int i = 0; i < customerIdPreList.Count(); i++)
                     {
                         colist.Add(customerIdPreList[i].OrderNo);//リストにOrderNoの数値を追加。
+                        int co = colist[i];
                         customerIdList = (from e in db.OrderDetails
-                                          where e.OrderNo == colist[i]
+                                          where e.OrderNo == co
                                           select new { e.DetailNo }).ToList();
                     }
                 }
 
                 var orderNoList = (from e in db.OrderDetails
                                    select new { e.DetailNo }).ToList();
-                if (OrderNo != null)
+                if (orderNo != null)
                 {
-                    ViewBag.orderNo = OrderNo;
+                    ViewBag.orderNo = orderNo;
                     orderNoList = (from e in db.OrderDetails
-                                   where e.OrderNo.ToString().Contains(OrderNo.ToString())
+                                   where e.OrderNo.ToString().Contains(orderNo.ToString())
                                    select new { e.DetailNo }).ToList();
                 }
 
@@ -94,8 +95,9 @@ namespace OrderingManagementSystem.Controllers
                     for (int i = 0; i < orderDatePreList.Count(); i++)
                     {
                         oolist.Add(orderDatePreList[i].OrderNo);//リストにOrderNoの数値を追加。
+                        int oo = oolist[i];
                         orderDateList = (from e in db.OrderDetails
-                                         where e.OrderNo == oolist[i]
+                                         where e.OrderNo == oo
                                          select new { e.DetailNo }).ToList();
                     }
 

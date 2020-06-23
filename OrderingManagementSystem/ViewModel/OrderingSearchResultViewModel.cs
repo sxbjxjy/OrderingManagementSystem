@@ -11,18 +11,17 @@ namespace OrderingManagementSystem.ViewModel
     public class OrderingSearchResultViewModel
     {
         [DisplayName("顧客ID")]
-        
-        [DisplayFormat(DataFormatString = "{0:d6}")]
+        /*[DisplayFormat(DataFormatString = "{0:d6}")]
         [StringLength(6, ErrorMessage = "{0}は{1}桁以内で入力してください")]
-        [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]
+        [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]*/
         public int CustomerId { get; set; }
         [DisplayName("注文番号")]
-        [DisplayFormat(DataFormatString = "{0:d6}")]
+        /*[DisplayFormat(DataFormatString = "{0:d6}")]
         [StringLength(6, ErrorMessage = "{0}は{1}桁以内で入力してください")]
-        [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]
+        [Range(0, 999999, ErrorMessage = "{0}は数値で入力してください")]*/
         public int OrderNo { get; set; }
         public int DetailNo { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d3}")]
+        /*[DisplayFormat(DataFormatString = "{0:d3}")]*/
         public int MeisaiNo { get; set; }
         [DisplayName("注文番号-明細")]
         public string OrderDetail { get; set; }
