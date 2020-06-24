@@ -14,7 +14,7 @@ namespace OrderingManegimentSystem.Controllers
     public class EstimateController : Controller
     {
         //見積表示
-        public ActionResult ShoppingCart()// int CustomerId
+        public ActionResult ShoppingCart()
         {
             if (Session["Customer"] == null)
             {
@@ -22,7 +22,7 @@ namespace OrderingManegimentSystem.Controllers
             }
             using (var db = new ModelContext())
             {
-                int CustomerId = 3;//ユーザID
+                int CustomerId = (int)Session["Customer"];
                 var cdList = new List<ShoppingCartViewModel>();
 
                 var cartList = (from e in db.CartDetails
@@ -57,20 +57,20 @@ namespace OrderingManegimentSystem.Controllers
                 {
                     if (!ModelState.IsValid)
                     {
-                        return View("ShoppingCart", cdList);
+                        return View("ShoppingCart");
                     }
                     //数量ゼロチェック
                     if (item.Quantity <= 0)
                     {
                         ViewBag.N = false;
-                        return View("ShoppingCart", cdList);
+                        return View("ShoppingCart");
                     }
 
                     //在庫不足チェック
                     int ctmId = item.CustomerId;
 
                     var s = (from v in cdList
-                            group v by v.ItemNo).ToList();
+                             group v by v.ItemNo).ToList();
 
                     for (int i = 0; i < s.Count(); i++)
                     {
@@ -91,7 +91,7 @@ namespace OrderingManegimentSystem.Controllers
                         if (n < o)
                         {
                             ViewBag.Z = false;
-                            return View("ShoppingCart", cdList);
+                            return View("ShoppingCart");
                         }
                     }
 
@@ -103,7 +103,7 @@ namespace OrderingManegimentSystem.Controllers
                     if (interval < 0 || interval > 90)
                     {
                         ViewBag.X = false;
-                        return View("ShoppingCart", cdList);
+                        return View("ShoppingCart");
                     }
                 }
 
@@ -189,4 +189,3 @@ namespace OrderingManegimentSystem.Controllers
         }
     }
 }
- 
