@@ -17,7 +17,7 @@
     <div>以下のご注文のキャンセルを承ります。</div>
     <div>内容を確認の上、よろしければ「キャンセル」ボタンを押してください。</div><br />
 
-    <div>ご注文番号：<strong>@Html.DisplayFor(model => model.First().OrderNo)</strong></div>
+    <div>ご注文番号：<strong style="color:blue">@Html.DisplayFor(model => model.First().OrderNo)</strong></div>
     <table border="1">
         <tr><th>商品番号</th><th>商品名</th><th>数量</th><th>希望納期</th><th>ステータス</th></tr>
         @for (int i = 0; i < Model.Count(); i++)

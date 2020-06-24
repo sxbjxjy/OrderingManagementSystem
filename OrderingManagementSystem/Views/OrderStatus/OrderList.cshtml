@@ -31,7 +31,7 @@
         }
 
 
-        <p>ご注文番号：<strong>@Html.DisplayFor(model => model[i].First().OrderNo)</strong>
+        <p>ご注文番号：<strong style="color:blue">@Html.DisplayFor(model => model[i].First().OrderNo)</strong>
             @if (flag == 0)
             {
                 <input type="button" value="この注文をキャンセルする" onclick="window.location='@Url.Action("OrderCancelConfirm", "OrderStatus",
