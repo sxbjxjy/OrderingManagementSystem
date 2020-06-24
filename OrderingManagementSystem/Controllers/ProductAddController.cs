@@ -75,8 +75,7 @@ namespace OrderingManegimentSystem.Controllers
                     ItemNo = pro.ItemNo,
                     Quantity = pro.Quantity,
                     DeliveryDate = pro.DeliveryDate,
-                    CustomerId = 3
-                    //CustomerId = (ログインユーザのId取得)
+                    CustomerId = (int)Session["Customer"]               
                 };
 
                 //時刻除外）
