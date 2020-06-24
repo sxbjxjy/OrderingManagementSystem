@@ -32,7 +32,7 @@
     <div style="text-align:center">
         <h2>注文完了</h2>
         以下の内容でご注文を承りました。<br>
-        ご注文番号は、<font color="#0000cd">@Html.DisplayFor(model => model.First().OrderNo)</font>です。<br>
+        ご注文番号は、<strong style="color:blue">@Html.DisplayFor(model => model.First().OrderNo)</strong>です。<br>
         <br>
         ご注文番号は、お問い合わせの際に必要となることがありますので、<br>
         メモをお取りになるか、印刷するなどして大切に保管してください。<br>
@@ -47,24 +47,24 @@
                 <tr>
                     <td>@Html.DisplayFor(model => model[i].ItemNo)</td>
                     <td>@Html.DisplayFor(model => model[i].ItemName)</td>
-                    <td>@Html.DisplayFor(model => model[i].UnitPrice)</td>
-                    <td>@Html.DisplayFor(model => model[i].Quantity)</td>
+                    <td align="right">@Html.DisplayFor(model => model[i].UnitPrice)-</td>
+                    <td align="right">@Html.DisplayFor(model => model[i].Quantity)</td>
                     <td>@Html.DisplayFor(model => model[i].DeliveryDate)</td>
-                    <td>@Html.DisplayFor(model => model[i].Amount)</td>
+                    <td align="right">@Html.DisplayFor(model => model[i].Amount)-</td>
                 </tr>
             }
             <tr>
                 <td rowspan="3"></td>
                 <th colspan="4" align="right">小計</th>
-                <td>@stp</td>
+                <td align="right">@stp-</td>
             </tr>
             <tr>
                 <th colspan="4" align="right">消費税</th>
-                <td>@t</td>
+                <td align="right">@t-</td>
             </tr>
             <tr>
                 <th colspan="4" align="right">合計</th>
-                <td>@tp</td>
+                <td align="right">@tp-</td>
             </tr>
         </table>
 
