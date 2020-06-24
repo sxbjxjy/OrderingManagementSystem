@@ -11,9 +11,13 @@ using System.Diagnostics.Eventing.Reader;
 namespace OrderingManegimentSystem.Controllers
 {
     public class ProductAddController : Controller
-    {  
+    {
         public ActionResult List(int ItemNo)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var item = db.Products.Find(ItemNo);
@@ -24,6 +28,10 @@ namespace OrderingManegimentSystem.Controllers
         }
         public ActionResult ProductAddResult(ProductAddViewModel pro)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 //空欄、形式チェック
@@ -43,26 +51,13 @@ namespace OrderingManegimentSystem.Controllers
                 var y = (from a in db.OrderDetails
                         where a.ItemNo == x && a.Status == 1
                         select (int?)a.Quantity).Sum() ?? 0;
-                var z = y.ToString();
-                /*if (y == )
-                {
-                    if (stock.Stock < pro.Quantity)
-                    {
-                        ViewBag.E = false;
-                        return View("List", pro);
-                    }
-                }
-                else
-                {*/
-                //int sum = y.AsQueryable().Sum();
-                //int s = stock.Stock - sum;
+               
                 int s = stock.Stock - y;
                     if (s < pro.Quantity)
                     {
                         ViewBag.E = false;
                         return View("List", pro);
                     }
-                //}
                     
                 //希望納期チェック(過去or90日以上未来)
                 DateTime dfrom = DateTime.Now;
@@ -80,8 +75,7 @@ namespace OrderingManegimentSystem.Controllers
                     ItemNo = pro.ItemNo,
                     Quantity = pro.Quantity,
                     DeliveryDate = pro.DeliveryDate,
-                    CustomerId = 3
-                    //CustomerId = (ログインユーザのId取得)
+                    CustomerId = (int)Session["Customer"]               
                 };
 
                 //時刻除外）
@@ -95,6 +89,7 @@ namespace OrderingManegimentSystem.Controllers
 
                 ViewBag.ItemN = pro.ItemName;
                 ViewBag.Result = u;
+                ViewBag.Url = stock.PhotoUrl;
 
                 db.CartDetails.Add(u);
                 db.SaveChanges();

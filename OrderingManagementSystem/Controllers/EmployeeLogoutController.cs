@@ -10,6 +10,7 @@ namespace OrderingManagementSystem.Controllers
     {
         public ActionResult Index()
         {
+            Session.Abandon();
             return Redirect("/EmployeeLogin/Login");
         }
     }

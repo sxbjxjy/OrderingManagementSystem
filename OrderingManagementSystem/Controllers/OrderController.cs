@@ -13,6 +13,10 @@ namespace OrderingManegimentSystem.Controllers
     {
         public ActionResult OrderResult(List<ShoppingCartViewModel> x)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 //削除チェックが入っている
@@ -41,30 +45,26 @@ namespace OrderingManegimentSystem.Controllers
                 }
 
                 //在庫不足チェック
-                int ctmId = x.First().CustomerId;
-             
+                int ctmId = x.First().CustomerId;            
                 var s = from t in db.CartDetails
                         where t.CustomerId == ctmId
                         select t;
                 var u = (from v in s
                         group v by v.ItemNo).ToList();
-
-                for (int i = 0; i < u.Count(); i++)
+　               for (int i = 0; i < u.Count(); i++)
                 {
                     var w = (from q in u[i]
                             select q).ToList();
                     //注文しようとしている数量
                     var o = (from q in u[i]
                             select q.Quantity).Sum();
-
-                    //在庫から未発送を引く(error)
-                    var stock = db.Products.Find(w[0].ItemNo);
-                               
+                    //在庫から未発送を引く
+                    var stock = db.Products.Find(w[0].ItemNo);                               
                     var y = (from a in db.OrderDetails
                             where a.ItemNo == stock.ItemNo && a.Status == 1
                             select (int?)a.Quantity).Sum()?? 0;
-                   
                     int n = stock.Stock - y;
+                    //判定
                     if(n < o)
                     {
                         return RedirectToAction("ShoppingCartError2", "Estimate", new { ctmId });

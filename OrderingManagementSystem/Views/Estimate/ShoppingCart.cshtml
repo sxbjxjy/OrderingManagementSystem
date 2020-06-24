@@ -23,89 +23,104 @@
     string tp = TotalPrice.ToString("C");
 }
 
-<div style="text-align:center">
-    <h2>見積確認</h2>
-    買い物かごの中身からお見積内容を表示します。<br>
-    見積内容に間違いなければ、「注文」ボタンを押してください。<br>
-    数量、希望納期を変更するには、値を入力して、「再見積」ボタンを押してください。<br>
-    商品を削除する場合は、リストの右にある「削除」をチェックし、「再見積」ボタンを押してください。
-</div>
-<br>
-@using (Html.BeginForm("ReShoppingCart", "Estimate", FormMethod.Post))
-{
-    <table border="1" align="center">
-        <tr>
-            <th><center>商品番号</center></th>
-            <th><center>商品名</center></th>
-            <th><center>単価</center></th>
-            <th><center>数量</center></th>
-            <th><center>希望納期</center></th>
-            <th><center>金額</center></th>
-            <th><center>削除</center></th>
-        </tr>
-
-        @for (int i = 0; i < Model.Count; i++)
-        {
-            <tr>
-                <td>@Html.DisplayFor(m => m[i].ItemNo)</td>
-                <td>@Html.DisplayFor(m => m[i].ItemName)</td>
-                <td style="text-align:right">@Html.DisplayFor(m => m[i].UnitPrice)-</td>
-                <td>@Html.TextBoxFor(m => m[i].Quantity, new { style = "width:40px" })</td>
-                <td>@Html.TextBoxFor(m => m[i].DeliveryDate, "{0:yyyy/MM/dd}", new { style = "width:75px" })</td>
-                <td style="text-align:right">@Html.DisplayFor(m => m[i].Total)-</td>
-                <td align="center">@Html.CheckBoxFor(m => m[i].IsChecked)</td>
-            </tr>
-            @Html.HiddenFor(m => m[i].ItemNo)
-            @Html.HiddenFor(m => m[i].ItemName)
-            @Html.HiddenFor(m => m[i].UnitPrice)
-            @Html.HiddenFor(m => m[i].Total)
-            @Html.HiddenFor(m => m[i].CustomerId)
-            @Html.HiddenFor(m => m[i].CartNo)
-
-        }
-        <tr>
-            <td rowspan="3"></td>
-            <th colspan="4" align="right">小計</th>
-            <td align="right">@stp-</td>
-        </tr>
-        <tr>
-            <th colspan="4" align="right">消費税</th>
-            <td align="right">@t-</td>
-        </tr>
-        <tr>
-            <th colspan="4" align="right">合計</th>
-            <td align="right">@tp-</td>
-        </tr>
-    </table>
     <div style="text-align:center">
-        @if (ViewBag.D == false)
-        {
-            <p>数量、納期、削除チェックを変更した場合は、再見積を実行してから注文ボタンを押してください</p>
-        }
-        @if (ViewBag.N == false)
-        {
-            <p>数量は、0より大きな値を入力してください</p>
-        }
-        @if (ViewBag.Z == false)
-        {
-            <p>在庫数量より多い数量を指定することはできません</p>
-        }
-        @if (ViewBag.X == false)
-        {
-            <p>正しい希望納期を入力してください</p>
-        }
-        @for (int i = 0; i < Model.Count; i++)
-        {
-            <p>@Html.ValidationMessageFor(model => model[i].Quantity)</p>
-        }
-        @for (int i = 0; i < Model.Count; i++)
-        {
-            <p>@Html.ValidationMessageFor(model => model[i].DeliveryDate)</p>
-        }
+        <h2>見積確認</h2>
+        買い物かごの中身からお見積内容を表示します。<br>
+        見積内容に間違いなければ、「注文」ボタンを押してください。<br>
+        数量、希望納期を変更するには、値を入力して、「再見積」ボタンを押してください。<br>
+        商品を削除する場合は、リストの右にある「削除」をチェックし、「再見積」ボタンを押してください。       
     </div>
-    <br>
-    <div style="text-align: center">
-        <input type="submit" formaction="/Order/OrderResult" value="注文">
-        <input type="submit" value="再見積" />
-    </div>
-}
+        @if (ViewBag.G == 0)
+        {
+            <div style="text-align:center">
+                <p><font color="#0000cd">商品が追加されていません</font></p>
+            </div>
+        }
+        else
+        {
+                <br>
+                using (Html.BeginForm("ReShoppingCart", "Estimate", FormMethod.Post))
+                {
+                    <table border="1" align="center">
+                        <tr>
+                            <th><center>商品番号</center></th>
+                            <th><center>商品名</center></th>
+                            <th><center>単価</center></th>
+                            <th><center>数量</center></th>
+                            <th><center>希望納期</center></th>
+                            <th><center>金額</center></th>
+                            <th><center>削除</center></th>
+                        </tr>
+
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => m[i].ItemNo)</td>
+                                <td>@Html.DisplayFor(m => m[i].ItemName)</td>
+                                <td style="text-align:right">@Html.DisplayFor(m => m[i].UnitPrice)-</td>
+                                <td>@Html.TextBoxFor(m => m[i].Quantity, new { style = "width:40px" })</td>
+                                <td>@Html.TextBoxFor(m => m[i].DeliveryDate, "{0:yyyy/MM/dd}", new { style = "width:75px" })</td>
+                                <td style="text-align:right">@Html.DisplayFor(m => m[i].Total)-</td>
+                                <td align="center">@Html.CheckBoxFor(m => m[i].IsChecked)</td>
+                            </tr>
+                            @Html.HiddenFor(m => m[i].ItemNo)
+                            @Html.HiddenFor(m => m[i].ItemName)
+                            @Html.HiddenFor(m => m[i].UnitPrice)
+                            @Html.HiddenFor(m => m[i].Total)
+                            @Html.HiddenFor(m => m[i].CustomerId)
+                            @Html.HiddenFor(m => m[i].CartNo)
+
+                        }
+                        <tr>
+                            <td rowspan="3"></td>
+                            <th colspan="4" align="right">小計</th>
+                            <td align="right">@stp-</td>
+                        </tr>
+                        <tr>
+                            <th colspan="4" align="right">消費税</th>
+                            <td align="right">@t-</td>
+                        </tr>
+                        <tr>
+                            <th colspan="4" align="right">合計</th>
+                            <td align="right">@tp-</td>
+                        </tr>
+                    </table>
+                    <div style="text-align:center">
+                        @if (ViewBag.D == false)
+                        {
+                            <p>数量、納期、削除チェックを変更した場合は、再見積を実行してから注文ボタンを押してください</p>
+                        }
+                        @if (ViewBag.N == false)
+                        {
+                            <p>数量は、0より大きな値を入力してください</p>
+                        }
+                        @if (ViewBag.Z == false)
+                        {
+                            <p>在庫数量より多い数量を指定することはできません</p>
+                        }
+                        @if (ViewBag.X == false)
+                        {
+                            <p>正しい希望納期を入力してください</p>
+                        }
+                        @if (ViewBag.Y == false)
+                        {
+                            <p>在庫が不足するため、ご注文を確定できません</p>
+                        }
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <p>@Html.ValidationMessageFor(model => model[i].Quantity)</p>
+                        }
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <p>@Html.ValidationMessageFor(model => model[i].DeliveryDate)</p>
+                        }
+                    </div>
+                    <br>
+                    <div style="text-align: center">
+                        <input type="submit" formaction="/Order/OrderResult" value="注文">
+                        <input type="submit" value="再見積" />
+                    </div>
+                        }
+                    }
+         
+        

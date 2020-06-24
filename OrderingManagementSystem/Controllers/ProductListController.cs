@@ -15,6 +15,10 @@ namespace OrderingManagementSystem.Controllers
         // GET: ProductList
         public ActionResult ProductCatalog()
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var ul = db.Products.ToList();
@@ -33,6 +37,10 @@ namespace OrderingManagementSystem.Controllers
         }
         public ActionResult ProductCatalog2()
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 var ul = db.Products

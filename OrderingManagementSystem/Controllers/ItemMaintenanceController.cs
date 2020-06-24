@@ -14,6 +14,10 @@ namespace OrderingManagementSystem.Controllers
         // GET: ItemMaintenance
         public ActionResult InventoryDisplay()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var ul = db.Products.ToList();
@@ -28,6 +32,10 @@ namespace OrderingManagementSystem.Controllers
         }
         public ActionResult InventoryInformationUpdate(int id)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 ViewBag.model = db.Products.Find(id);
@@ -36,6 +44,10 @@ namespace OrderingManagementSystem.Controllers
         }
         public ActionResult ArraivalRedirect(int itemNo, int stock)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var model = db.Products.Find(itemNo);
@@ -46,6 +58,10 @@ namespace OrderingManagementSystem.Controllers
         }
         public ActionResult DecreaseRedirect(int itemNo, int stock)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
            
@@ -57,6 +73,10 @@ namespace OrderingManagementSystem.Controllers
         }
         public ActionResult UpdateRedirect(int itemNo, DateTime receiptDate)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var model = db.Products.Find(itemNo);

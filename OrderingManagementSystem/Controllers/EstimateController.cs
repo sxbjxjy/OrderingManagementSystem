@@ -16,20 +16,29 @@ namespace OrderingManegimentSystem.Controllers
         //見積表示
         public ActionResult ShoppingCart()// int CustomerId
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 int CustomerId = 3;//ユーザID
                 var cdList = new List<ShoppingCartViewModel>();
 
                 var cartList = (from e in db.CartDetails
-                                where e.CustomerId == CustomerId//ユーザID
+                                where e.CustomerId == CustomerId
                                 select e).ToList();
+
+                int stp = 0;
 
                 for (int i = 0; i < cartList.Count(); i++)
                 {
                     var a = new ShoppingCartViewModel(cartList[i]);
                     cdList.Add(a);
+                    stp += (int)a.Total;
                 }
+
+                ViewBag.G = stp;
 
                 return View(cdList);
             }
@@ -38,6 +47,10 @@ namespace OrderingManegimentSystem.Controllers
         //再見積
         public ActionResult ReShoppingCart(List<ShoppingCartViewModel> cdList)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 foreach (var item in cdList)
@@ -67,7 +80,7 @@ namespace OrderingManegimentSystem.Controllers
                         var o = (from q in s[i]
                                  select q.Quantity).Sum();
 
-                        //在庫から未発送を引く(error)
+                        //在庫から未発送を引く
                         var stock = db.Products.Find(w[0].ItemNo);
 
                         var y = (from a in db.OrderDetails
@@ -119,6 +132,10 @@ namespace OrderingManegimentSystem.Controllers
         //再見積を押さずに注文
         public ActionResult ShoppingCartError(int id)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
                 ViewBag.D = false;
@@ -144,9 +161,13 @@ namespace OrderingManegimentSystem.Controllers
         //在庫不足注文
         public ActionResult ShoppingCartError2(int ctmId)
         {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
             using (var db = new ModelContext())
             {
-                ViewBag.Z = false;
+                ViewBag.Y = false;
                 int CustomerId = ctmId;
 
                 //以下、見積表示機能と同じ

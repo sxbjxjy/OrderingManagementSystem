@@ -14,28 +14,31 @@
 </head>
 <body>
     <h1>ご注文ステータス確認</h1>
-    <p>現在ご注文いただいている商品のステータスは以下のとおりです。</p>
-    <p>発送済み商品のないご注文については、キャンセルが可能です。</p>
+    <div>現在ご注文いただいている商品のステータスは以下のとおりです。</div>
+    <div>発送済み商品のないご注文については、キャンセルが可能です。</div>
 
     @for (int i = 0; i < Model.Count; i++)
     {
-        <p>ご注文番号：@Html.DisplayFor(model => model[i].First().OrderNo)</p>
 
         int flag = 0;
         for (int k = 0; k < Model[i].Count(); k++)
         {
-            if (Model[i][k].Status != 1)
+            if (Model[i][k].Status == 2 || Model[i][k].Status == 3)
             {
                 flag = 1;
                 break;
             }
         }
 
-        if (flag == 0)
-        {
-            <input type="button" value="この注文をキャンセルする" onclick="window.location='@Url.Action("OrderCancelConfirm", "OrderStatus",
-                                                                                   new { odNo = Model[i].First().OrderNo}, null)'" />
-        }
+
+        <p>ご注文番号：<strong>@Html.DisplayFor(model => model[i].First().OrderNo)</strong>
+            @if (flag == 0)
+            {
+                <input type="button" value="この注文をキャンセルする" onclick="window.location='@Url.Action("OrderCancelConfirm", "OrderStatus",
+                                                                                       new { odNo = Model[i].First().OrderNo}, null)'" />
+            }
+        </p>
+
 
         <table border="1">
             <tr><th>商品番号</th><th>商品名</th><th>数量</th><th>希望納期</th><th>ステータス</th></tr>

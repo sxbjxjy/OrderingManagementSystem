@@ -56,13 +56,13 @@ namespace OrderingManagementSystem.ViewModel
             this.DeliveryDate = osr.DeliveryDate;
             this.Status = osr.Status;
 
-            if (this.Status == 1)
+            if(this.Status == 1)
             {
-                this.StatusDisplay = "未発送";
+                this.StatusDisplay = "未出荷";
             }
             else if (this.Status == 2)
             {
-                this.StatusDisplay = "発送済";
+                this.StatusDisplay = "出荷済";
             }
             else if (this.Status == 3)
             {

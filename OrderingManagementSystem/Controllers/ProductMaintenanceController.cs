@@ -16,6 +16,10 @@ namespace OrderingManegimentSystem.Controllers
         // GET: ProductMaintenance
         public ActionResult List()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var ul = db.Products.ToList();
@@ -30,11 +34,19 @@ namespace OrderingManegimentSystem.Controllers
         }
         public ActionResult Add()
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             return View();
         }
 
         public ActionResult AddCheck(ProductViewModel pvm)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (!ModelState.IsValid)
@@ -58,6 +70,10 @@ namespace OrderingManegimentSystem.Controllers
         }
         public ActionResult AddRedirect(Product prd)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 db.Products.Add(prd);
@@ -70,7 +86,13 @@ namespace OrderingManegimentSystem.Controllers
 
         public ActionResult Update(int id)
         {
+
             /*using (var db = new ModelContext())
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
+            using (var db = new ModelContext(
             {
                 ViewBag.model3 = db.Products.Find(id);
                 return View();
@@ -98,6 +120,10 @@ namespace OrderingManegimentSystem.Controllers
 
         public ActionResult UpdateCheck(ProductViewModel2 pvm)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 if (!ModelState.IsValid)
@@ -123,6 +149,10 @@ namespace OrderingManegimentSystem.Controllers
         public ActionResult UpdateRedirect(string category, int itemNo, string photoUrl, string itemName, int unitPrice,
             string author, string publisher, string overview, string size, string type, int stock)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 var model5 = db.Products.Find(itemNo);
@@ -144,6 +174,10 @@ namespace OrderingManegimentSystem.Controllers
         }
         public ActionResult Delete(List<ProductViewModel> dlist)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
                 int countCheck = 0;
@@ -177,6 +211,10 @@ namespace OrderingManegimentSystem.Controllers
 
         public ActionResult DeleteRedirect(List<ProductViewModel> dlist)
         {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
             using (var db = new ModelContext())
             {
 
