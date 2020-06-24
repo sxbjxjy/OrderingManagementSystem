@@ -51,36 +51,36 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 1, ItemName = "夜は短し歩けよ乙女", Author = "森見　登美彦", Publisher = "角川文庫",
-                    PhotoUrl = null, Overview = null,
-                    UnitPrice = 616, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.6 x 1.6 cm",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    UnitPrice = 616, Category = "SF・ホラー・ファンタジー", Size = "15x11x2cm",
                     Type = "文庫", Stock = 15, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 2, ItemName = "君の膵臓をたべたい", Author = "住野　よる", Publisher = "双葉社",
-                    PhotoUrl = null, Overview = null,
-                    UnitPrice = 734, Category = "日本文学", Size = "14.8 x 10.5 x 2 cm",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    UnitPrice = 734, Category = "日本文学", Size = "15x11x2cm",
                     Type = "文庫", Stock = 20, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 3, ItemName = "三体", Author = "劉　慈欣", Publisher = "早川書房",
-                    PhotoUrl = null, Overview = null,
-                    UnitPrice = 2090, Category = "SF・ホラー・ファンタジー", Size = "13.9 x 2.8 x 19.4 cm",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    UnitPrice = 2090, Category = "SF・ホラー・ファンタジー", Size = "14x3x20cm",
                     Type = "ハードカバー", Stock = 10, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 4, ItemName = "バーティミアス1 サマルカンドの秘宝 上", Author = "ジョナサン ストラウド", Publisher = "静山社",
-                    PhotoUrl = null, Overview = null,
-                    UnitPrice = 836, Category = "こどものSF・ファンタジー", Size = "17.4 x 11.4 x 1.4 cm",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    UnitPrice = 836, Category = "こどものSF・ファンタジー", Size = "18x11x1cm",
                     Type = "新書", Stock = 0, ReceiptDate = DateTime.Parse("2020/07/01")
                 },
                 new Product
                 {
                     ItemNo = 5, ItemName = "斜め屋敷の犯罪", Author = "島田　荘司", Publisher = "講談社",
-                    PhotoUrl = null, Overview = null,
-                    UnitPrice = 880, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15 x 10.6 x 1.6 cm",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    UnitPrice = 880, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15x11x2cm",
                     Type = "文庫", Stock = 20, ReceiptDate = null
                 }
             };

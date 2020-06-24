@@ -15,14 +15,14 @@
         <h1>取扱商品カタログ</h1>
         <table border="1">
             <tr>
-                @foreach (var item in Model)
+                @for (int i = 0; i < Model.Count(); i++)
                 {
-                    <td><img src="@Url.Content(item.PhotoUrl)" wigth="150" height="150" /></td>
+                    <td><img src="@Url.Content(Model[i].PhotoUrl)" wigth="150" height="150" /></td>
                     <td>
-                        商品番号：@Html.DisplayFor(model => item.ItemNo)<br /><br />
-                        @Html.DisplayFor(model => item.ItemName)<br /><br />
-                        種類：@Html.DisplayFor(model => item.Type)<br />
-                        在庫数量：@Html.DisplayFor(model => item.Stock)<br />
+                        商品番号：@Html.DisplayFor(model => model[i].ItemNo)<br /><br />
+                        @Html.DisplayFor(model => model[i].ItemName)<br /><br />
+                        種類：@Html.DisplayFor(model => model[i].Type)<br />
+                        在庫数量：@Html.DisplayFor(model => model[i].Stock)<br />
                         <input type="button" value="注文する" />
                     </td>
                 }

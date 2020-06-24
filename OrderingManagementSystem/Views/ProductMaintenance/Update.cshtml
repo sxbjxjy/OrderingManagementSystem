@@ -24,27 +24,32 @@
             <table border="1">
                 <tr>
                     <th>商品番号</th>
-                    <td><input type="text" name="itemNo" value="@ViewBag.model3.ItemNo">@Html.ValidationMessageFor(model => model.ItemNo)</td>
+                    <td>@Html.TextBoxFor(model => model.ItemNo)
+                    @Html.ValidationMessageFor(model => model.ItemNo)</td>
 
                 </tr>
                 <tr>
                     <th>商品名</th>
-                    <td><input type="text" name="itemName" value="@ViewBag.model3.ItemName">@Html.ValidationMessageFor(model => model.ItemName)</td>
+                    <td>@Html.TextBoxFor(model => model.ItemName)
+                    @Html.ValidationMessageFor(model => model.ItemName)</td>
 
                 </tr>
                 <tr>
                     <th>商品写真(URL)</th>
-                    <td><input type="text" name="photoUrl" value="@ViewBag.model3.PhotoUrl">@Html.ValidationMessageFor(model => model.PhotoUrl)</td>
+                    <td>@Html.TextBoxFor(model => model.PhotoUrl)
+                    @Html.ValidationMessageFor(model => model.PhotoUrl)</td>
 
                 </tr>
                 <tr>
                     <th>単価</th>
-                    <td><input type="text" name="unitPrice" value="@String.Format("{0:#}", ViewBag.model3.UnitPrice)">@Html.ValidationMessageFor(model => model.UnitPrice)</td>
+                    <td><input type="text" name="unitPrice" value="@String.Format("{0:#}", ViewBag.model3.UnitPrice)">
+                    @Html.ValidationMessageFor(model => model.UnitPrice)</td>
 
                 </tr>
                 <tr>
                     <th>寸法</th>
-                    <td><input type="text" name="size" value="@ViewBag.model3.Size">@Html.ValidationMessageFor(model => model.Size)</td>
+                    <td>@Html.TextBoxFor(model => model.Size)
+                    @Html.ValidationMessageFor(model => model.Size)</td>
 
                 </tr>
                 <tr>
@@ -95,12 +100,14 @@
                 </tr>
                 <tr>
                     <th>著者</th>
-                    <td><input type="text" name="author" value="@ViewBag.model3.Author">@Html.ValidationMessageFor(model => model.Author)</td>
+                    <td>@Html.TextBoxFor(model => model.Author)
+                    @Html.ValidationMessageFor(model => model.Author)</td>
 
                 </tr>
                 <tr>
                     <th>出版社</th>
-                    <td><input type="text" name="publisher" value="@ViewBag.model3.Publisher">@Html.ValidationMessageFor(model => model.Publisher)</td>
+                    <td>@Html.TextBoxFor(model => model.Publisher)
+                    @Html.ValidationMessageFor(model => model.Publisher)</td>
 
                 </tr>
                 <tr>

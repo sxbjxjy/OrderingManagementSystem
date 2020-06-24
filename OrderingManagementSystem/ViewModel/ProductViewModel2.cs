@@ -13,8 +13,6 @@ namespace OrderingManagementSystem.ViewModel
 {
     public class ProductViewModel2
     {
-
-        public Boolean IsChecked { get; set; }
         public string Category { get; set; }
 
         [Required(ErrorMessage = "商品番号を入力してください。")]
@@ -54,7 +52,7 @@ namespace OrderingManagementSystem.ViewModel
 
         public DateTime? ReceiptDate { get; set; }
 
-        public ProductViewModel2() { }
+        /*public ProductViewModel2() { }
         public ProductViewModel2(Product prd)
         {
             ItemName = prd.ItemName;
@@ -69,6 +67,6 @@ namespace OrderingManagementSystem.ViewModel
             Type = prd.Type;
             Stock = prd.Stock;
             ReceiptDate = prd.ReceiptDate;
-        }
+        }*/
     }
 }

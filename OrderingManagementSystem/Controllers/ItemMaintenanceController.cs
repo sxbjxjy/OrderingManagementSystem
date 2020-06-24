@@ -48,10 +48,7 @@ namespace OrderingManagementSystem.Controllers
         {
             using (var db = new ModelContext())
             {
-                if (!ModelState.IsValid)
-                {
-                    return View("InventoryInformationUpdate");
-                }
+           
                 var model = db.Products.Find(itemNo);
                 model.Stock = model.Stock - stock;
                 db.SaveChanges();
