@@ -143,6 +143,7 @@ namespace OrderingManagementSystem.DAL
                 new Order { OrderNo = 1, CustomerId = 1, OrderDate = DateTime.Parse("2020/05/01") },
                 new Order { OrderNo = 2, CustomerId = 1, OrderDate = DateTime.Parse("2020/06/06") },
                 new Order { OrderNo = 3, CustomerId = 2, OrderDate = DateTime.Parse("2020/06/07") },
+                new Order { OrderNo = 4, CustomerId = 1, OrderDate = DateTime.Parse("2020/06/08") }
             };
             orders.ForEach(od => model.Orders.Add(od));
             model.SaveChanges();
@@ -172,12 +173,22 @@ namespace OrderingManagementSystem.DAL
                 new OrderDetail
                 {
                     DetailNo = 5, OrderNo = 2, MeisaiNo = 3, ItemNo = 5, Quantity = 2,
-                    DeliveryDate = DateTime.Parse("2020/06/14"), Status = 2
+                    DeliveryDate = DateTime.Parse("2020/06/14"), Status = 1
                 },
                 new OrderDetail
                 {
                     DetailNo = 6, OrderNo = 3, MeisaiNo = 1, ItemNo = 4, Quantity = 2,
                     DeliveryDate = DateTime.Parse("2020/07/01"), Status = 4
+                },
+                new OrderDetail
+                {
+                    DetailNo = 7, OrderNo = 4, MeisaiNo = 1, ItemNo = 1, Quantity = 2,
+                    DeliveryDate = DateTime.Parse("2020/07/02"), Status = 2
+                },
+                new OrderDetail
+                {
+                    DetailNo = 8, OrderNo = 4, MeisaiNo = 2, ItemNo = 7, Quantity = 1,
+                    DeliveryDate = DateTime.Parse("2020/07/10"), Status = 4
                 }
             };
             orderDetails.ForEach(odd => model.OrderDetails.Add(odd));
