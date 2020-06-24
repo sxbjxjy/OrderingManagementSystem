@@ -21,10 +21,6 @@ namespace OrderingManagementSystem.Controllers
 
         public ActionResult Searchresult(int? customerId, int? orderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
-            /*if (ModelState.IsValid)
-            {
-                return View("Search", osrvm);
-            }*/
             if (Session["Employee"] == null)
             {
                 return Redirect("/EmployeeLogin/Login");
