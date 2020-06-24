@@ -30,14 +30,15 @@
             }
         }
 
-        if (flag == 0)
-        {
-            <p>ご注文番号：<strong>@Html.DisplayFor(model => model[i].First().OrderNo)</strong>
 
-            <input type="button" value="この注文をキャンセルする" onclick="window.location='@Url.Action("OrderCancelConfirm", "OrderStatus",
-                                                                                   new { odNo = Model[i].First().OrderNo}, null)'" />
-            </p>
-        }
+        <p>ご注文番号：<strong>@Html.DisplayFor(model => model[i].First().OrderNo)</strong>
+            @if (flag == 0)
+            {
+                <input type="button" value="この注文をキャンセルする" onclick="window.location='@Url.Action("OrderCancelConfirm", "OrderStatus",
+                                                                                       new { odNo = Model[i].First().OrderNo}, null)'" />
+            }
+        </p>
+
 
         <table border="1">
             <tr><th>商品番号</th><th>商品名</th><th>数量</th><th>希望納期</th><th>ステータス</th></tr>
