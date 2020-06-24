@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using OrderingManagementSystem.ViewModel;
 using OrderingManagementSystem.DAL;
 
-namespace OrderingManagement2.Controllers
+namespace OrderingManagementSystem.Controllers
 {
     public class ProductListController : Controller
     {
@@ -21,9 +21,19 @@ namespace OrderingManagement2.Controllers
             }
             using (var db = new ModelContext())
             {
-                ViewBag.model = db.Products.ToList();
-                return View();
+                var ul = db.Products.ToList();
+                ViewBag.model = ul;
+
+                for(int i=0; i < ul.Count(); i++)
+                {
+                    var stock = db.Products.Find(ul[i].ItemNo);
+                    var od = (from a in db.OrderDetails
+                              where a.ItemNo == stock.ItemNo && a.Status == 1
+                              select (int?)a.Quantity).Sum() ?? 0;
+                    stock.Stock = stock.Stock - od;
+                }                               
             }
+            return View();
         }
         public ActionResult ProductCatalog2()
         {

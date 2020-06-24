@@ -78,20 +78,43 @@ namespace OrderingManegimentSystem.Controllers
             {
                 db.Products.Add(prd);
                 db.SaveChanges();
+                ViewBag.Add = 1;
                 return Redirect("List");
+                
             }
         }
 
         public ActionResult Update(int id)
         {
+
+            /*using (var db = new ModelContext())
             if (Session["Employee"] == null)
             {
                 return Redirect("/EmployeeLogin/Login");
             }
-            using (var db = new ModelContext())
+            using (var db = new ModelContext(
             {
                 ViewBag.model3 = db.Products.Find(id);
                 return View();
+            }*/
+
+            using (var db = new ModelContext())
+            {
+                var pvm = db.Products.Find(id);
+                var e = new ProductViewModel2();
+                e.Category = pvm.Category;
+                e.ItemNo = pvm.ItemNo;
+                e.PhotoUrl = pvm.PhotoUrl;
+                e.ItemName = pvm.ItemName;
+                e.UnitPrice = pvm.UnitPrice;
+                e.Author = pvm.Author;
+                e.Publisher = pvm.Publisher;
+                e.Overview = pvm.Overview;
+                e.Size = pvm.Size;
+                e.Type = pvm.Type;
+                e.Stock = pvm.Stock;
+                ViewBag.model3 = e;
+                return View(e);
             }
         }
 
@@ -145,6 +168,7 @@ namespace OrderingManegimentSystem.Controllers
                 model5.Type = type;
                 model5.Stock = stock;
                 db.SaveChanges();
+                ViewBag.Update = 1;
                 return Redirect("/ProductMaintenance/List");
             }
         }
@@ -156,7 +180,32 @@ namespace OrderingManegimentSystem.Controllers
             }
             using (var db = new ModelContext())
             {
-                return View(dlist);
+                int countCheck = 0;
+                foreach (var item in dlist)
+                {
+                    if (item.IsChecked == true)
+                    {
+                        countCheck++;
+                    }
+                }
+                if (countCheck == 0)
+                {
+                    ViewBag.NoChecked = 1;
+
+                    var pdList = db.Products.ToList();
+                    var elvmListDisplay = new List<ProductViewModel>();
+                    foreach (var item in pdList)
+                    {
+                        var ei = new ProductViewModel(item);
+                        elvmListDisplay.Add(ei);
+                    }
+                    return View("List", elvmListDisplay);
+                }
+                else
+                {
+                    return View(dlist);
+                }
+                    
             }
         }
 
@@ -179,6 +228,7 @@ namespace OrderingManegimentSystem.Controllers
 
                 }
                 db.SaveChanges();
+                ViewBag.Delete = 1;
                 return Redirect("/ProductMaintenance/List");
             }
         }
