@@ -12,7 +12,7 @@ namespace OrderingManagementSystem.Controllers
     public class OrderStatusController : Controller
     {
         // GET: OrderStatus
-        public ActionResult OrderList(int ctmId = 1)
+        public ActionResult OrderList()
         {
             if (Session["Customer"] == null)
             {
@@ -22,6 +22,7 @@ namespace OrderingManagementSystem.Controllers
             {
                 var osList = new List<List<OrderStatusViewModel>>();
 
+                int ctmId = int.Parse(Session["Customer"].ToString());
                 var orderNoList = (from odn in db.Orders
                                    where odn.CustomerId == ctmId
                                    select new { odn.OrderNo }).ToList();

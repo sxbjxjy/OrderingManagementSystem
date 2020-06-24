@@ -24,7 +24,7 @@
         int flag = 0;
         for (int k = 0; k < Model[i].Count(); k++)
         {
-            if (Model[i][k].Status != 1)
+            if (Model[i][k].Status == 2 || Model[i][k].Status == 3)
             {
                 flag = 1;
                 break;
