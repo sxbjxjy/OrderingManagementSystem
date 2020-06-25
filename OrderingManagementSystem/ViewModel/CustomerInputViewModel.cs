@@ -38,6 +38,7 @@ namespace OrderingManagementSystem.ViewModel
 
         [DisplayName("氏名（かな）")]
         [Required(ErrorMessage = "氏名（かな）を入力してください")]
+        [RegularExpression("[あ-ん|　]*", ErrorMessage = "{0}は、全角ひらがなと空白で入力してください")]
         public string CustomerKana { get; set; }
 
         [DisplayName("部署")]
