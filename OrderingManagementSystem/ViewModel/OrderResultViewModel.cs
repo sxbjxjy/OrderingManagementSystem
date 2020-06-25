@@ -12,6 +12,7 @@ namespace OrderingManagementSystem.ViewModel
         [DisplayFormat(DataFormatString ="{0:D6}")]
         public int OrderNo { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:D4}")]
         public int ItemNo { get; set; }
 
         public string ItemName { get; set; }

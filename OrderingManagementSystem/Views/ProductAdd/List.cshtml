@@ -15,7 +15,9 @@
     数量と希望納期を入力してください。
 </div>
 <div style="text-align:center">
-<img src="@ViewBag.U" wigth="150" height="150" />
+
+<img src="@Model.PhotoUrl" wigth="150" height="150" />
+
 </div>
 @using (Html.BeginForm("ProductAddResult", "ProductAdd", FormMethod.Post))
 {

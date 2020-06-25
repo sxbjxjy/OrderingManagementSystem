@@ -10,6 +10,7 @@ namespace OrderingManagementSystem.ViewModel
 {
     public class ProductAddViewModel
     {
+        [DisplayFormat(DataFormatString = "{0:d4}")]
         public int ItemNo { get; set; }
         public string ItemName { get; set; }
         public string PhotoUrl { get; set; }
