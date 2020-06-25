@@ -15,22 +15,23 @@
     <meta charset="UTF-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>ウィン堂</title>
-    <link rel="stylesheet" type="text/css" href="/Content/table.css">
+    <link rel="stylesheet" type="text/css" href="/Content/logo.css">
 </head>
 <body>
     <table border="1" class="kousei">
         <thead>
-            <tr>
+            <tr class="box5">
                 <th class="header"></th>
-                <th class="header" id="title" colspan="2">ウィン堂</th>
+                <th class="header" colspan="2"><h3>ウィン堂</h3><p><y>bookstore</y></p></th>
                 <th class="header" id="subtitle">商品発注システム</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr class="box5">
                 <td align="justify" valign="top" width="20%">
-                    <div>メニュー</div>
-                    <hr size="2">
+                    <br />
+                    <p style="font-size:125%">　　　メニュー</p>
+                    <hr width="80%" size="2">
                     <ul>
                         <li>@Html.ActionLink("受注情報検索", "Search", "OrderingSearch")</li>
                         <li>@Html.ActionLink("在庫情報メンテナンス", "InventoryDisplay", "ItemMaintenance")</li>
