@@ -12,6 +12,8 @@
 </head>
 <body>
     <center>
+       
+
         <h1>在庫情報メンテナンス</h1>
         <p>在庫情報を更新します。</p>
         <div>商品が入荷した場合は、入荷数量を入力して「入荷」ボタンを押してください。</div>
@@ -59,7 +61,6 @@
 
             入荷予定日<input type="date" max="9999-12-31" name="receiptDate" />
             <button type="submit" formaction="/ItemMaintenance/UpdateRedirect">更新</button><br /><br />
-            @Html.ValidationMessageFor(model => model.Stock)
 
             <button type="button" onclick="history.back()">戻る</button>
             <input type="hidden" name="itemNo" value="@ViewBag.model.ItemNo" />

@@ -13,6 +13,7 @@ namespace OrderingManagementSystem.ViewModel
     {
         public int CartNo { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d4}")]
         public int ItemNo { get; set; }
 
         public string ItemName { get; set; }

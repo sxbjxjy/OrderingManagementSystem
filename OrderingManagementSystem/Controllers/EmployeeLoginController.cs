@@ -22,7 +22,7 @@ namespace OrderingManagementSystem.Controllers
             return View("Login");
         }
         [HttpPost]
-        public ActionResult EmployeeMain(EmployeeInputViewModel eivm)
+        public ActionResult EmployeeMain(EmployeeLoginViewModel eivm)
         {
             if (eivm.Password == null || eivm.EmpNo == 0)
             {

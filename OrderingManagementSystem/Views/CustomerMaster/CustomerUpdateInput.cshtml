@@ -97,7 +97,8 @@
         @Html.HiddenFor(model => model.CustomerId)
         <input type="submit" value="送信" />
         <input type="button" value="戻る" onclick="window.location='@Url.Action("CustomerList", "CustomerMaster")'" />
-        <input type="reset" value="クリア" />
+        <input type="reset" value="クリア"
+               onclick="window.location='@Url.Action("CustomerUpdateInputClear", "CustomerMaster", new { id = Model.CustomerId }, null)'" />
     }
 </body>
 </html>

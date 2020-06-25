@@ -13,7 +13,7 @@ namespace Test.Controllers
     {
         // GET: CustomerAdd
         public ActionResult CustomerSignUp()
-        {
+        {            
             using (var db = new ModelContext())
             {
                 return View();
@@ -22,7 +22,7 @@ namespace Test.Controllers
         [HttpGet]
         public ActionResult CustomerSignUpComfirmation()
         {
-            return View("CustomerSignUp");
+            return Redirect("/CustomerLogin/CustomerLoginIndex");
         }
         [HttpPost]
         public ActionResult CustomerSignUpComfirmation(CustomerSignUpViewModel csvm)
@@ -49,7 +49,7 @@ namespace Test.Controllers
         [HttpGet]
         public ActionResult CustomerSignUpDone()
         {
-            return View("CustomerSignUp");
+            return Redirect("/CustomerLogin/CustomerLoginIndex");
         }
         [HttpPost]
         public ActionResult CustomerSignUpDone(Customer customer)

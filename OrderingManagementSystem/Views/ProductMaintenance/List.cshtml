@@ -17,6 +17,24 @@
         <div>新規に取扱商品を追加する場合は、「商品追加」ボタンを押してください。</div>
         <div>登録済み商品の情報を変更するには、商品名のリンクをクリックしてください。</div>
         <div>商品を削除する場合は、リストの右にある「削除」をチェックし、「削除」ボタンを押してください。</div><br />
+
+        @if (ViewBag.Add == 1)
+        {
+            <div style="color:chocolate">新しい商品情報が登録されました</div><br />
+        }
+        @if (ViewBag.Update == 1)
+        {
+            <div style="color:chocolate">商品情報が更新されました</div><br />
+        }
+        @if (ViewBag.Delete == 1)
+        {
+            <div style="color:chocolate">商品情報が削除されました</div><br />
+        }
+        @if (ViewBag.NoChecked == 1)
+        {
+            <div style="color:chocolate">削除を行う場合は、削除したい商品を選択してください</div><br />
+        }
+
         <form action="ProductMaintenance/Delete" method="post">
             <table border="1">
                 <tr>

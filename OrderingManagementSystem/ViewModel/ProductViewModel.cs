@@ -79,19 +79,6 @@ namespace OrderingManagementSystem.ViewModel
 
         public string Type { get; set; }
 
-        /*public static ValidationResult StockCheck(int itemNo)
-        {
-            using (var db = new ModelContext())
-            {
-                var e = db.Products.Find(itemNo);
-                if (e.Stock < 0)
-                {
-                    return new ValidationResult("在庫が不足するため減少できません。");
-                }
-                return ValidationResult.Success;
-            }
-        }
-        [CustomValidation(typeof(ProductViewModel), "StockCheck")]*/
         [DisplayFormat(DataFormatString = "{0:#}")]
         public int Stock { get; set; }
 

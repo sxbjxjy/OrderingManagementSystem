@@ -39,6 +39,21 @@ namespace OrderingManagementSystem.Controllers
             }
         }
 
+
+        public ActionResult CustomerUpdateInputClear(int id)
+        {
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
+            using (var db = new ModelContext())
+            {
+                var civm = new CustomerInputViewModel();
+                civm.CustomerId = id;
+                return View("CustomerUpdateInput", civm);
+            }
+        }
+
         public ActionResult CustomerUpdateConfirm(CustomerInputViewModel civm)
         {
             if (Session["Employee"] == null)

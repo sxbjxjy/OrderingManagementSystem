@@ -51,7 +51,14 @@
                             <td>@Html.DisplayFor(model => item.ItemName)</td>
                             <td>@Html.DisplayFor(model => item.UnitPrice)</td>
                             <td>@Html.DisplayFor(model => item.Size)</td>
-                            <td>@Html.DisplayFor(model => item.Stock)</td>
+                            @if(item.Stock == 0)
+                            {
+                                <td>0</td>
+                            }
+                            else
+                            {
+                                <td>@Html.DisplayFor(model => item.Stock)</td>
+                            }                       
                             <td>@Html.DisplayFor(model => item.Type)</td>
                             <td>@Html.DisplayFor(model => item.Category)</td>
                             <td>@Html.DisplayFor(model => item.Author)</td>

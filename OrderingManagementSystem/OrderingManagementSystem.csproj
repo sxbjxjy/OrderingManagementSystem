@@ -118,7 +118,6 @@
     <Compile Include="Controllers\OrderingSearchController.cs" />
     <Compile Include="Controllers\StatusUpdateController.cs" />
     <Compile Include="Controllers\EmployeeMasterController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="DAL\Initializer.cs" />
     <Compile Include="DAL\ModelContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -132,8 +131,10 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\OrderCheckViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeLoginViewModel.cs" />
     <Compile Include="ViewModel\OrderResultViewModel.cs" />
     <Compile Include="ViewModel\ProductAddViewModel.cs" />
+    <Compile Include="ViewModel\ProductCatalogViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCartViewModel.cs" />
     <Compile Include="ViewModel\EmployeeUpdateInputViewModel.cs" />
     <Compile Include="ViewModel\OrderStatusViewModel.cs" />
@@ -194,6 +195,7 @@
     <Content Include="Views\CustomerMaster\CustomerDeleteConfirm.cshtml" />
     <Content Include="Views\OrderStatus\OrderList.cshtml" />
     <Content Include="Views\OrderStatus\OrderCancelConfirm.cshtml" />
+    <Content Include="Views\ProductList\ProductCatalog3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

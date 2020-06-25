@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using OrderingManagementSystem.ViewModel;
 using OrderingManagementSystem.DAL;
 
-namespace OrderingManagement2.Controllers
+namespace OrderingManagementSystem.Controllers
 {
     public class ProductListController : Controller
     {
@@ -21,9 +21,19 @@ namespace OrderingManagement2.Controllers
             }
             using (var db = new ModelContext())
             {
-                ViewBag.model = db.Products.ToList();
-                return View();
+                var ul = db.Products.ToList();
+                ViewBag.model = ul;
+
+                for(int i=0; i < ul.Count(); i++)
+                {
+                    var stock = db.Products.Find(ul[i].ItemNo);
+                    var od = (from a in db.OrderDetails
+                              where a.ItemNo == stock.ItemNo && a.Status == 1
+                              select (int?)a.Quantity).Sum() ?? 0;
+                    stock.Stock = stock.Stock - od;
+                }                               
             }
+            return View();
         }
         public ActionResult ProductCatalog2()
         {
@@ -44,6 +54,31 @@ namespace OrderingManagement2.Controllers
                     dlist.Add(e);
                 }
                 return View(dlist);
+            }
+        }
+
+        public ActionResult ProductCatalog3()
+        {
+            if (Session["Customer"] == null)
+            {
+                return Redirect("/CustomerLogin/CustomerLoginIndex");
+            }
+            using (var db = new ModelContext())
+            {
+                var pList = db.Products.ToList();
+                var pcList = new List<ProductCatalogViewModel>();
+
+                for (int i = 0; i < pList.Count(); i++)
+                {
+                    var pc = new ProductCatalogViewModel(pList[i]);
+                    int pNo = pList[i].ItemNo;
+                    var odq = (from x in db.OrderDetails
+                               where x.ItemNo == pNo && x.Status == 1
+                               select (int?)x.Quantity).Sum() ?? 0;
+                    pc.Stock -= odq;
+                    pcList.Add(pc);
+                }
+                return View(pcList);
             }
         }
     }

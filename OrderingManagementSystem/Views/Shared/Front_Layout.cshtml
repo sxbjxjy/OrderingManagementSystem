@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿
+<style>
+    .field-validation-error {
+        font-size: 14px;
+        color: red;
+    }
+</style>
+
+
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -25,6 +34,7 @@
                         <li>@Html.ActionLink("見積確認", "ShoppingCart", "Estimate")</li>
                         <li>@Html.ActionLink("発注済みステータス確認", "OrderList", "OrderStatus")</li>
                         <li>@Html.ActionLink("ログアウト", "Index", "CustomerLogout")</li>
+                        <li>@Session["Customer"]</li>
                     </ul>
                 </td>
                 <td colspan="3" align="center">
