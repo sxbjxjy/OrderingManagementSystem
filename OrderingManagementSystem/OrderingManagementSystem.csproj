@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\logo.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\table.css" />
     <Content Include="Global.asax" />
