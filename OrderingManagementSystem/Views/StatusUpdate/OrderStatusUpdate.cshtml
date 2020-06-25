@@ -2,6 +2,11 @@
 @{
     ViewBag.Title = "OrderStatusUpdate";
     Layout = "~/Views/Shared/Back_Layout.cshtml";
+    string orderNo = String.Format("{0:000000}",ViewBag.model.OrderNo);
+    string meisaiNo = String.Format("{0:000}", ViewBag.model.MeisaiNo);
+    string itemNo = String.Format("{0:0000}", ViewBag.model.ItemNo);
+    DateTime dt = ViewBag.model.DeliveryDate;
+    string datetime = dt.ToString("yyyy/MM/dd");
 }
 
 <style>
@@ -29,11 +34,11 @@
     <table border="1">
         <tr>
             <th>注文番号-明細</th>
-            <td>@ViewBag.model.OrderNo-@ViewBag.model.MeisaiNo</td>
+            <td>@orderNo-@meisaiNo</td>
         </tr>
         <tr>
             <th>商品番号</th>
-            <td>@ViewBag.model.ItemNo </td>
+            <td>@itemNo </td>
         </tr>
         <tr>
             <th>商品名</th>
@@ -45,7 +50,7 @@
         </tr>
         <tr>
             <th>希望納期</th>
-            <td>@ViewBag.model.DeliveryDate</td>
+            <td>@datetime</td>
         </tr>
         <tr>
             <th>ステータス</th>
