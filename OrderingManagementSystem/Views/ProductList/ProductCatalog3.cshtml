@@ -16,11 +16,18 @@
     <h1>取扱商品カタログ</h1>
 
     <table border="1">
-        @for (int i = 0; i < Model.Count() / 2; i++)
+        @for (int i = 0; i < Model.Count() / 2 + 1; i++)
         {
             <tr>
                 @for (int j = 0; j < 2; j++)
                 {
+                    if ((i * 2 + j) >= Model.Count())
+                    {
+                        <td></td>
+                        <td></td>
+                    }
+                    else
+                    {
                         <td><img src="@Model[i*2+j].PhotoUrl" wigth="150" height="150" /></td>
                         <td>
                             商品番号：@Html.DisplayFor(m => m[i * 2 + j].ItemNo)<br /><br />
@@ -39,10 +46,10 @@
                             @if (Model[i * 2 + j].Stock > 0)
                             {
                                 <input type="button" value="注文する" onclick="window.location = '@Url.Action(
-                                                                  "List", "ProductAdd", new { ItemNo = Model[i*2+j].ItemNo }, null)'" />
+                                                                    "List", "ProductAdd", new { ItemNo = Model[i*2+j].ItemNo }, null)'" />
                             }
-
                         </td>
+                    }
                 }
             </tr>
         }
