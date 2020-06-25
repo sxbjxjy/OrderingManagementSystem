@@ -1,5 +1,4 @@
-﻿@model OrderingManagementSystem.ViewModel.ProductViewModel
-@{
+﻿@{
     Layout = "~/Views/Shared/Back_layout.cshtml";
 }
 
@@ -12,13 +11,16 @@
 </head>
 <body>
     <center>
-       
-
         <h1>在庫情報メンテナンス</h1>
         <p>在庫情報を更新します。</p>
         <div>商品が入荷した場合は、入荷数量を入力して「入荷」ボタンを押してください。</div>
         <div>在庫を減らしたい場合は、減少数量を入力して「減少」ボタンを押してください。</div>
         <div>入荷予定日を更新したい場合は、入荷予定日を入力して「更新」ボタンを押してください。</div><br />
+
+        <div style="color:chocolate">@ViewBag.Zero</div>
+        <div style="color:chocolate">@ViewBag.Stock</div>
+
+        <br />
         <form>
             <table border="1" align="center">
                 <tr>
