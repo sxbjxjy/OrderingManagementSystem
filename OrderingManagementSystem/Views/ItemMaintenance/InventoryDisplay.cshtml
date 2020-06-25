@@ -15,6 +15,12 @@
         <h1>在庫情報メンテナンス</h1>
         <div>在庫情報のメンテナンスを行います。</div>
         <div>変更したい在庫の商品名リンクをクリックしてください。</div><br />
+
+        <div style="color:chocolate">@ViewBag.Arraival</div>
+        <div style="color:chocolate">@ViewBag.Decrease</div>
+        <div style="color:chocolate">@ViewBag.Update</div>
+
+        <br />
         <form>
             <table border="1">
                 <tr>
@@ -51,8 +57,10 @@
 
                     </tr>
                 }
-            </table>
+            </table><br />
         </form>
     </center>
 </body>
 </html>
+
+
