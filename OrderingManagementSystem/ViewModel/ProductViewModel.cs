@@ -79,6 +79,7 @@ namespace OrderingManagementSystem.ViewModel
 
         public string Type { get; set; }
 
+        [Required(ErrorMessage = "数量を入力してください。")]
         [DisplayFormat(DataFormatString = "{0:#}")]
         public int Stock { get; set; }
 

@@ -52,21 +52,5 @@ namespace OrderingManagementSystem.ViewModel
 
         public DateTime? ReceiptDate { get; set; }
 
-        /*public ProductViewModel2() { }
-        public ProductViewModel2(Product prd)
-        {
-            ItemName = prd.ItemName;
-            Category = prd.Category;
-            ItemNo = prd.ItemNo;
-            PhotoUrl = prd.PhotoUrl;
-            UnitPrice = prd.UnitPrice;
-            Author = prd.Author;
-            Publisher = prd.Publisher;
-            Overview = prd.Overview;
-            Size = prd.Size;
-            Type = prd.Type;
-            Stock = prd.Stock;
-            ReceiptDate = prd.ReceiptDate;
-        }*/
     }
 }

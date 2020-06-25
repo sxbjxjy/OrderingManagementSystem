@@ -1,14 +1,13 @@
 ﻿@model OrderingManagementSystem.ViewModel.ProductViewModel2
 @{
     Layout = "~/Views/Shared/Back_layout.cshtml";
-
 }
 @*
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 *@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -19,7 +18,7 @@
         <h1>商品情報メンテナンス</h1>
         <div>商品情報を更新します。</div>
         <div>更新内容を入力して、「送信」ボタンを押してください。</div><br />
-        @using (@Html.BeginForm("UpdateCheck", "ProductMaintenance", FormMethod.Post))
+        @using (Html.BeginForm("UpdateCheck", "ProductMaintenance", FormMethod.Post))
         {
             <table border="1">
                 <tr>
@@ -42,7 +41,7 @@
                 </tr>
                 <tr>
                     <th>単価</th>
-                    <td><input type="text" name="unitPrice" value="@String.Format("{0:#}", ViewBag.model3.UnitPrice)">
+                    <td>@Html.TextBoxFor(model => model.UnitPrice, "{0:#}")
                     @Html.ValidationMessageFor(model => model.UnitPrice)</td>
 
                 </tr>
@@ -55,6 +54,18 @@
                 <tr>
                     <th>種類</th>
                     <td>
+                        @*@Html.DropDownListFor(model => model.Type,
+                        new SelectListItem[]{
+                           new SelectListItem(){Value="文庫本", Text="文庫本" },
+                           new SelectListItem(){Value="コミック", Text="コミック" },
+                           new SelectListItem(){Value="新書", Text="新書" },
+                           new SelectListItem(){Value="ハードカバー", Text="ハードカバー" },
+                           new SelectListItem(){Value="雑誌", Text="雑誌" },
+                           new SelectListItem(){Value="文芸誌", Text="文芸誌" },
+                           new SelectListItem(){Value="写真集", Text="写真集" },
+                           new SelectListItem(){Value="画集", Text="画集" } }
+                           )*@
+
                         <select name="type">
                             <option value="@ViewBag.model3.Type">@ViewBag.model3.Type</option>
                             <option value="文庫本">文庫本</option>
@@ -71,6 +82,17 @@
                 <tr>
                     <th>カテゴリー</th>
                     <td>
+                        @*@Html.DropDownListFor(model => model.Category,
+                        new SelectListItem[]{
+                           new SelectListItem(){Value="文庫本", Text="文庫本" },
+                           new SelectListItem(){Value="コミック", Text="コミック" },
+                           new SelectListItem(){Value="新書", Text="新書" },
+                           new SelectListItem(){Value="ハードカバー", Text="ハードカバー" },
+                           new SelectListItem(){Value="雑誌", Text="雑誌" },
+                           new SelectListItem(){Value="文芸誌", Text="文芸誌" },
+                           new SelectListItem(){Value="写真集", Text="写真集" },
+                           new SelectListItem(){Value="画集", Text="画集" } }
+                           )*@
                         <select name="category">
                             <option value="@ViewBag.model3.Category">@ViewBag.model3.Category</option>
                             <option value="コミック・ラノベ・BL">コミック・ラノベ・BL</option>
@@ -112,14 +134,13 @@
                 </tr>
                 <tr>
                     <th>商品説明</th>
-                    <td>
-                        <textarea name="overview" rows="3" cols="20">@ViewBag.model3.Overview</textarea>
-                    </td>
+                    <td>@Html.TextAreaFor(model => model.Overview,3,20,new { })</td>
                 </tr>
             </table><br />
             <input type="hidden" name="stock" value="@ViewBag.model3.Stock" />
             <input type="submit" value="送信" />
             <button type="button" onclick="history.back()">戻る</button>
+
         }
     </center>
 </body>

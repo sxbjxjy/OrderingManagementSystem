@@ -79,25 +79,23 @@ namespace OrderingManegimentSystem.Controllers
                 db.Products.Add(prd);
                 db.SaveChanges();
                 ViewBag.Add = 1;
-                return Redirect("List");
+                var pdList = db.Products.ToList();
+                var List = new List<ProductViewModel>();
+                foreach (var item in pdList)
+                {
+                    var e = new ProductViewModel(item);
+                    List.Add(e);
+                }
+                return View("List",List);
                 
             }
         }
-
         public ActionResult Update(int id)
         {
-
-            /*using (var db = new ModelContext())
             if (Session["Employee"] == null)
             {
                 return Redirect("/EmployeeLogin/Login");
             }
-            using (var db = new ModelContext(
-            {
-                ViewBag.model3 = db.Products.Find(id);
-                return View();
-            }*/
-
             using (var db = new ModelContext())
             {
                 var pvm = db.Products.Find(id);
@@ -128,7 +126,7 @@ namespace OrderingManegimentSystem.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View("UpDate");
+                    return View("Update" ,pvm);
                 }
                 Product e = new Product();
                 e.Category = pvm.Category;
@@ -142,12 +140,10 @@ namespace OrderingManegimentSystem.Controllers
                 e.Size = pvm.Size;
                 e.Type = pvm.Type;
                 e.Stock = pvm.Stock;
-                ViewBag.model4 = e;
                 return View(e);
             }
         }
-        public ActionResult UpdateRedirect(string category, int itemNo, string photoUrl, string itemName, int unitPrice,
-            string author, string publisher, string overview, string size, string type, int stock)
+        public ActionResult UpdateRedirect(Product prd)
         {
             if (Session["Employee"] == null)
             {
@@ -155,18 +151,18 @@ namespace OrderingManegimentSystem.Controllers
             }
             using (var db = new ModelContext())
             {
-                var model5 = db.Products.Find(itemNo);
-                model5.Category = category;
-                model5.ItemNo = itemNo;
-                model5.PhotoUrl = photoUrl;
-                model5.ItemName = itemName;
-                model5.UnitPrice = unitPrice;
-                model5.Author = author;
-                model5.Publisher = publisher;
-                model5.Overview = overview;
-                model5.Size = size;
-                model5.Type = type;
-                model5.Stock = stock;
+                var model5 = db.Products.Find(prd.ItemNo);
+                model5.Category = prd.Category;
+                model5.ItemNo = prd.ItemNo;
+                model5.PhotoUrl = prd.PhotoUrl;
+                model5.ItemName = prd.ItemName;
+                model5.UnitPrice = prd.UnitPrice;
+                model5.Author = prd.Author;
+                model5.Publisher = prd.Publisher;
+                model5.Overview = prd.Overview;
+                model5.Size = prd.Size;
+                model5.Type = prd.Type;
+                model5.Stock = prd.Stock;
                 db.SaveChanges();
                 ViewBag.Update = 1;
                 return Redirect("/ProductMaintenance/List");
@@ -229,7 +225,14 @@ namespace OrderingManegimentSystem.Controllers
                 }
                 db.SaveChanges();
                 ViewBag.Delete = 1;
-                return Redirect("/ProductMaintenance/List");
+                var pdList = db.Products.ToList();
+                var List = new List<ProductViewModel>();
+                foreach (var item in pdList)
+                {
+                    var e = new ProductViewModel(item);
+                    List.Add(e);
+                }
+                return View("List",List);
             }
         }
 

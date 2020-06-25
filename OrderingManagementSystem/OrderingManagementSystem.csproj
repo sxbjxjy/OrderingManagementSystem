@@ -163,8 +163,6 @@
     <Content Include="Views\ProductMaintenance\Delete.cshtml" />
     <Content Include="Views\ItemMaintenance\InventoryDisplay.cshtml" />
     <Content Include="Views\ItemMaintenance\InventoryInformationUpdate.cshtml" />
-    <Content Include="Views\ProductList\ProductCatalog.cshtml" />
-    <Content Include="Views\ProductList\ProductCatalog2.cshtml" />
     <Content Include="Views\OrderingSearch\Search.cshtml" />
     <Content Include="Views\OrderingSearch\Searchresult.cshtml" />
     <Content Include="Views\StatusUpdate\OrderStatusUpdate.cshtml" />
@@ -190,7 +188,7 @@
     <Content Include="Views\CustomerMaster\CustomerDeleteConfirm.cshtml" />
     <Content Include="Views\OrderStatus\OrderList.cshtml" />
     <Content Include="Views\OrderStatus\OrderCancelConfirm.cshtml" />
-    <Content Include="Views\ProductList\ProductCatalog3.cshtml" />
+    <Content Include="Views\ProductList\ProductCatalog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
