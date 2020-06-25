@@ -57,13 +57,13 @@ namespace OrderingManegimentSystem.Controllers
                 {
                     if (!ModelState.IsValid)
                     {
-                        return View("ShoppingCart");
+                        return View("ShoppingCart", cdList);
                     }
                     //数量ゼロチェック
                     if (item.Quantity <= 0)
                     {
                         ViewBag.N = false;
-                        return View("ShoppingCart");
+                        return View("ShoppingCart", cdList);
                     }
 
                     //在庫不足チェック
@@ -91,7 +91,7 @@ namespace OrderingManegimentSystem.Controllers
                         if (n < o)
                         {
                             ViewBag.Z = false;
-                            return View("ShoppingCart");
+                            return View("ShoppingCart", cdList);
                         }
                     }
 
@@ -103,7 +103,7 @@ namespace OrderingManegimentSystem.Controllers
                     if (interval < 0 || interval > 90)
                     {
                         ViewBag.X = false;
-                        return View("ShoppingCart");
+                        return View("ShoppingCart", cdList);
                     }
                 }
 

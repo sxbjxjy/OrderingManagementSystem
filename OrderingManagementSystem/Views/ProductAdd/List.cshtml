@@ -15,7 +15,9 @@
     数量と希望納期を入力してください。
 </div>
 <div style="text-align:center">
+
 <img src="@Model.PhotoUrl" wigth="150" height="150" />
+
 </div>
 @using (Html.BeginForm("ProductAddResult", "ProductAdd", FormMethod.Post))
 {
@@ -54,6 +56,7 @@
     @Html.HiddenFor(m => m.ItemNo)
     @Html.HiddenFor(m => m.ItemName)
     @Html.HiddenFor(m => m.UnitPrice)
+    @Html.HiddenFor(m => m.PhotoUrl)
     <br>
     <div style="text-align: center">
         <input type="submit" value="追加する">
