@@ -16,31 +16,47 @@ namespace OrderingManagementSystem.Controllers
             ModelContext db = new ModelContext();
             ViewBag.model = db.OrderDetails.Find(detailNo);
 
-            /*if (Session["Employee"] == null)
+            if (Session["Employee"] == null)
             {
                 return Redirect("/EmployeeLogin/Login");
-            }*/
+            }
             return View();
+        }
+
+        //在庫数が少ないときに飛ばすアクション。
+        public ActionResult OrderStatusUpdate2(int detailNo)
+        {
+            ModelContext db = new ModelContext();
+            ViewBag.model = db.OrderDetails.Find(detailNo);
+            ViewBag.stockerror = 1;
+            if (Session["Employee"] == null)
+            {
+                return Redirect("/EmployeeLogin/Login");
+            }
+            return View("OrderStatusUpdate");
         }
 
         public ActionResult OrderStatusChange(int detailNo, int status, int itemNo,  int quantity, int oldstatus)
         {
-            /*if (Session["Employee"] == null)
+            if (Session["Employee"] == null)
             {
                 return Redirect("/EmployeeLogin/Login");
-            }*/
+            }
             ModelContext db = new ModelContext();
-            //ステータス変更処理。
-            var od = db.OrderDetails.Find(detailNo);
-            od.Status = status;
-            db.SaveChanges();
 
             //Product在庫増減処理
             if (oldstatus == 1 && status == 2)//未出荷→出荷済
             {
                 var pd = db.Products.Find(itemNo);
-                pd.Stock -= quantity;
-                db.SaveChanges();
+                if(pd.Stock < quantity)
+                {
+                    return RedirectToAction("OrderStatusUpdate2", "StatusUpdate", new {detailNo});
+                }
+                else
+                {
+                    pd.Stock -= quantity;
+                    db.SaveChanges();
+                }
             }
             else if (oldstatus == 2 && status == 1)//出荷済→未出荷
             {
@@ -48,6 +64,11 @@ namespace OrderingManagementSystem.Controllers
                 pd.Stock += quantity;
                 db.SaveChanges();
             }
+
+            //ステータス変更処理。
+            var od = db.OrderDetails.Find(detailNo);
+            od.Status = status;
+            db.SaveChanges();
 
             //Viewに値を渡す準備。
             ViewBag.model = db.OrderDetails.Find(detailNo);

@@ -20,6 +20,10 @@
 
 <h2>受注ステータス変更</h2>
 <p>受注ステータスを変更してください。</p>
+@if(ViewBag.stockerror == 1)
+{
+    <p>在庫数量が不足しています。</p>
+}
 
 <form action="OrderStatusChange">
     <table border="1">
@@ -59,5 +63,5 @@
     <input type="hidden" name="itemNo" value="@ViewBag.model.ItemNo">
     <input type="hidden" name="quantity" value="@ViewBag.model.Quantity">
     <input type="hidden" name="oldstatus" value="@ViewBag.model.Status">
-    <p><input type="submit" value="変更">　<input type="button" value="検索結果に戻る" onclick="history.back()"></p>
+        <p><input type="submit" value="変更">　<input type="button" value="検索結果に戻る" onclick="history.back()"></p>
 </form>
