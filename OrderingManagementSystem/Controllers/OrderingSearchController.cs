@@ -19,7 +19,7 @@ namespace OrderingManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Searchresult(int? customerId, int? orderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
+        public ActionResult SearchResult(int? customerId, int? orderNo, DateTime? deliveryFrom, DateTime? deliveryTo, DateTime? orderFrom, DateTime? orderTo, int status)
         {
             if (Session["Employee"] == null)
             {

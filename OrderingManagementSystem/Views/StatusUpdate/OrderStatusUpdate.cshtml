@@ -22,7 +22,6 @@
 <p>受注ステータスを変更してください。</p>
 @if(ViewBag.stockerror == 1)
 {
-    ViewBag.stockerror2 = 1;
     <p>在庫数量が不足しています。</p>
 }
 
@@ -64,12 +63,5 @@
     <input type="hidden" name="itemNo" value="@ViewBag.model.ItemNo">
     <input type="hidden" name="quantity" value="@ViewBag.model.Quantity">
     <input type="hidden" name="oldstatus" value="@ViewBag.model.Status">
-    @if (ViewBag.stockerror2 == 1)
-    {
-        <p><input type="submit" value="変更">　<input type="button" value="検索結果に戻る" onclick="history.go(-2)"></p>
-    }
-    else
-    {
         <p><input type="submit" value="変更">　<input type="button" value="検索結果に戻る" onclick="history.back()"></p>
-    }
 </form>

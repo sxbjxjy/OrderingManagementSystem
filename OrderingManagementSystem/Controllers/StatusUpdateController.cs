@@ -43,10 +43,6 @@ namespace OrderingManagementSystem.Controllers
                 return Redirect("/EmployeeLogin/Login");
             }
             ModelContext db = new ModelContext();
-            //ステータス変更処理。
-            var od = db.OrderDetails.Find(detailNo);
-            od.Status = status;
-            db.SaveChanges();
 
             //Product在庫増減処理
             if (oldstatus == 1 && status == 2)//未出荷→出荷済
@@ -68,6 +64,11 @@ namespace OrderingManagementSystem.Controllers
                 pd.Stock += quantity;
                 db.SaveChanges();
             }
+
+            //ステータス変更処理。
+            var od = db.OrderDetails.Find(detailNo);
+            od.Status = status;
+            db.SaveChanges();
 
             //Viewに値を渡す準備。
             ViewBag.model = db.OrderDetails.Find(detailNo);
