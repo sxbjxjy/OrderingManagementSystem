@@ -30,29 +30,34 @@ $(function(){
 </head>
 <body>
     <table border="1" class="kousei">
-        <thead><tr class="box5"><th class="header" width="350"></th><th class="header" colspan="2"><h3>ウィン堂</h3><p><y>bookstore</y></p></th>
-            <th class="header" id="subtitle">商品発注システム</th></tr></thead>
+        <thead>
+            <tr class="box5">
+                <th class="header" width="350"></th>
+                <th class="header" colspan="2"><h3>ウィン堂</h3><p><y>bookstore</y></p></th>
+                <th class="header" id="subtitle">商品発注システム</th>
+            </tr>
+        </thead>
     </table>
     <div align="center">
         顧客IDとパスワードを入力してください。<br />
         @if (ViewBag.IsAuth == false)
         {
-            <p>入力された顧客IDまたはパスワードが誤っています</p>
+            <p style="color:red">入力された顧客IDまたはパスワードが誤っています</p>
         }
-        @Html.ValidationMessageFor(model => model.CustomerId)<br />
-        @Html.ValidationMessageFor(model => model.Password)
+        <br />
+        
         @using (Html.BeginForm("CustomerMainMenu", "CustomerLogin", FormMethod.Post))
         {
             <table>
                 <tr>
                     <td>顧客ID</td>
                     <td>@Html.TextBoxFor(model => model.CustomerId)</td>
-                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.CustomerId)</td>
                 </tr>
                 <tr>
                     <td>パスワード</td>
                     <td>@Html.PasswordFor(model => model.Password)</td>
-                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Password)</td>
                 </tr>
             </table>
             <br />

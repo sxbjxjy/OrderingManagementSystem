@@ -36,7 +36,7 @@ $(function(){
         <p>社員番号とパスワードを入力してください。</p>
         @if (ViewBag.IsAuth != null)
         {
-    <p>入力された社員番号またはパスワードが誤っています。</p>
+    <p style="color:red">入力された社員番号またはパスワードが誤っています。</p>
         }
         @using (Html.BeginForm("EmployeeMain", "EmployeeLogin", FormMethod.Post))
         {
