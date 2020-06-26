@@ -79,7 +79,15 @@ namespace OrderingManegimentSystem.Controllers
                 db.Products.Add(prd);
                 db.SaveChanges();
                 ViewBag.Add = 1;
-                return Redirect("List");
+
+                var empList = db.Products.ToList();
+                var elvmList = new List<ProductViewModel>();
+                foreach (var item in empList)
+                {
+                    var e = new ProductViewModel(item);
+                    elvmList.Add(e);
+                }
+                return View("List", elvmList);
                 
             }
         }
@@ -169,7 +177,14 @@ namespace OrderingManegimentSystem.Controllers
                 model5.Stock = stock;
                 db.SaveChanges();
                 ViewBag.Update = 1;
-                return Redirect("/ProductMaintenance/List");
+                var empList = db.Products.ToList();
+                var elvmList = new List<ProductViewModel>();
+                foreach (var item in empList)
+                {
+                    var e = new ProductViewModel(item);
+                    elvmList.Add(e);
+                }
+                return View("List", elvmList);
             }
         }
         public ActionResult Delete(List<ProductViewModel> dlist)
@@ -229,7 +244,14 @@ namespace OrderingManegimentSystem.Controllers
                 }
                 db.SaveChanges();
                 ViewBag.Delete = 1;
-                return Redirect("/ProductMaintenance/List");
+                var empList = db.Products.ToList();
+                var elvmList = new List<ProductViewModel>();
+                foreach (var item in empList)
+                {
+                    var e = new ProductViewModel(item);
+                    elvmList.Add(e);
+                }
+                return View("List", elvmList);
             }
         }
 

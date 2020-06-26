@@ -11,6 +11,57 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ProductCatalog3</title>
+    <style type="text/css">
+        .model {
+            display: none;
+        }
+
+        .model:target {
+            display: flex;
+        }
+        .model {
+            text-align: left;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+        }
+        .model:target {
+            justify-content: space-around;
+            align-items: center;
+        }
+        .model_overlay {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            cursor: default;
+        }
+        .model_content {
+            min-width: 480px;
+            position: relative;
+            background-color: #f5f5f5;
+            padding: 2rem;
+        }
+        .model_close {
+            color: initial;
+            text-decoration: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 0.5rem;
+            display: inline-block;
+        }
+        body {
+            padding: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+    </style>
 </head>
 <body>
     <h1>取扱商品カタログ</h1>
@@ -30,8 +81,24 @@
                     {
                         <td><img src="@Model[i*2+j].PhotoUrl" wigth="150" height="150" /></td>
                         <td>
-                            商品番号：@Html.DisplayFor(m => m[i * 2 + j].ItemNo)<br /><br />
-                            @Html.DisplayFor(m => m[i * 2 + j].ItemName)<br /><br />
+                            商品番号：@Html.DisplayFor(m => m[i * 2 + j].ItemNo)<br />
+                           
+                            <a href="#model">@Html.DisplayFor(m => m[i * 2 + j].ItemName)</a>
+                            <div class="model" id="model" tabindex="-1">
+                                <a href="#" class="model_overlay" aria-label="Close model"></a>
+                                <div class="model_content">
+                                    <a href="#" class="model_close" aria-label="Close model">&times;</a>
+                                    <div>
+                                        著者：@Html.DisplayFor(m => m[i * 2 + j].Author)<br />
+                                        出版社：@Html.DisplayFor(m => m[i * 2 + j].Publisher)<br />
+                                        寸法：@Html.DisplayFor(m => m[i * 2 + j].Size)<br />
+                                        カテゴリー：@Html.DisplayFor(m => m[i * 2 + j].Category)<br />
+                                        商品説明：@Html.DisplayFor(m => m[i * 2 + j].Overview)<br />
+                                    </div>
+                                </div>
+                            </div>       
+
+                            <br />
                             ご提供価格：@Html.DisplayFor(m => m[i * 2 + j].UnitPrice)-<br /><br />
                             種類：@Html.DisplayFor(m => m[i * 2 + j].Type)
                             @if (Model[i * 2 + j].Stock == 0)
