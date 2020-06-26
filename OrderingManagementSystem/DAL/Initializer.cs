@@ -56,9 +56,9 @@ namespace OrderingManagementSystem.DAL
                     PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r",
                     UnitPrice = 616, Category = "SF・ホラー・ファンタジー", Size = "15x11x2cm",
 
-        
+
                     Overview = "「黒髪の乙女」にひそかに想いを寄せる「先輩」は、京都のいたるところで彼女の姿を追い求めた。二人を待ち受ける珍事件の数々、そして運命の大転回とは? 山本周五郎賞受賞、本屋大賞2位の傑作、待望の文庫化!",
-                   
+
                     Type = "文庫", Stock = 15, ReceiptDate = null
                 },
                 new Product
@@ -96,7 +96,7 @@ namespace OrderingManagementSystem.DAL
                     PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
                     UnitPrice = 880, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15x11x2cm",
 
-                   
+
                     Type = "文庫", Stock = 20, ReceiptDate = null
                 },
                 new Product
@@ -109,7 +109,7 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 7, ItemName = "リアルフェイス", Author = "知念　実希人", Publisher = "実業之日本社",
-                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/714XizMzxpL.jpg", 
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/714XizMzxpL.jpg",
                     Overview = null,
                     UnitPrice = 734, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15 x 12.2 x 1.8 cm",
                     Type = "文庫", Stock = 0, ReceiptDate = DateTime.Parse("2020/07/05")
@@ -117,10 +117,18 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 8, ItemName = "黒い家", Author = "貴志　祐介", Publisher = "角川書店",
-                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51J9DP0KG8L.jpg", 
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51J9DP0KG8L.jpg",
                     Overview = "顧客の家に呼ばれ、子供の首吊り死体の発見者になってしまった保険会社社員・若槻は、顧客の不審な態度から独自の調査を始める。それが悪夢の始まりだった。第4回日本ホラー小説大賞受賞。",
                     UnitPrice = 748, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.8 x 2 cm",
                     Type = "文庫", Stock = 30, ReceiptDate = null
+                },
+                new Product
+                {
+                    ItemNo = 9, ItemName = "てふてふ荘へようこそ", Author = "乾　ルカ", Publisher = "角川書店",
+                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51J9DP0KG8L.jpg",
+                    Overview = "家賃13,000円、間取りは2K、敷金・礼金なし、管理費なし、身元保証人不要、最初の1か月は家賃不要、トイレ・風呂・玄関は共同、そんな破格の条件が揃った古びたアパート「てふてふ荘」にあるもう一つの条件は、どの部屋にも幽霊がおり、同居しなければならないことだった。切なくもほっこり心が温かくなる、おんぼろアパート物語。",
+                    UnitPrice = 649, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.8 x 2 cm",
+                    Type = "文庫", Stock = 5, ReceiptDate = null
                 }
             };
             products.ForEach(prod => model.Products.Add(prod));
@@ -157,7 +165,8 @@ namespace OrderingManagementSystem.DAL
                 new Order { OrderNo = 1, CustomerId = 1, OrderDate = DateTime.Parse("2020/05/01") },
                 new Order { OrderNo = 2, CustomerId = 1, OrderDate = DateTime.Parse("2020/06/06") },
                 new Order { OrderNo = 3, CustomerId = 2, OrderDate = DateTime.Parse("2020/06/07") },
-                new Order { OrderNo = 4, CustomerId = 1, OrderDate = DateTime.Parse("2020/06/08") }
+                new Order { OrderNo = 4, CustomerId = 1, OrderDate = DateTime.Parse("2020/06/08") },
+                new Order { OrderNo = 5, CustomerId = 3, OrderDate = DateTime.Parse("2020/06/08") }
             };
             orders.ForEach(od => model.Orders.Add(od));
             model.SaveChanges();
@@ -203,6 +212,11 @@ namespace OrderingManagementSystem.DAL
                 {
                     DetailNo = 8, OrderNo = 4, MeisaiNo = 2, ItemNo = 7, Quantity = 1,
                     DeliveryDate = DateTime.Parse("2020/07/10"), Status = 4
+                },
+                new OrderDetail
+                {
+                    DetailNo = 9, OrderNo = 5, MeisaiNo = 1, ItemNo = 9, Quantity = 20,
+                    DeliveryDate = DateTime.Parse("2020/07/10"), Status = 1
                 }
             };
             orderDetails.ForEach(odd => model.OrderDetails.Add(odd));
