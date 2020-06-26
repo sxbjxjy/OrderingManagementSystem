@@ -88,23 +88,23 @@
                     <div style="text-align:center">
                         @if (ViewBag.D == false)
                         {
-                            <p>数量、納期、削除チェックを変更した場合は、再見積を実行してから注文ボタンを押してください</p>
+                            <p style="color:red">数量、納期、削除チェックを変更した場合は、再見積を実行してから注文ボタンを押してください</p>
                         }
                         @if (ViewBag.N == false)
                         {
-                            <p>数量は、0より大きな値を入力してください</p>
+                            <p style="color:red">数量は、0より大きな値を入力してください</p>
                         }
                         @if (ViewBag.Z == false)
                         {
-                            <p>在庫数量より多い数量を指定することはできません</p>
+                            <p style="color:red">在庫数量より多い数量を指定することはできません</p>
                         }
                         @if (ViewBag.X == false)
                         {
-                            <p>正しい希望納期を入力してください</p>
+                            <p style="color:red">正しい希望納期を入力してください</p>
                         }
                         @if (ViewBag.Y == false)
                         {
-                            <p>在庫が不足するため、ご注文を確定できません</p>
+                            <p style="color:red">在庫が不足するため、ご注文を確定できません</p>
                         }
                         @for (int i = 0; i < Model.Count; i++)
                         {

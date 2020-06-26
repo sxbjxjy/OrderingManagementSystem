@@ -40,15 +40,15 @@
     <div style="text-align: center">
         @if (ViewBag.N == false)
         {
-            <p>数量は、0より大きい値を入力してください</p>
+            <p style="color:red">数量は、0より大きい値を入力してください</p>
         }
         @if (ViewBag.E == false)
         {
-            <p>在庫数量より多い数量を指定することはできません</p>
+            <p style="color:red">在庫数量より多い数量を指定することはできません</p>
         }
         @if (ViewBag.D == false)
         {
-            <p>正しい希望納期を入力してください</p>
+            <p style="color:red">正しい希望納期を入力してください</p>
         }
         <p>@Html.ValidationMessageFor(model => model.Quantity)</p>
         @Html.ValidationMessageFor(model => model.DeliveryDate)
