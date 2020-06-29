@@ -47,7 +47,8 @@ namespace Test.Controllers
                 }
                 else if (customer.CustomerId == ul.CustomerId && customer.Password == ul.Password)
                 {
-                    Session["Customer"] = ul.CustomerName;
+                    Session["CustomerName"] = ul.CustomerName;
+                    Session["Customer"] = ul.CustomerId;
                     return View();
                 }
                 else
