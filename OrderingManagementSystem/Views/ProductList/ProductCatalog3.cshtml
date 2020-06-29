@@ -102,7 +102,7 @@
                             <br />
                             ご提供価格：@Html.DisplayFor(m => m[i * 2 + j].UnitPrice)-<br /><br />
                             種類：@Html.DisplayFor(m => m[i * 2 + j].Type)
-                            @if (Model[i * 2 + j].Stock == 0)
+                            @if (Model[i * 2 + j].Stock <= 0)
                             {
                                 <div>在庫数量：入荷待ち</div><br />
                             }
