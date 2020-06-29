@@ -22,13 +22,15 @@
             </tr>
         </thead>
     </table>
+    <br />
     <div align="center">
         システム利用登録を完了しました。<br>
         お客様の顧客IDは、<strong>@(ID)</strong>です
         <p></p>
-        <p>ログイン時には、顧客IDとパスワードが必要となりますので、</p>
-        <p>顧客IDを忘れないようにご注意ください。</p>
+        ログイン時には、顧客IDとパスワードが必要となりますので、<br>
+        顧客IDを忘れないようにご注意ください。
         <br />
+        <p></p>
         @using (Html.BeginForm("CustomerLoginIndex", "CustomerLogin", FormMethod.Post))
         {
             <button type="submit">
