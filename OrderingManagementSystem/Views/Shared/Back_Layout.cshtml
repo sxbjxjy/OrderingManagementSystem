@@ -30,7 +30,7 @@
             <tr class="box5">
                 <td align="justify" valign="top" width="20%">
                     <br />
-                    <p style="font-size:125%">　　　メニュー</p>
+                    <p style="font-size:125% ; text-align:center">メニュー</p>
                     <hr width="80%" size="2">
                     <ul>
                         <li>@Html.ActionLink("受注情報検索", "Search", "OrderingSearch")</li>
@@ -42,7 +42,7 @@
                         <li>@Session["Employee"]</li>
                     </ul>
                 </td>
-                <td colspan="3" align="center">
+                <td colspan="3" align="center" valign="top">
                     @RenderBody()
                 </td>
             </tr>
