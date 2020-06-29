@@ -74,13 +74,13 @@
                 {
                     if ((i * 2 + j) >= Model.Count())
                     {
-                        <td></td>
-                        <td></td>
+                        <td wigth="150" height="150"></td>
+                        <td wigth="200" height="150"></td>
                     }
                     else
                     {
                         <td><img src="@Model[i*2+j].PhotoUrl" wigth="150" height="150" /></td>
-                        <td>
+                        <td  wigth="200" height="150" >
                             商品番号：@Html.DisplayFor(m => m[i * 2 + j].ItemNo)<br />
                            
                             <a href="#model">@Html.DisplayFor(m => m[i * 2 + j].ItemName)</a>
@@ -99,11 +99,12 @@
                             </div>       
 
                             <br />
+                            <br />
                             ご提供価格：@Html.DisplayFor(m => m[i * 2 + j].UnitPrice)-<br /><br />
                             種類：@Html.DisplayFor(m => m[i * 2 + j].Type)
                             @if (Model[i * 2 + j].Stock == 0)
                             {
-                                <div>在庫数量：入荷待ち</div>
+                                <div>在庫数量：入荷待ち</div><br />
                             }
                             else
                             {

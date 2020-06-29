@@ -82,6 +82,7 @@ namespace OrderingManagementSystem.ViewModel
         [DisplayFormat(DataFormatString = "{0:#}")]
         public int Stock { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime? ReceiptDate { get; set; }
 
         public ProductViewModel() { }
