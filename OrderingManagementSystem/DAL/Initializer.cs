@@ -53,7 +53,7 @@ namespace OrderingManagementSystem.DAL
                 {
                     ItemNo = 1, ItemName = "夜は短し歩けよ乙女", Author = "森見　登美彦", Publisher = "角川文庫",
 
-                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1auBOSGdPlXxzUKL4XrCR89tsQ1TqeQlZ",
                     UnitPrice = 616, Category = "SF・ホラー・ファンタジー", Size = "15x11x2cm",
 
 
@@ -65,7 +65,7 @@ namespace OrderingManagementSystem.DAL
                 {
                     ItemNo = 2, ItemName = "君の膵臓をたべたい", Author = "住野　よる", Publisher = "双葉社",
 
-                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1S-vOoldWxJxZBEuYsxfVrcy7KuMoxlBZ", Overview = null,
                     UnitPrice = 734, Category = "日本文学", Size = "15x11x2cm",
 
                     Type = "文庫", Stock = 20, ReceiptDate = null
@@ -74,7 +74,7 @@ namespace OrderingManagementSystem.DAL
                 {
                     ItemNo = 3, ItemName = "三体", Author = "劉　慈欣", Publisher = "早川書房",
 
-                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1FBdd5tKT4AGUDk5Qydt-PZ2KBl2oXqmX", Overview = null,
                     UnitPrice = 2090, Category = "SF・ホラー・ファンタジー", Size = "14x3x20cm",
 
 
@@ -84,7 +84,7 @@ namespace OrderingManagementSystem.DAL
                 {
                     ItemNo = 4, ItemName = "バーティミアス1 サマルカンドの秘宝 上", Author = "ジョナサン ストラウド", Publisher = "静山社",
 
-                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1ss4421fcFV80XEQolFTdT_mngAAqPE9M", Overview = null,
                     UnitPrice = 836, Category = "こどものSF・ファンタジー", Size = "18x11x1cm",
 
                     Type = "新書", Stock = 0, ReceiptDate = DateTime.Parse("2020/07/01")
@@ -93,7 +93,7 @@ namespace OrderingManagementSystem.DAL
                 {
                     ItemNo = 5, ItemName = "斜め屋敷の犯罪", Author = "島田　荘司", Publisher = "講談社",
 
-                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1kbSC6SiguremiDFHTm1zZ8Rs7o_ij70r", Overview = null,
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1QhGlNrMSS44JNdT7tN_sEZk35v4bA6r2", Overview = null,
                     UnitPrice = 880, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15x11x2cm",
 
 
@@ -102,14 +102,14 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 6, ItemName = "柚莉愛とかくれんぼ", Author = "真下　みこと", Publisher = "講談社",
-                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/91rQP4WlSIL.jpg", Overview = null,
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=18XDCyaimLj_8EdSXTVymH8kWkc1fKQG4", Overview = null,
                     UnitPrice = 1430, Category = "ミステリー・サスペンス・ハードボイルド", Size = "18.8 x 13 x 2.4 cm",
                     Type = "単行本", Stock = 4, ReceiptDate = null
                 },
                 new Product
                 {
                     ItemNo = 7, ItemName = "リアルフェイス", Author = "知念　実希人", Publisher = "実業之日本社",
-                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/714XizMzxpL.jpg",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1KKtNxWwEQ-6mqzXG180HecqYChEZJPak",
                     Overview = null,
                     UnitPrice = 734, Category = "ミステリー・サスペンス・ハードボイルド", Size = "15 x 12.2 x 1.8 cm",
                     Type = "文庫", Stock = 0, ReceiptDate = DateTime.Parse("2020/07/05")
@@ -117,7 +117,7 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 8, ItemName = "黒い家", Author = "貴志　祐介", Publisher = "角川書店",
-                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51J9DP0KG8L.jpg",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1pEQ-fQSEf67SFFTEnFIuInmsidxO0IJk",
                     Overview = "顧客の家に呼ばれ、子供の首吊り死体の発見者になってしまった保険会社社員・若槻は、顧客の不審な態度から独自の調査を始める。それが悪夢の始まりだった。第4回日本ホラー小説大賞受賞。",
                     UnitPrice = 748, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.8 x 2 cm",
                     Type = "文庫", Stock = 30, ReceiptDate = null
@@ -125,7 +125,7 @@ namespace OrderingManagementSystem.DAL
                 new Product
                 {
                     ItemNo = 9, ItemName = "てふてふ荘へようこそ", Author = "乾　ルカ", Publisher = "角川書店",
-                    PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51J9DP0KG8L.jpg",
+                    PhotoUrl = "https://drive.google.com/uc?export=view&id=1Fg7Gb92gA0eX2H_Mwi0Bw5gZGasfPonl",
                     Overview = "家賃13,000円、間取りは2K、敷金・礼金なし、管理費なし、身元保証人不要、最初の1か月は家賃不要、トイレ・風呂・玄関は共同、そんな破格の条件が揃った古びたアパート「てふてふ荘」にあるもう一つの条件は、どの部屋にも幽霊がおり、同居しなければならないことだった。切なくもほっこり心が温かくなる、おんぼろアパート物語。",
                     UnitPrice = 649, Category = "SF・ホラー・ファンタジー", Size = "14.8 x 10.8 x 2 cm",
                     Type = "文庫", Stock = 5, ReceiptDate = null
